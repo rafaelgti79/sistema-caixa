@@ -3,22 +3,55 @@ import ReactDOM from "react-dom/client";
 import App from './App.jsx';
 import './index.css';
 
-import Cadastro from './routes/cadastro.jsx';
+import Home from './routes/Home/home.jsx';
+import Maquinas from './routes/Maquinas/maquinas.jsx';
+import Jogos from './routes/Jogos/jogos.jsx';
+import Loja from './routes/Lojas/lojas.jsx';
+import Cartão from './routes/Cartoes/cartao.jsx';
+import Conta from './routes/Contas/contas.jsx';
+import Cadastro from './routes/CadastrosGerais.jsx/cadastro.jsx';
 
-import { createHashRouter } from 'react-router-dom';
+
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Home />
+      },
+      {
+      path: "/maquinas",
+      element: <Maquinas />,
+      },
+      {
+      path: "/jogos",
+      element: <Jogos />,
+      },
+       {
+      path: "/lojas",
+      element: <Loja />,
+       },
+      {
+      path: "/cartoes",
+      element: <Cartão />,
+      },
+      {
+      path: "/conta",
+      element: <Conta />,
+      },
+      {
+      path: "/cadastros",
+      element: <Cadastro />,
+      },
+    ]
   },
-  {
-    path: "/cadastro",
-    element: <Cadastro />,
-  },
+  
 ], {
-   basename: '/sistema-caixa/',
+   basename: '/sistema-caixa',
 });
 
 
