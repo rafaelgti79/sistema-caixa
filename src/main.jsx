@@ -9,15 +9,16 @@ import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
-    path: "/sistema-caixa",
+    path: "/",
     element: <App />
   },
   {
-    path: "/sistema-caixa/cadastro",
+    path: "/cadastro",
     element: <Cadastro />,
   },
-]);
-
+], {
+   basename: '/sistema-caixa',
+});
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
