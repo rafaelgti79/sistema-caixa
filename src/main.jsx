@@ -4,21 +4,21 @@ import App from './App.jsx';
 import './index.css';
 
 import Cadastro from './routes/cadastro.jsx';
-import { createHashRouter } from 'react-router-dom';
+
 
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <App />
   },
   {
     path: "/cadastro",
     element: <Cadastro />,
   },
 ], {
-  basename: '/sistema-caixa',
+   basename: '/sistema-caixa',
 });
 
 
