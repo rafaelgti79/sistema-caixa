@@ -7,16 +7,24 @@ function Home() {
   
 
   return (
-    <div className="container">
-      
-      
-        <div className="colunas">
-          <div className="coluna-esquerda">
-           <Link to="/cadastros">Cadastro</Link>
-            <Link to="/lista">Lista de maquinas</Link>
-          </div>
-        </div>
-    </div>
+      <div className="containercd">
+        <div className="colunatabel">
+        <Link to="/cadastros">Abrir Caixa</Link>
+        <Link to="/lista">Lista de maquinas</Link>
+        <Link to="/cadastros">Cadastro</Link>
+        <Link to="/cadastros">Relatorio</Link>
+        <Link to="/cadastros">Fechamento</Link>
+        <Link to="/cadastros">Procurar erros</Link>
+        <Link to="/cadastros">Despesas Extras</Link>
+        <Link to="/cadastros">Gerenciar Cozinha</Link>
+        <Link to="/cadastros">Checar Leitura</Link>
+        <Link to="/cadastros">Gerenciar Sistema</Link>
+        <Link to="/cadastros">Pagamento Superior</Link>
+        <Link to="/cadastros">Procurar Pagamentos</Link>        
+                 
+      </div>
+ </div>
+
   );
 }
 export default Home;

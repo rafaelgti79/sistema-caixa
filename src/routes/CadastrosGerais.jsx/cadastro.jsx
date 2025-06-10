@@ -7,22 +7,22 @@ function Cadastro() {
   
 
   return (
-    <div className="container">
-      
-      
-        <div className="colunas">
-          <div className="coluna-esquerda">
+    <div className="containercd">
+          <div className="colunatabel">
            <Link to="/maquinas">Maquinas</Link>
            <Link to="/jogos">Jogos</Link>
            <Link to="/lojas">Lojas</Link>
            <Link to="/cartoes">Cartões</Link>
             <Link to="/conta">Contas</Link>
           </div>
-        </div>
+       
     </div>
   );
 }
 export default Cadastro;
+      
+      
+        
            
                    
             
