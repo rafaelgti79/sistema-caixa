@@ -5,10 +5,10 @@ import './index.css';
 
 import Cadastro from './routes/cadastro.jsx';
 
-
+import { createHashRouter } from 'react-router-dom';
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     element: <Cadastro />,
   },
 ], {
-   basename: '/sistema-caixa',
+   basename: '/sistema-caixa/',
 });
 
 
