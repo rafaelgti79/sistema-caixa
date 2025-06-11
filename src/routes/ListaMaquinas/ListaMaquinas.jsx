@@ -13,9 +13,9 @@ const {data: items} = useFetch(url)
     <div className="containerr">
       <h1>LISTA MAQUINAS</h1>
 
-      <ul className="grid-list">
+      <ul className="list-vertical">
   {items && items.map((item) => (
-    <li key={item.id} className="grid-item">
+    <li key={item.id} className="list-item">
       <p><strong>ID:</strong> {item.id}</p>
       <p><strong>EI:</strong> {item.EI}</p>
       <p><strong>SI:</strong> {item.SI}</p>
@@ -27,6 +27,7 @@ const {data: items} = useFetch(url)
     </li>
   ))}
 </ul>
+
 
       <div className="botao-salvar">
           

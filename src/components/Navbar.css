@@ -1,0 +1,11 @@
+.containerNav{
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  padding: 10px;
+  align-items: end;
+ margin-bottom: 20px;
+  background-color: rgb(246, 250, 250); /* fundo preto escuro */
+  font-size: 30px;
+
+}  
