@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useFetch } from '../hooks/useFetch';
 import './ListaMaquinas.css';
 
@@ -10,7 +8,7 @@ const {data: items} = useFetch(url)
 
 
   return (
-    <div className="containerr">
+    <div className="table-container">
       <h1>LISTA MAQUINAS</h1>
 
       <table className="excel-table">
@@ -42,12 +40,8 @@ const {data: items} = useFetch(url)
   </tbody>
 </table>
 
-
-      <div className="botao-salvar">
-          
-          <Link to="/">Voltar</Link>
-        </div>
-    </div>
+</div>
+     
   );
 }
 export default ListaMaquinas;

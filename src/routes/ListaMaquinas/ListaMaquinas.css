@@ -1,8 +1,16 @@
+/* Contêiner que permite rolagem horizontal em telas pequenas */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+
+/* Tabela responsiva */
 .excel-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 600px; /* largura mínima para manter estrutura legível */
   font-family: Arial, sans-serif;
-  margin-top: 20px;
 }
 
 .excel-table th,
@@ -11,6 +19,7 @@
   padding: 8px 12px;
   text-align: left;
   color: black;
+  white-space: nowrap; /* impede quebra de linha */
 }
 
 .excel-table th {
@@ -24,4 +33,21 @@
 
 .excel-table tr:hover {
   background-color: #d3f0ff;
+}
+
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 768px) {
+  .excel-table th,
+  .excel-table td {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .excel-table th,
+  .excel-table td {
+    font-size: 12px;
+  }
 }
