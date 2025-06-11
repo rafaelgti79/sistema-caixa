@@ -13,20 +13,34 @@ const {data: items} = useFetch(url)
     <div className="containerr">
       <h1>LISTA MAQUINAS</h1>
 
-      <ul className="list-vertical">
-  {items && items.map((item) => (
-    <li key={item.id} className="list-item">
-      <p><strong>ID:</strong> {item.id}</p>
-      <p><strong>EI:</strong> {item.EI}</p>
-      <p><strong>SI:</strong> {item.SI}</p>
-      <p><strong>JOGO:</strong> {item.JOGO}</p>
-      <p><strong>Porcentagem:</strong> {item.Porcentagem}</p>
-      <p><strong>ST:</strong> {item.ST}</p>
-      <p><strong>MAQNRO:</strong> {item.MAQNRO}</p>
-      <p><strong>Percentual:</strong> {item.percentual}</p>
-    </li>
-  ))}
-</ul>
+      <table className="excel-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>EI</th>
+      <th>SI</th>
+      <th>JOGO</th>
+      <th>Porcentagem</th>
+      <th>ST</th>
+      <th>MAQNRO</th>
+      <th>Percentual</th>
+    </tr>
+  </thead>
+  <tbody>
+    {items && items.map((item) => (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.EI}</td>
+        <td>{item.SI}</td>
+        <td>{item.JOGO}</td>
+        <td>{item.Porcentagem}</td>
+        <td>{item.ST}</td>
+        <td>{item.MAQNRO}</td>
+        <td>{item.percentual}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
 
 
       <div className="botao-salvar">

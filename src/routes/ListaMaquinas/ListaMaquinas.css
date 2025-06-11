@@ -1,21 +1,26 @@
-.list-vertical {
-  display: flex;
-  flex-direction: column; /* Alinha os itens verticalmente */
-  gap: 16px;              /* Espaço entre os itens */
-  padding: 0;
-  margin: 0 auto;
-  list-style: none;
-  max-width: 800px;
-}
-
-.list-item {
-  background-color: #f9f9f9;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.excel-table {
+  width: 100%;
+  border-collapse: collapse;
   font-family: Arial, sans-serif;
+  margin-top: 20px;
 }
 
-.list-item p {
-  margin: 4px 0;
+.excel-table th,
+.excel-table td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.excel-table th {
+  background-color: #eaeaea;
+  font-weight: bold;
+}
+
+.excel-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.excel-table tr:hover {
+  background-color: #d3f0ff;
 }
