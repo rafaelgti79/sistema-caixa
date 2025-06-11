@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './jogos.css';
+
 
 function Jogos() {
   const [loja, setLoja] = useState('');

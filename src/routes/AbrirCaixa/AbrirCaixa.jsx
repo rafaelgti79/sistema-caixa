@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
-function Loja() {
+function AbrirCaixa() {
   const [loja, setLoja] = useState('');
   const [numeroMaquina, setNumeroMaquina] = useState('');
   const [jogo, setJogo] = useState('');
@@ -26,11 +27,17 @@ function Loja() {
 
   return (
     <div className="container">
-      <h1>Cadastro de Lojas</h1>
+      <h1>COLOQUE O FUNDO INICIAL</h1>
       <form onSubmit={handleSubmit}>
         <div className="colunas">
           <div className="coluna-esquerda">
-            <label>NOME DA LOJA:</label>
+            <label>FUNDO INICIAL :</label>
+            <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
+           <label>DATA :</label>
+            <input type="date" value={loja} onChange={(event) => setLoja(event.target.value)} />
+            <label>SETOR :</label>
+            <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
+            <label>LOJA :</label>
             <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
            
           </div>
@@ -38,12 +45,13 @@ function Loja() {
           
         </div>
         <div className="botao-salvar">
-          <button type="submit">Salvar</button>
+          <button type="submit">Abrir Caixa</button>
+          <Link to="/">Voltar</Link>
         </div>
       </form>
     </div>
   );
 }
-export default Loja;
+export default AbrirCaixa;
 
         

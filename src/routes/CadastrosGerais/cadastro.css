@@ -1,9 +1,11 @@
+/* responsavel pela a home */
+
 .containercd {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 50vh;
-  background-color: aliceblue; /* fundo preto escuro */
+  background-color: rgb(241, 245, 248); /* fundo preto escuro */
   padding: 50px;
 }
 
@@ -22,6 +24,7 @@
 
 .colunatabel a {
   display: flex;
+  padding: 30px;
   justify-content: center;
   align-items: center;
   background-color: #6373a8;

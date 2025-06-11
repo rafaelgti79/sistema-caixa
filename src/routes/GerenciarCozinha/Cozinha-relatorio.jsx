@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
-function Loja() {
+function CozinhaRelatorio() {
   const [loja, setLoja] = useState('');
   const [numeroMaquina, setNumeroMaquina] = useState('');
   const [jogo, setJogo] = useState('');
@@ -26,11 +27,13 @@ function Loja() {
 
   return (
     <div className="container">
-      <h1>Cadastro de Lojas</h1>
+      <h1>LISTA DE PRODUTOS</h1>
       <form onSubmit={handleSubmit}>
         <div className="colunas">
           <div className="coluna-esquerda">
-            <label>NOME DA LOJA:</label>
+            <label>DATA INCIAL :</label>
+            <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
+           <label>DATA FINAL:</label>
             <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
            
           </div>
@@ -38,12 +41,13 @@ function Loja() {
           
         </div>
         <div className="botao-salvar">
-          <button type="submit">Salvar</button>
+          <button type="submit">Ver Relatorio</button>
+          <Link to="/gerenciar-cozinha">Voltar</Link>
         </div>
       </form>
     </div>
   );
 }
-export default Loja;
+export default CozinhaRelatorio;
 
         

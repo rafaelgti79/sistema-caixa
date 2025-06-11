@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
-function Loja() {
+function ProcurarErros() {
   const [loja, setLoja] = useState('');
   const [numeroMaquina, setNumeroMaquina] = useState('');
   const [jogo, setJogo] = useState('');
@@ -26,24 +27,15 @@ function Loja() {
 
   return (
     <div className="container">
-      <h1>Cadastro de Lojas</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="colunas">
-          <div className="coluna-esquerda">
-            <label>NOME DA LOJA:</label>
-            <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
-           
-          </div>
-            
+      <h1>Procurar Erros</h1>
+
+      <div className="botao-salvar">
           
+          <Link to="/">Voltar</Link>
         </div>
-        <div className="botao-salvar">
-          <button type="submit">Salvar</button>
-        </div>
-      </form>
     </div>
   );
 }
-export default Loja;
+export default ProcurarErros;
 
         

@@ -1,0 +1,24 @@
+{
+    "maquinas": [
+        {
+            "id": "1",
+            "EI": "807768",
+            "SI": "348907",
+            "JOGO": "SILVER",
+            "Porcentagem": "0.25",
+            "ST": "1",
+            "MAQNRO": "",
+            "percentual": "0%"
+        },
+        {
+            "id": "2",
+            "EI": "807348",
+            "SI": "348787",
+            "JOGO": "SILVER",
+            "Porcentagem": "0.25",
+            "ST": "1",
+            "MAQNRO": "",
+            "percentual": "0%"
+        }
+    ]
+}

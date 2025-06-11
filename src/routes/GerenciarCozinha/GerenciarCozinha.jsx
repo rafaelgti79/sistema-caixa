@@ -11,9 +11,9 @@ function GerenciarCozinha() {
           <div className="colunatabel">
            <Link to="/cozinha-add-produto">Produto</Link>
            <Link to="/cozinha-add-categoria">Categoria</Link>
-           <Link to="/lojas">Produtos</Link>
-           <Link to="/cartoes">Relatorio</Link>
-           <Link to="/conta">Voltar</Link>
+           <Link to="/cozinha-produtos">Produtos</Link>
+           <Link to="/cozinha-relatorio">Relatorio</Link>
+           <Link to="/">Voltar</Link>
           </div>
        
     </div>
