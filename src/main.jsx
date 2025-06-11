@@ -9,7 +9,11 @@ import Jogos from './routes/Jogos/jogos.jsx';
 import Loja from './routes/Lojas/lojas.jsx';
 import Cartão from './routes/Cartoes/cartao.jsx';
 import Conta from './routes/Contas/contas.jsx';
-import Cadastro from './routes/CadastrosGerais.jsx/cadastro.jsx';
+import Cadastro from './routes/CadastrosGerais/cadastro.jsx';
+import DespesasExtras from './routes/DespesasExtras/despesa-extra.jsx';
+import GerenciarCozinha from './routes/GerenciarCozinha/GerenciarCozinha.jsx';
+import CozinhaAddProduto from './routes/GerenciarCozinha/Cozinha-add-produto.jsx';
+import CozinhaAddCategoria from './routes/GerenciarCozinha/Cozinha-add-categoria.jsx';
 
 
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
@@ -47,12 +51,31 @@ const router = createBrowserRouter([
       path: "/cadastros",
       element: <Cadastro />,
       },
+      {
+      path: "/despesas-extra",
+      element: <DespesasExtras />,
+      },
+      {
+      path: "/gerenciar-cozinha",
+      element: <GerenciarCozinha />,
+      },
+      {
+      path: "/cozinha-add-produto",
+      element: <CozinhaAddProduto />,
+      },
+      {
+      path: "/cozinha-add-categoria",
+      element: <CozinhaAddCategoria />,
+      },
+
     ]
+    
   },
-  
-], {
+],{
    basename: '/sistema-caixa',
 });
+  
+      
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
