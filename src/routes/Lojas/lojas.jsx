@@ -1,27 +1,25 @@
 import React, { useState } from 'react';
+import { useFetch } from '../hooks/useFetch.jsx';
+
+const url = "http://localhost:3000/lojas";
 
 
 function Loja() {
   const [loja, setLoja] = useState('');
-  const [numeroMaquina, setNumeroMaquina] = useState('');
-  const [jogo, setJogo] = useState('');
-  const [maquineiro, setMaquineiro] = useState('');
-  const [setor, setSetor] = useState('');
-  const [entrada, setEntrada] = useState('');
-  const [saida, setSaida] = useState('');
+ 
+  const {data: items, httpConfig} = useFetch(url);
+
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Lógica para salvar as informações
-    console.log('Informações salvas:', {
+
+     const lojas = {
       loja,
-      numeroMaquina,
-      jogo,
-      maquineiro,
-      setor,
-      entrada,
-      saida,
-    });
+      
+    };
+    
+    httpConfig(lojas, "POST");
   };
 
   return (
@@ -32,18 +30,19 @@ function Loja() {
           <div className="coluna-esquerda">
             <label>NOME DA LOJA:</label>
             <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
-           
           </div>
-            
-          
         </div>
+           
         <div className="botao-salvar">
           <button type="submit">Salvar</button>
         </div>
+        
       </form>
     </div>
   );
 }
 export default Loja;
+            
+          
 
         

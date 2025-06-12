@@ -1,28 +1,31 @@
 import React, { useState } from 'react';
+import { useFetch } from '../hooks/useFetch.jsx';
+
+const url = "http://localhost:3000/cartao";
+
 
 
 function Cartão() {
   const [loja, setLoja] = useState('');
-  const [numeroMaquina, setNumeroMaquina] = useState('');
-  const [jogo, setJogo] = useState('');
-  const [maquineiro, setMaquineiro] = useState('');
-  const [setor, setSetor] = useState('');
-  const [entrada, setEntrada] = useState('');
-  const [saida, setSaida] = useState('');
+  const [descricaoCatao, setDescricaoCatao] = useState('');
+  const [procentagemAluguel, setProcentagemAluguel] = useState('');
+  const { data: lojas, } = useFetch('http://localhost:3000/lojas');
+
+  const {data: items, httpConfig} = useFetch(url);
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Lógica para salvar as informações
-    console.log('Informações salvas:', {
-      loja,
-      numeroMaquina,
-      jogo,
-      maquineiro,
-      setor,
-      entrada,
-      saida,
-    });
+     const cartao = {
+      lojas,
+      descricaoCatao,
+      procentagemAluguel,
+      
+    };
+    
+    httpConfig(cartao, "POST");
   };
+
 
   return (
     <div className="container">
@@ -30,12 +33,32 @@ function Cartão() {
       <form onSubmit={handleSubmit}>
         <div className="colunas">
           <div className="coluna-esquerda">
-            <label>LOJA:</label>
-            <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
-           <label>NOME: DESCRIÇÃO DO CARTÃO:</label>
-            <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
+
+<label>Loja:</label>
+<select
+  value={loja}
+  onChange={(event) => {
+    const nomeSelecionado = event.target.value;
+    setLoja(nomeSelecionado);
+    const jogoSelecionado = lojas.find(j => j.loja === nomeSelecionado);
+    if (jogoSelecionado) {
+      setValorJogo(jogoSelecionado.valorJogo);
+    }
+  }}
+>
+  <option value="">Selecione uma Loja</option>
+  {lojas && lojas.map((j) => (
+    <option key={j.id || j.loja} value={j.loja}>
+      {j.loja}
+    </option>
+  ))}
+</select>
+
+
+           <label>DESCRIÇÃO DO CARTÃO:</label>
+            <input type="text" value={descricaoCatao} onChange={(event) => setDescricaoCatao(event.target.value)} />
             <label>PORCENTAGEM DO ALUGUEL:</label>
-            <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
+            <input type="text" value={procentagemAluguel} onChange={(event) => setProcentagemAluguel(event.target.value)} />
           </div>
             
           

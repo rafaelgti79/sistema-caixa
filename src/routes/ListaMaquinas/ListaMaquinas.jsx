@@ -14,27 +14,27 @@ const {data: items} = useFetch(url)
       <table className="excel-table">
   <thead>
     <tr>
-      <th>ID</th>
+      <th>N</th>
       <th>EI</th>
       <th>SI</th>
       <th>JOGO</th>
-      <th>Porcentagem</th>
+      <th>$</th>
       <th>ST</th>
       <th>MAQNRO</th>
-      <th>Percentual</th>
+      <th>%</th>
     </tr>
   </thead>
   <tbody>
     {items && items.map((item) => (
       <tr key={item.id}>
         <td>{item.id}</td>
-        <td>{item.EI}</td>
-        <td>{item.SI}</td>
-        <td>{item.JOGO}</td>
-        <td>{item.Porcentagem}</td>
-        <td>{item.ST}</td>
+        <td>{item.entrada}</td>
+        <td>{item.saida}</td>
+        <td>{item.jogo}</td>
+        <td>{item.valorJogo}</td>
+        <td>{item.setor}</td>
         <td>{item.MAQNRO}</td>
-        <td>{item.percentual}</td>
+        <td>{item.percentual}0%</td>
       </tr>
     ))}
   </tbody>
