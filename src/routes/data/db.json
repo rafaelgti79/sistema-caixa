@@ -1,19 +1,57 @@
 {
-  "maquinas": [],
+  "maquinas": [
+    {
+      "id": "249d",
+      "loja": "BARSOLIDO",
+      "numeroMaquina": "3344455",
+      "jogo": "AVALAN",
+      "valorJogo": "0.05",
+      "maquineiro": "",
+      "setor": "1",
+      "entrada": "4455566666",
+      "saida": "456556565"
+    }
+  ],
   "jogos": [
     {
       "id": "dfa7",
       "nomedojogo": "BIMBASH",
       "valorJogo": "0.25"
+    },
+    {
+      "id": "cd00",
+      "nomedojogo": "AVALAN",
+      "valorJogo": "0.05"
     }
   ],
-  "lojas": [],
+  "lojas": [
+    {
+      "id": "d676",
+      "loja": "BARSOLIDO"
+    }
+  ],
   "cartao": [
     {
       "id": "419a",
       "lojas": [],
       "descricaoCatao": "ddd",
       "procentagemAluguel": "ccccc"
+    }
+  ],
+  "caixa": [
+    {
+      "id": "88a3",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "1400",
+      "data": "2025-06-12",
+      "setor": "1"
+    },
+    {
+      "id": "3e39",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "1299",
+      "data": "2025-06-11",
+      "setor": "1"
     }
   ]
 }

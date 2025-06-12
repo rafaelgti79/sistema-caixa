@@ -1,57 +1,82 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useFetch } from '../hooks/useFetch.jsx';
+import './AbrirCaixa.css';
 
+const url = "http://localhost:3000/caixa";
 
 function AbrirCaixa() {
   const [loja, setLoja] = useState('');
-  const [numeroMaquina, setNumeroMaquina] = useState('');
-  const [jogo, setJogo] = useState('');
-  const [maquineiro, setMaquineiro] = useState('');
+  const [fundoInicial, setFundoInicial] = useState('');
+  const [data, setData] = useState('');
   const [setor, setSetor] = useState('');
-  const [entrada, setEntrada] = useState('');
-  const [saida, setSaida] = useState('');
+  const { data: lojas, } = useFetch('http://localhost:3000/lojas');
+
+  const {data: items, httpConfig} = useFetch(url);
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Lógica para salvar as informações
-    console.log('Informações salvas:', {
+
+    const caixa = {
       loja,
-      numeroMaquina,
-      jogo,
-      maquineiro,
+      fundoInicial,
+      data,
       setor,
-      entrada,
-      saida,
-    });
+      
+    };
+    
+    httpConfig(caixa, "POST");
   };
+      
+      
 
   return (
-    <div className="container">
+    <div className="containerCaixa">
       <h1>COLOQUE O FUNDO INICIAL</h1>
       <form onSubmit={handleSubmit}>
-        <div className="colunas">
-          <div className="coluna-esquerda">
+       
+
+          <div className="coluna-esquerda-caixa">
             <label>FUNDO INICIAL :</label>
-            <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
+            <input type="text" value={fundoInicial} onChange={(event) => setFundoInicial(event.target.value)} />
            <label>DATA :</label>
-            <input type="date" value={loja} onChange={(event) => setLoja(event.target.value)} />
+            <input type="date" value={data} onChange={(event) => setData(event.target.value)} />
             <label>SETOR :</label>
-            <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
-            <label>LOJA :</label>
-            <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
-           
+            <input type="text" value={setor} onChange={(event) => setSetor(event.target.value)} />
+
+            <label>Loja:</label>
+<select
+  value={loja}
+  onChange={(event) => {
+    const nomeSelecionado = event.target.value;
+    setLoja(nomeSelecionado);
+    const jogoSelecionado = lojas.find(j => j.loja === nomeSelecionado);
+    if (jogoSelecionado) {
+      setValorJogo(jogoSelecionado.valorJogo);
+    }
+  }}
+>
+  <option value="">Selecione uma Loja</option>
+  {lojas && lojas.map((j) => (
+    <option key={j.id || j.loja} value={j.loja}>
+      {j.loja}
+    </option>
+  ))}
+</select>
+
           </div>
-            
-          
-        </div>
-        <div className="botao-salvar">
-          <button type="submit">Abrir Caixa</button>
-          <Link to="/">Voltar</Link>
-        </div>
+           
+          <button className='btn-abrir'>Abrir Caixa</button>
+         
       </form>
     </div>
   );
 }
 export default AbrirCaixa;
+            
+        
+          
+       
+        
 
         

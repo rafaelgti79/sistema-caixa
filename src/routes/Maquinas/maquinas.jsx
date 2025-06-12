@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useFetch } from '../hooks/useFetch.jsx';
+import { Link } from 'react-router-dom';
 
 const url = "http://localhost:3000/maquinas";
 
@@ -103,7 +104,12 @@ function Maquinas() {
         </div>
         <div className="botao-salvar">
           <button type="submit">Salvar</button>
+          
+          <Link className="BotaoVoltar" to="/cadastros">Voltar</Link>
+          
         </div>
+
+        
       </form>
     </div>
   );

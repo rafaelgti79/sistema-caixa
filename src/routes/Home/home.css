@@ -1,0 +1,47 @@
+.containerhome {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ 
+}
+
+.colunahome {
+  display: grid;
+  grid-template-columns: repeat(3, 110px); /* 3 colunas */
+  grid-template-rows: repeat(3, 110px);  /* 3 linhas com altura fixa */
+  gap: 30px;
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  background-color: aliceblue;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(169, 184, 228, 0.2);
+}
+
+
+
+.grid-list {
+  display: grid;              /* Ativa o layout em grade */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  /* Cria colunas que se ajustam automaticamente com largura mínima de 250px */
+  gap: 20px;                  /* Espaço entre os itens da grade */
+  padding: 0;                 /* Remove padding padrão */
+  list-style: none;          /* Remove marcadores da lista */
+  margin: 0 auto;             /* Centraliza horizontalmente se houver largura definida */
+  max-width: 1200px;          /* Largura máxima da grade */
+}
+
+.grid-item {
+  background-color: #f0f0f0;  /* Fundo do item */
+  padding: 16px;              /* Espaçamento interno */
+  border-radius: 8px;         /* Cantos arredondados */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  font-family: Arial, sans-serif;
+}
+
+.grid-item p {
+  margin: 4px 0;              /* Espaço entre as linhas de texto */
+}

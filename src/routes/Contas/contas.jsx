@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './contas.css';
 
 function Conta() {
@@ -44,6 +45,7 @@ function Conta() {
         </div>
         <div className="botao-salvar">
           <button type="submit">Salvar</button>
+          <Link className="BotaoVoltar" to="/cadastros">Voltar</Link>
         </div>
       </form>
     </div>
