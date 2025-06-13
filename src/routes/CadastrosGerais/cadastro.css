@@ -7,40 +7,9 @@
   justify-content: center;
   align-items: center;
   min-height: 50vh;
-  background-color: rgb(241, 245, 248); /* fundo preto escuro */
+  background-color: rgb(8, 8, 8); /* fundo preto escuro */
   padding: 50px;
 }
 
-.colunatabel {
-  display: grid;
-  grid-template-columns: repeat(3, 110px); /* 3 colunas */
-  grid-template-rows: repeat(3, 110px);  /* 3 linhas com altura fixa */
-  gap: 30px;
-  width: 100%;
-  max-width: 400px;
-  padding: 40px;
-  background-color: aliceblue;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(169, 184, 228, 0.2);
-}
 
-.colunatabel a {
-  display: flex;
-  padding: 30px;
-  justify-content: center;
-  align-items: center;
-  background-color: #6373a8;
-  color: rgb(3, 19, 3);
-  text-decoration: none;
-  border: 2px solid rgb(16, 17, 16);
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 18px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
 
-.colunatabel a:hover {
-  background-color: rgb(185, 241, 185);
-  color: #000;
-  transform: scale(1.05);
-}
