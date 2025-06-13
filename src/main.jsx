@@ -26,115 +26,55 @@ import GerenciarSistema from './routes/GerenciarSistema/GerenciarSistema.jsx';
 import PagamentosSuperios from './routes/PagamentosSuperiores/PagamentosSuperiores.jsx';
 import ProcurarPagamentos from './routes/ProcurarPagamentos/ProcurarPagamentos.jsx';
 
+import Login from './routes/Login/login.jsx';
+import { PrivateRoute } from './components/PrivateRoute.jsx';
+import { AuthProvider } from './context/AuthContext.jsx';
 
-import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+      path: "/",
+      element: <Login />,
+      },
+
+  {
+    path: "/app",
     element: <App />,
     children: [
-      {
-        path: "/",
-        element: <Home />
-      },
-      {
-      path: "/maquinas",
-      element: <Maquinas />,
-      },
-      {
-      path: "/jogos",
-      element: <Jogos />,
-      },
-       {
-      path: "/lojas",
-      element: <Loja />,
-       },
-      {
-      path: "/cartoes",
-      element: <Cartão />,
-      },
-      {
-      path: "/conta",
-      element: <Conta />,
-      },
-      {
-      path: "/cadastros",
-      element: <Cadastro />,
-      },
-      {
-      path: "/despesas-extra",
-      element: <DespesasExtras />,
-      },
-      {
-      path: "/gerenciar-cozinha",
-      element: <GerenciarCozinha />,
-      },
-      {
-      path: "/cozinha-add-produto",
-      element: <CozinhaAddProduto />,
-      },
-      {
-      path: "/cozinha-add-categoria",
-      element: <CozinhaAddCategoria />,
-      },
-      {
-      path: "/cozinha-produtos",
-      element: <CozinhaProdutos />,
-      },
-      {
-      path: "/cozinha-relatorio",
-      element: <CozinhaRelatorio />,
-      },
-      {
-      path: "/abrir-caixa",
-      element: <AbrirCaixa />,
-      },
-      {
-      path: "/lista-maquinas",
-      element: <ListaMaquinas />,
-      },
-      {
-      path: "/relatorios",
-      element: <Relatorios />,
-      },
-      {
-      path: "/fechamento",
-      element: <Fechamento />,
-      },
-      {
-      path: "/procurar-erros",
-      element: <ProcurarErros />,
-      },
-      {
-      path: "/checar-leitura",
-      element: <ChecarLeitura />,
-      },
-      {
-      path: "/gerenciar-sistema",
-      element: <GerenciarSistema />,
-      },
-      {
-      path: "/pagamento-superios",
-      element: <PagamentosSuperios />,
-      },
-      {
-      path: "/procurar-pagamentos",
-      element: <ProcurarPagamentos />,
-      },
-
-    ]
-    
-  },
-],{
-   basename: '/sistema-caixa',
-});
-  
+      { path: "/app/home", element: <PrivateRoute><Home /></PrivateRoute> },
+      { path: "/app/maquinas", element: <PrivateRoute><Maquinas /></PrivateRoute> },
+      { path: "/app/jogos", element: <PrivateRoute><Jogos /></PrivateRoute> },
+      { path: "/app/lojas", element: <PrivateRoute><Loja /></PrivateRoute> },
+      { path: "/app/cartoes", element: <PrivateRoute><Cartão /></PrivateRoute> },
+      { path: "/app/conta", element: <PrivateRoute><Conta /></PrivateRoute> },
+      { path: "/app/cadastros", element: <PrivateRoute allowed={["admin"]}><Cadastro /></PrivateRoute> },
+      { path: "/app/despesas-extra", element: <PrivateRoute allowed={["admin", "operador"]}><DespesasExtras /></PrivateRoute> },
+      { path: "/app/gerenciar-cozinha", element: <PrivateRoute><GerenciarCozinha /></PrivateRoute> },
+      { path: "/app/cozinha-add-produto", element: <PrivateRoute><CozinhaAddProduto /></PrivateRoute> },
+      { path: "/app/cozinha-add-categoria", element: <PrivateRoute><CozinhaAddCategoria /></PrivateRoute> },
+      { path: "/app/cozinha-produtos", element: <PrivateRoute><CozinhaProdutos /></PrivateRoute> },
+      { path: "/app/cozinha-relatorio", element: <PrivateRoute><CozinhaRelatorio /></PrivateRoute> },
+      { path: "/app/abrir-caixa", element: <PrivateRoute><AbrirCaixa /></PrivateRoute> },
+      { path: "/app/lista-maquinas", element: <PrivateRoute><ListaMaquinas /></PrivateRoute> },
+      { path: "/app/relatorios", element: <PrivateRoute><Relatorios /></PrivateRoute> },
+      { path: "/app/fechamento", element: <PrivateRoute><Fechamento /></PrivateRoute> },
+      { path: "/app/procurar-erros", element: <PrivateRoute><ProcurarErros /></PrivateRoute> },
+      { path: "/app/checar-leitura", element: <PrivateRoute><ChecarLeitura /></PrivateRoute> },
+      { path: "/app/gerenciar-sistema", element: <PrivateRoute><GerenciarSistema /></PrivateRoute> },
+      { path: "/app/pagamento-superios", element: <PrivateRoute><PagamentosSuperios /></PrivateRoute> },
+      { path: "/app/procurar-pagamentos", element: <PrivateRoute><ProcurarPagamentos /></PrivateRoute> },
       
-
+    ]
+  },
+], {
+  basename: '/sistema-caixa',
+});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );

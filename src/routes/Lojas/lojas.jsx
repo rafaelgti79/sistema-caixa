@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useFetch } from '../hooks/useFetch.jsx';
 import { Link } from 'react-router-dom';
 
-const url = "http://localhost:3000/lojas";
+const url = "http://localhost:3000/app/lojas";
 
 
 function Loja() {

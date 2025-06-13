@@ -20,8 +20,8 @@ function Home() {
         <Link to="/cadastros">Cadastro Gerais</Link>
         <Link to="/relatorios">Relatorio</Link>
         <Link to="/fechamento">Fechamento</Link>
-        <Link to="/procurar-erros">Procurar erros</Link>
-        <Link to="/despesas-extra">Despesas Extras</Link>
+        <Link to="/app/procurar-erros">Procurar erros</Link>
+        <Link to="/app/despesas-extra">Despesas Extras</Link>
         <Link to="/gerenciar-cozinha">Gerenciar Cozinha</Link>
         <Link to="/checar-leitura">Checar Leitura</Link>
         <Link to="/gerenciar-sistema">Gerenciar Sistema</Link>
