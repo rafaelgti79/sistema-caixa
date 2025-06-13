@@ -66,7 +66,7 @@ function Cartão() {
         </div>
         <div className="botao-salvar">
           <button type="submit">Salvar</button>
-          <Link className="BotaoVoltar" to="/cadastros">Voltar</Link>
+          <Link className="BotaoVoltar" to="/app/cadastros">Voltar</Link>
         </div>
       </form>
     </div>

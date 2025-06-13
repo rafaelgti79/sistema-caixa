@@ -1,12 +1,21 @@
 .containerNav{
+  justify-content: space-between;
   max-width: 100%;
   height: auto;
   display: flex;
-  padding: 10px;
-  align-items: end;
+  padding: 5px;
+  align-items: center;
  margin-bottom: 20px;
   background-color: rgb(246, 250, 250); /* fundo preto escuro */
   font-size: 30px;
   border-radius: 10px;
+  
 
 }  
+.bntSair{
+  color: blue;
+  
+}
+.linkHome{
+  color: blue;
+}

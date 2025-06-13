@@ -6,6 +6,8 @@ import './home.css';
 const url = "http://localhost:3000/caixa";
 
 
+
+
 function Home() {
   
   const { data: conta, } = useFetch('http://localhost:3000/conta');
@@ -15,19 +17,19 @@ function Home() {
   return (
       <div className="containerhome">
         <div className="colunatabel">
-        <Link to="/abrir-caixa">Abrir Caixa</Link>
-        <Link to="/lista-maquinas">Lista de maquinas</Link>
-        <Link to="/cadastros">Cadastro Gerais</Link>
-        <Link to="/relatorios">Relatorio</Link>
-        <Link to="/fechamento">Fechamento</Link>
+        <Link to="/app/abrir-caixa">Abrir Caixa</Link>
+        <Link to="/app/lista-maquinas">Lista de maquinas</Link>
+        <Link to="/app/cadastros">Cadastro Gerais</Link>
+        <Link to="/app/relatorios">Relatorio</Link>
+        <Link to="/app/fechamento">Fechamento</Link>
         <Link to="/app/procurar-erros">Procurar erros</Link>
         <Link to="/app/despesas-extra">Despesas Extras</Link>
-        <Link to="/gerenciar-cozinha">Gerenciar Cozinha</Link>
-        <Link to="/checar-leitura">Checar Leitura</Link>
-        <Link to="/gerenciar-sistema">Gerenciar Sistema</Link>
-        <Link to="/pagamento-superios">Pagamento Superior</Link>
-        <Link to="/procurar-pagamentos">Procurar Pagamentos</Link>        
-                 
+        <Link to="/app/gerenciar-cozinha">Gerenciar Cozinha</Link>
+        <Link to="/app/checar-leitura">Checar Leitura</Link>
+        <Link to="/app/gerenciar-sistema">Gerenciar Sistema</Link>
+        <Link to="/app/pagamento-superios">Pagamento Superior</Link>
+        <Link to="/app/procurar-pagamentos">Procurar Pagamentos</Link>        
+              
       </div>
 
 <div>

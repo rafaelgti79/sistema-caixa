@@ -9,11 +9,11 @@ function Cadastro() {
   return (
     <div className="containercd">
           <div className="colunatabel">
-           <Link to="/maquinas">Maquinas</Link>
-           <Link to="/jogos">Jogos</Link>
-           <Link to="/lojas">Lojas</Link>
-           <Link to="/cartoes">Cartões</Link>
-            <Link to="/conta">Contas</Link>
+           <Link to="/app/maquinas">Maquinas</Link>
+           <Link to="/app/jogos">Jogos</Link>
+           <Link to="/app/lojas">Lojas</Link>
+           <Link to="/app/cartoes">Cartões</Link>
+            <Link to="/app/conta">Contas</Link>
           </div>
        
     </div>
