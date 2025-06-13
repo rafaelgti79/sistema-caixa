@@ -10,7 +10,7 @@ function AbrirCaixa() {
   const [data, setData] = useState('');
   const [setor, setSetor] = useState('');
   const { data: lojas, } = useFetch('http://localhost:3000/lojas');
-
+  
   const {data: items, httpConfig} = useFetch(url);
   
 

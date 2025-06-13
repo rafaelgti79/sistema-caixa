@@ -5,8 +5,10 @@ import './home.css';
 
 const url = "http://localhost:3000/caixa";
 
+
 function Home() {
   
+  const { data: conta, } = useFetch('http://localhost:3000/conta');
   const {data: items} = useFetch(url)
   
 
@@ -29,16 +31,30 @@ function Home() {
       </div>
 
 <div>
-  <ul className="grid-list">
+ <ul className="grid-list">
   {items && items.map((item) => (
     <li key={item.id} className="grid-item">
-      
-      <p><strong>DATA:</strong> {item.data}</p>
-      <p><strong>SETOR:</strong> {item.setor}</p>
-      <p><strong>FUNDO INICIAL:</strong> {item.fundoInicial}</p>
-      <p><strong>LOJA:</strong> {item.loja}</p>
-      
 
+
+      <div className="grid-row"><span className="label">RAFAEL:</span> <span className="value">X</span></div>
+
+      
+      <div className="grid-row"><span className="label">DATA:</span> <span className="value">{item.data}</span></div>
+      <div className="grid-row"><span className="label">SETOR:</span> <span className="value">SETOR {item.setor}</span></div>
+      <div className="grid-row"><span className="label">FUNDO INICIAL:</span> <span className="value">R$: {item.fundoInicial}</span></div>
+      <div className="grid-row"><span className="label">LOJA:</span> <span className="value">{item.loja}</span></div>
+      <p>INFORMAÇÕES DO CAIXA</p>
+      <div className="grid-row"><span className="label">Fechamento:</span> <span className="value">0</span></div>
+      <div className="grid-row"><span className="label">Despesas:</span> <span className="value">0</span></div>
+      <div className="grid-row"><span className="label">Reforço:</span> <span className="value">0</span></div>
+      <div className="grid-row"><span className="label">Cartões:</span> <span className="value">0</span></div>
+      <div className="grid-row"><span className="label">Cheques:</span> <span className="value">0</span></div>
+      <div className="grid-row"><span className="label">Vales:</span> <span className="value">0</span></div>
+      <div className="grid-row"><span className="label">Sangrias:</span> <span className="value">0</span></div>
+      <p>PARCIAL DO CAIXA</p>
+      <div className="grid-row"><span className="label">Arrecadações:</span> <span className="value">0</span></div>
+      <div className="grid-row"><span className="label">Pagamentos:</span> <span className="value">0</span></div>
+      <div className="grid-row"><span className="label">Resultado parcial:</span> <span className="value">0</span></div>
     </li>
   ))}
 </ul>

@@ -45,13 +45,15 @@
       "fundoInicial": "1400",
       "data": "2025-06-12",
       "setor": "1"
-    },
+    }
+  ],
+  "conta": [
     {
-      "id": "3e39",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "1299",
-      "data": "2025-06-11",
-      "setor": "1"
+      "id": "4c4d",
+      "nome": "Debora",
+      "senha": "234322",
+      "tipo": "atendente",
+      "porcentagem": "0"
     }
   ]
 }

@@ -21,27 +21,77 @@
   box-shadow: 0 0 15px rgba(169, 184, 228, 0.2);
 }
 
-
-
 .grid-list {
-  display: grid;              /* Ativa o layout em grade */
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-  /* Cria colunas que se ajustam automaticamente com largura mínima de 250px */
-  gap: 20px;                  /* Espaço entre os itens da grade */
-  padding: 0;                 /* Remove padding padrão */
-  list-style: none;          /* Remove marcadores da lista */
-  margin: 0 auto;             /* Centraliza horizontalmente se houver largura definida */
-  max-width: 1200px;          /* Largura máxima da grade */
+  list-style: none;            /* Remove bolinhas da lista <ul> */
+  padding: 0;                  /* Remove espaçamento interno */
+  margin: 0 auto;              /* Centraliza a lista horizontalmente */
+  max-width: 600px;            /* Define largura máxima para evitar que fique muito esticado */
+  
 }
 
 .grid-item {
-  background-color: #f0f0f0;  /* Fundo do item */
-  padding: 16px;              /* Espaçamento interno */
-  border-radius: 8px;         /* Cantos arredondados */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  border: 1px solid #ccc;      /* Borda cinza clara ao redor de cada item (como célula) */
+  margin-bottom: 20px;         /* Espaço entre cada 'linha da tabela' */
+  border-radius: 6px;          /* Cantos arredondados */
+  overflow: hidden;            /* Esconde qualquer conteúdo que ultrapasse o limite */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra leve para dar profundidade */
+  gap: 30px;
+}
+
+.grid-row {
+  display: flex;               /* Alinha os dois elementos (rótulo e valor) em linha */
+  border-bottom: 1px solid #eee; /* Linha separadora entre os pares */
+  text-align: left;   /* alinha o texto a esquerda*/
+}
+
+.grid-row:last-child {
+  border-bottom: none;         /* Remove a borda inferior da última linha do item */
+}
+
+.label {
+  flex: 1;                     /* Ocupa 1 parte da linha (rótulo) */
+  padding: 10px;               /* Espaçamento interno */
+  background: #f9f9f9;         /* Fundo mais claro para diferenciar o rótulo */
+  font-weight: bold;           /* Texto em negrito */
+  border-right: 1px solid #ddd;/* Linha vertical entre rótulo e valor */
+}
+
+.value {
+  flex: 2;                     /* Ocupa 2 partes da linha (valor) */
+  padding: 10px;               /* Espaçamento interno */
+  background: #fff;            /* Fundo branco para o valor */
+   max-width: 110px;          /* Largura máxima da grade*/
+   
+}
+
+
+
+/*
+.grid-list {
+  display: grid;              /* Ativa o layout em grade 
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  /* Cria colunas que se ajustam automaticamente com largura mínima de 250px 
+  gap: 20px;                  /* Espaço entre os itens da grade 
+  padding: 0;                 /* Remove padding padrão 
+  list-style: none;          /* Remove marcadores da lista 
+  margin: 0 auto;             /* Centraliza horizontalmente se houver largura definida 
+  max-width: 1200px;          /* Largura máxima da grade 
+}
+
+.grid-item {
+  background-color: #f0f0f0;  /* Fundo do item 
+  padding: 16px;              /* Espaçamento interno 
+  border-radius: 8px;         /* Cantos arredondados 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra leve 
   font-family: Arial, sans-serif;
 }
 
 .grid-item p {
-  margin: 4px 0;              /* Espaço entre as linhas de texto */
+  margin: 4px 0;              /* Espaço entre as linhas de texto 
+}
+
+.grid-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas de tamanhos iguais 
+  gap: 8px 16px;                 /* Espaço entre linhas e colunas 
 }

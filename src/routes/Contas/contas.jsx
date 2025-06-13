@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useFetch } from '../hooks/useFetch.jsx';
 import './contas.css';
 
+const url = "http://localhost:3000/conta";
+
 function Conta() {
-  const [loja, setLoja] = useState('');
-  const [numeroMaquina, setNumeroMaquina] = useState('');
-  const [jogo, setJogo] = useState('');
-  const [maquineiro, setMaquineiro] = useState('');
-  const [setor, setSetor] = useState('');
-  const [entrada, setEntrada] = useState('');
-  const [saida, setSaida] = useState('');
+  const [nome, setNome] = useState('');
+  const [senha, setSenha] = useState('');
+  const [tipo, setTipo] = useState('');
+  const [porcentagem, setPorcentagem] = useState('');
+  
+  const {data: items, httpConfig} = useFetch(url);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Lógica para salvar as informações
-    console.log('Informações salvas:', {
-      loja,
-      numeroMaquina,
-      jogo,
-      maquineiro,
-      setor,
-      entrada,
-      saida,
-    });
+
+    const conta = {
+      nome,
+      senha,
+      tipo,
+      porcentagem,
+      
+    };
+    
+    httpConfig(conta, "POST");
   };
 
   return (
@@ -32,13 +34,13 @@ function Conta() {
         <div className="colunas">
           <div className="coluna-esquerda">
             <label>NOME :</label>
-            <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
+            <input type="text" value={nome} onChange={(event) => setNome(event.target.value)} />
            <label>SENHA:</label>
-            <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
+            <input type="text" value={senha} onChange={(event) => setSenha(event.target.value)} />
             <label>TIPO:</label>
-            <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
+            <input type="text" value={tipo} onChange={(event) => setTipo(event.target.value)} />
             <label>PORCENTAGEM:</label>
-            <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
+            <input type="text" value={porcentagem} onChange={(event) => setPorcentagem(event.target.value)} />
           </div>
             
           
