@@ -1,44 +1,39 @@
 .containerhome {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(8, 8, 8); /* fundo preto escuro */
-  padding: 40px 20px;
-  box-sizing: border-box;
-  flex-direction: column;
-}
-
-/* Grade de botões */
-.colunatabel {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 20px;
-  width: 100%;
-  max-width: 500px;
+ 
+  margin: 40px auto;
   padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: brown;
+  align-items: center;
+ }
+  
+ .colunatabel {
+  display: grid;
+  grid-template-columns: repeat(3, 110px); /* 3 colunas */
+  grid-template-rows: repeat(3, 110px);  /* 3 linhas com altura fixa */
+  gap: 30px;
+  padding: 40px;
   background-color: rgb(5, 20, 224);
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(169, 184, 228, 0.2);
-  box-sizing: border-box;
-}
+  
+   
+  
 
-/* Estilo dos botões */
+}
 .colunatabel a {
   display: flex;
+  padding: 30px;
   justify-content: center;
   align-items: center;
-  padding: 20px;
   background-color: #6373a8;
   color: rgb(3, 19, 3);
   text-decoration: none;
   border: 2px solid rgb(16, 17, 16);
   border-radius: 20px;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  text-align: center;
 }
 
 .colunatabel a:hover {
@@ -46,6 +41,8 @@
   color: #000;
   transform: scale(1.05);
 }
+
+
 
 .grid-list {
   list-style: none;            /* Remove bolinhas da lista <ul> */
@@ -91,15 +88,33 @@
 }
 
 
-/* Responsividade adicional para telas muito pequenas */
-@media (max-width: 480px) {
-  .colunatabel {
-    padding: 20px;
-    gap: 15px;
-  }
 
-  .colunatabel a {
-    padding: 15px;
-    font-size: 14px;
-  }
+/*
+.grid-list {
+  display: grid;              /* Ativa o layout em grade 
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  /* Cria colunas que se ajustam automaticamente com largura mínima de 250px 
+  gap: 20px;                  /* Espaço entre os itens da grade 
+  padding: 0;                 /* Remove padding padrão 
+  list-style: none;          /* Remove marcadores da lista 
+  margin: 0 auto;             /* Centraliza horizontalmente se houver largura definida 
+  max-width: 1200px;          /* Largura máxima da grade 
+}
+
+.grid-item {
+  background-color: #f0f0f0;  /* Fundo do item 
+  padding: 16px;              /* Espaçamento interno 
+  border-radius: 8px;         /* Cantos arredondados 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra leve 
+  font-family: Arial, sans-serif;
+}
+
+.grid-item p {
+  margin: 4px 0;              /* Espaço entre as linhas de texto 
+}
+
+.grid-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas de tamanhos iguais 
+  gap: 8px 16px;                 /* Espaço entre linhas e colunas 
 }
