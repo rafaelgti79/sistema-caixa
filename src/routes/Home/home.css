@@ -7,20 +7,58 @@
   background-color: brown;
   align-items: center;
  }
+
+.colunatabel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  background-color: rgb(5, 20, 224);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.colunatabel a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #6373a8;
+  color: rgb(3, 19, 3);
+  text-decoration: none;
+  border: 2px solid rgb(16, 17, 16);
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 25px;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.colunatabel a:hover {
+  background-color: rgb(185, 241, 185);
+  color: #000;
+  transform: scale(1.05);
+}
+
+
+
+
   
+ /*  backup css
  .colunatabel {
   display: grid;
-  grid-template-columns: repeat(3, 110px); /* 3 colunas */
-  grid-template-rows: repeat(3, 110px);  /* 3 linhas com altura fixa */
+  grid-template-columns: repeat(3, 110px); /* 3 colunas 
+  grid-template-rows: repeat(3, 110px);  /* 3 linhas com altura fixa 
   gap: 30px;
   padding: 40px;
   background-color: rgb(5, 20, 224);
   border-radius: 12px;
   
    
-  
-
 }
+/*
 .colunatabel a {
   display: flex;
   padding: 30px;
@@ -45,13 +83,13 @@
 
 
 .grid-list {
-  list-style: none;            /* Remove bolinhas da lista <ul> */
-  padding: 0;                  /* Remove espaçamento interno */
-  margin: 0 auto;              /* Centraliza a lista horizontalmente */
-  max-width: 600px;            /* Define largura máxima para evitar que fique muito esticado */
+  list-style: none;            /* Remove bolinhas da lista <ul> 
+  padding: 0;                  /* Remove espaçamento interno 
+  margin: 0 auto;              /* Centraliza a lista horizontalmente 
+  max-width: 600px;            /* Define largura máxima para evitar que fique muito esticado 
   
 }
-
+*/
 .grid-item {
   border: 1px solid #ccc;      /* Borda cinza clara ao redor de cada item (como célula) */
   margin-bottom: 20px;         /* Espaço entre cada 'linha da tabela' */
