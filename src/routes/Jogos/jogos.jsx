@@ -32,7 +32,7 @@ function Jogos() {
             <label>NOME DO JOGO:</label>
             <input type="text" value={nomedojogo} onChange={(event) => setNomeJogo(event.target.value)} />
 
-           <label>Valor do Jogo:</label>
+<label>Valor do Jogo:</label>
 <select value={valorJogo} onChange={(event) => setValorJogo(event.target.value)}>
   <option value="">Selecione o valor</option>
   <option value="0.25">0.25</option>

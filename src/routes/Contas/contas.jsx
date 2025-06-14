@@ -37,8 +37,15 @@ function Conta() {
             <input type="text" value={nome} onChange={(event) => setNome(event.target.value)} />
            <label>SENHA:</label>
             <input type="text" value={senha} onChange={(event) => setSenha(event.target.value)} />
-            <label>TIPO:</label>
-            <input type="text" value={tipo} onChange={(event) => setTipo(event.target.value)} />
+
+
+<label>TIPO:</label>
+<select value={tipo} onChange={(event) => setTipo(event.target.value)}>
+  <option value="">Selecione o Tipo</option>
+  <option value="admin">Admin</option>
+  <option value="operador">Operador</option>
+  <option value="caixa">Caixa</option>
+</select>
             <label>PORCENTAGEM:</label>
             <input type="text" value={porcentagem} onChange={(event) => setPorcentagem(event.target.value)} />
           </div>

@@ -14,7 +14,7 @@ function Fechamento() {
            <Link to="/lojas">Fechamento Maquinas</Link>
            <Link to="/cartoes">Fechamento de despesas</Link>
             <Link to="/conta">Fechamento de cartão</Link>
-            <Link to="/">Voltar</Link>
+            <Link to="/app/home">Voltar</Link>
           </div>
        
     </div>

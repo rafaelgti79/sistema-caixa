@@ -8,6 +8,10 @@ export const useFetch = (url) => {
     const [config, setConfig] = useState(null);
     const [method, setMethod] = useState(null);
     const [callFetch, setCallFetch] = useState(null);
+    const [responseData, setResponseData] = useState(null);
+    const [fetchUrl, setFetchUrl] = useState(url); // usado para GET dinâmico
+
+
 
     const httpConfig = (data, method) => {
         if (method === "POST"){
@@ -26,7 +30,15 @@ export const useFetch = (url) => {
 
         setMethod(method);
     }
+
+     if (method === "GET") {
+      const queryParams = new URLSearchParams(data).toString();
+      setFetchUrl(`${url}?${queryParams}`);
+      setMethod(method);
+      setCallFetch(prev => !prev); // força reexecução do fetch
+    }
 };
+
 
 
     useEffect(() => {

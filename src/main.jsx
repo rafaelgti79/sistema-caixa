@@ -25,6 +25,7 @@ import ChecarLeitura from './routes/ChecarLeitura/ChecarLeitura.jsx';
 import GerenciarSistema from './routes/GerenciarSistema/GerenciarSistema.jsx';
 import PagamentosSuperios from './routes/PagamentosSuperiores/PagamentosSuperiores.jsx';
 import ProcurarPagamentos from './routes/ProcurarPagamentos/ProcurarPagamentos.jsx';
+import NaoAutorizado from './routes/NaoAutorizado/NaoAutorizado.jsx';
 
 import Login from './routes/Login/login.jsx';
 import { PrivateRoute } from './components/PrivateRoute.jsx';
@@ -43,27 +44,28 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/app/home", element: <PrivateRoute><Home /></PrivateRoute> },
-      { path: "/app/maquinas", element: <PrivateRoute><Maquinas /></PrivateRoute> },
-      { path: "/app/jogos", element: <PrivateRoute><Jogos /></PrivateRoute> },
-      { path: "/app/lojas", element: <PrivateRoute><Loja /></PrivateRoute> },
-      { path: "/app/cartoes", element: <PrivateRoute><Cartão /></PrivateRoute> },
-      { path: "/app/conta", element: <PrivateRoute><Conta /></PrivateRoute> },
+      { path: "/app/maquinas", element: <PrivateRoute allowed={["admin"]}><Maquinas /></PrivateRoute> },
+      { path: "/app/jogos", element: <PrivateRoute allowed={["admin"]}><Jogos /></PrivateRoute> },
+      { path: "/app/lojas", element: <PrivateRoute allowed={["admin"]}><Loja /></PrivateRoute> },
+      { path: "/app/cartoes", element: <PrivateRoute allowed={["admin"]}><Cartão /></PrivateRoute> },
+      { path: "/app/conta", element: <PrivateRoute allowed={["admin"]}><Conta /></PrivateRoute> },
       { path: "/app/cadastros", element: <PrivateRoute allowed={["admin"]}><Cadastro /></PrivateRoute> },
       { path: "/app/despesas-extra", element: <PrivateRoute allowed={["admin", "operador"]}><DespesasExtras /></PrivateRoute> },
-      { path: "/app/gerenciar-cozinha", element: <PrivateRoute><GerenciarCozinha /></PrivateRoute> },
-      { path: "/app/cozinha-add-produto", element: <PrivateRoute><CozinhaAddProduto /></PrivateRoute> },
-      { path: "/app/cozinha-add-categoria", element: <PrivateRoute><CozinhaAddCategoria /></PrivateRoute> },
-      { path: "/app/cozinha-produtos", element: <PrivateRoute><CozinhaProdutos /></PrivateRoute> },
-      { path: "/app/cozinha-relatorio", element: <PrivateRoute><CozinhaRelatorio /></PrivateRoute> },
-      { path: "/app/abrir-caixa", element: <PrivateRoute><AbrirCaixa /></PrivateRoute> },
-      { path: "/app/lista-maquinas", element: <PrivateRoute><ListaMaquinas /></PrivateRoute> },
-      { path: "/app/relatorios", element: <PrivateRoute><Relatorios /></PrivateRoute> },
-      { path: "/app/fechamento", element: <PrivateRoute><Fechamento /></PrivateRoute> },
-      { path: "/app/procurar-erros", element: <PrivateRoute><ProcurarErros /></PrivateRoute> },
-      { path: "/app/checar-leitura", element: <PrivateRoute><ChecarLeitura /></PrivateRoute> },
-      { path: "/app/gerenciar-sistema", element: <PrivateRoute><GerenciarSistema /></PrivateRoute> },
-      { path: "/app/pagamento-superios", element: <PrivateRoute><PagamentosSuperios /></PrivateRoute> },
-      { path: "/app/procurar-pagamentos", element: <PrivateRoute><ProcurarPagamentos /></PrivateRoute> },
+      { path: "/app/gerenciar-cozinha", element: <PrivateRoute allowed={["admin"]}><GerenciarCozinha /></PrivateRoute> },
+      { path: "/app/cozinha-add-produto", element: <PrivateRoute allowed={["admin"]}><CozinhaAddProduto /></PrivateRoute> },
+      { path: "/app/cozinha-add-categoria", element: <PrivateRoute allowed={["admin"]}><CozinhaAddCategoria /></PrivateRoute> },
+      { path: "/app/cozinha-produtos", element: <PrivateRoute allowed={["admin"]}><CozinhaProdutos /></PrivateRoute> },
+      { path: "/app/cozinha-relatorio", element: <PrivateRoute allowed={["admin"]}><CozinhaRelatorio /></PrivateRoute> },
+      { path: "/app/abrir-caixa", element: <PrivateRoute allowed={["admin", "caixa"]}><AbrirCaixa /></PrivateRoute> },
+      { path: "/app/lista-maquinas", element: <PrivateRoute allowed={["admin"]}><ListaMaquinas /></PrivateRoute> },
+      { path: "/app/relatorios", element: <PrivateRoute allowed={["admin"]}><Relatorios /></PrivateRoute> },
+      { path: "/app/fechamento", element: <PrivateRoute allowed={["admin", "caixa"]}><Fechamento /></PrivateRoute> },
+      { path: "/app/procurar-erros", element: <PrivateRoute allowed={["admin"]}><ProcurarErros /></PrivateRoute> },
+      { path: "/app/checar-leitura", element: <PrivateRoute allowed={["admin"]}><ChecarLeitura /></PrivateRoute> },
+      { path: "/app/gerenciar-sistema", element: <PrivateRoute allowed={["admin"]}><GerenciarSistema /></PrivateRoute> },
+      { path: "/app/pagamento-superios", element: <PrivateRoute allowed={["admin"]}><PagamentosSuperios /></PrivateRoute> },
+      { path: "/app/procurar-pagamentos", element: <PrivateRoute allowed={["admin"]}><ProcurarPagamentos /></PrivateRoute> },
+      { path: "/app/nao-autorizado", element: <PrivateRoute><NaoAutorizado /></PrivateRoute> },
       
     ]
   },

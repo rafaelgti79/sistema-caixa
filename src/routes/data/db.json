@@ -54,6 +54,13 @@
       "senha": "234322",
       "tipo": "atendente",
       "porcentagem": "0"
+    },
+    {
+      "id": "e26c",
+      "nome": "rafael",
+      "senha": "capoeira",
+      "tipo": "caixa",
+      "porcentagem": ""
     }
   ]
 }
