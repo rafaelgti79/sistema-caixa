@@ -4,16 +4,17 @@
   padding: 30px;
   border: 1px solid #ddd;
   border-radius: 10px;
-  background-color: brown;
+  background-color: rgb(218, 214, 214);
   align-items: center;
  }
 
 .colunatabel {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  background-color: rgb(5, 20, 224);
+  gap: 10px;
+  padding: 10px;
+  
+  background-color: rgb(221, 221, 228);
   border-radius: 12px;
   width: 100%;
   max-width: 800px;
@@ -31,7 +32,7 @@
   border-radius: 20px;
   font-weight: bold;
   font-size: 1rem;
-  padding: 25px;
+  padding: 30px;
   text-align: center;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
