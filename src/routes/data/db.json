@@ -45,6 +45,48 @@
       "fundoInicial": "1400",
       "data": "2025-06-12",
       "setor": "1"
+    },
+    {
+      "id": "54b8",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "200",
+      "data": "2025-06-15",
+      "setor": "1"
+    },
+    {
+      "id": "ff5c",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "200",
+      "data": "2025-06-15",
+      "setor": "1"
+    },
+    {
+      "id": "8fb6",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "22",
+      "data": "2025-06-15",
+      "setor": "1"
+    },
+    {
+      "id": "a823",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "22",
+      "data": "2025-06-15",
+      "setor": "1"
+    },
+    {
+      "id": "f08c",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "2",
+      "data": "2025-06-15",
+      "setor": "2"
+    },
+    {
+      "id": "333f",
+      "loja": "",
+      "fundoInicial": "",
+      "data": "",
+      "setor": ""
     }
   ],
   "conta": [

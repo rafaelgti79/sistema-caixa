@@ -26,6 +26,7 @@ import GerenciarSistema from './routes/GerenciarSistema/GerenciarSistema.jsx';
 import PagamentosSuperios from './routes/PagamentosSuperiores/PagamentosSuperiores.jsx';
 import ProcurarPagamentos from './routes/ProcurarPagamentos/ProcurarPagamentos.jsx';
 import NaoAutorizado from './routes/NaoAutorizado/NaoAutorizado.jsx';
+import HomeCaixa from './routes/HomeCaixa/homeCaixa.jsx';
 
 import Login from './routes/Login/login.jsx';
 import { PrivateRoute } from './components/PrivateRoute.jsx';
@@ -65,6 +66,8 @@ const router = createBrowserRouter([
       { path: "/app/gerenciar-sistema", element: <PrivateRoute allowed={["admin"]}><GerenciarSistema /></PrivateRoute> },
       { path: "/app/pagamento-superios", element: <PrivateRoute allowed={["admin"]}><PagamentosSuperios /></PrivateRoute> },
       { path: "/app/procurar-pagamentos", element: <PrivateRoute allowed={["admin"]}><ProcurarPagamentos /></PrivateRoute> },
+      { path: "/app/home-caixa", element: <PrivateRoute allowed={["admin", "operador", "caixa"]}><HomeCaixa/></PrivateRoute> },
+
       { path: "/app/nao-autorizado", element: <PrivateRoute><NaoAutorizado /></PrivateRoute> },
       
     ]

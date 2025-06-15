@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useFetch } from '../hooks/useFetch.jsx';
+import { useNavigate } from 'react-router-dom';
 import './AbrirCaixa.css';
 
 const url = "http://localhost:3000/caixa";
@@ -10,6 +11,7 @@ function AbrirCaixa() {
   const [data, setData] = useState('');
   const [setor, setSetor] = useState('');
   const { data: lojas, } = useFetch('http://localhost:3000/lojas');
+  const navigate = useNavigate();
   
   const {data: items, httpConfig} = useFetch(url);
   
@@ -26,6 +28,8 @@ function AbrirCaixa() {
     };
     
     httpConfig(caixa, "POST");
+
+    navigate('/app/home-caixa');
   };
       
       
