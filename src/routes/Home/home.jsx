@@ -20,7 +20,7 @@ function Home() {
     <div className="containerhome">
       <div className="colunatabel">
         {/* Acesso geral */}
-        <Link to="/app/home">Home</Link>
+        
 
         {(tipo === "admin" || tipo === "caixa") && (
           <>
