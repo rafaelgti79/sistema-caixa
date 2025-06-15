@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './despesas-extra.css';
 
 
 function DespesasExtras() {
@@ -25,11 +26,10 @@ function DespesasExtras() {
   };
 
   return (
-    <div className="container">
+    <div className="containerDespesas">
       <h1>DESPESAS EXTRAS</h1>
       <form onSubmit={handleSubmit}>
-        <div className="colunas">
-          <div className="coluna-esquerda">
+          <div className="subcontainer">
             <label>DESCRICAO :</label>
             <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
            <label>VALOR:</label>
@@ -41,9 +41,7 @@ function DespesasExtras() {
             <label>LOJA:</label>
             <input type="text" value={loja} onChange={(event) => setLoja(event.target.value)} />
           </div>
-            
-          
-        </div>
+        
         <div className="botao-salvar">
           <button type="submit">Salvar</button>
         </div>
@@ -52,5 +50,8 @@ function DespesasExtras() {
   );
 }
 export default DespesasExtras;
+            
+          
+       
 
         

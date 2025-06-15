@@ -7,8 +7,9 @@
   justify-content: center;
   align-items: center;
   min-height: 50vh;
-  background-color: rgb(8, 8, 8); /* fundo preto escuro */
+  background-color: rgb(218, 214, 214);
   padding: 50px;
+  margin-top: 10px;
 }
 
 

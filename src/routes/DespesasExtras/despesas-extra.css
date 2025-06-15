@@ -1,0 +1,39 @@
+/* Manda em todo css, tirando o cadastro Geral */
+
+.containerDespesas {
+  text-align: center;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ 
+}
+
+
+.subcontainer {
+  max-width: 800px;
+  margin: 30px;
+    
+}
+
+button[type="submit"], .BotaoVoltar {
+  width: 70px;
+  height: 40px;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px; /* separa os elemento entre eles */
+  
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+
+
