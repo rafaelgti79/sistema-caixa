@@ -40,20 +40,13 @@
   ],
   "caixa": [
     {
-      "id": "9cb5",
-      "loja": "",
-      "fundoInicial": "2500",
+      "id": "9a02",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "1222",
       "data": "2025-06-16",
-      "setor": "setor 1",
-      "usuario": "rafael"
-    },
-    {
-      "id": "6df0",
-      "loja": "",
-      "fundoInicial": "",
-      "data": "",
-      "setor": "",
-      "usuario": "rafael"
+      "setor": "1",
+      "usuario": "barbie",
+      "status": "fechado"
     }
   ],
   "totalentrada": [
@@ -146,10 +139,22 @@
       "valor": ""
     }
   ],
-   "despesas": [
+  "despesas": [
     {
-      "id": "",
-      "valor": ""
+      "id": "773a",
+      "descricao": "",
+      "valor": "20",
+      "categoria": "",
+      "loja": "",
+      "usuario": "barbie"
+    },
+    {
+      "id": "d2e6",
+      "descricao": "",
+      "valor": "20",
+      "categoria": "",
+      "loja": "",
+      "usuario": "barbie"
     }
   ],
   "conta": [

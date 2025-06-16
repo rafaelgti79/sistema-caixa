@@ -10,7 +10,7 @@ function AbrirCaixa() {
   const [fundoInicial, setFundoInicial] = useState('');
   const [data, setData] = useState('');
   const [setor, setSetor] = useState('');
-  const { data: lojas, } = useFetch('http://localhost:3000/caixa');
+  const { data: lojas, } = useFetch('http://localhost:3000/lojas');
   const navigate = useNavigate();
   
   const {data: items, httpConfig} = useFetch(url);
@@ -20,6 +20,7 @@ function AbrirCaixa() {
     event.preventDefault();
 
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+const usuarioKey = usuarioLogado.nome;
     
 
 
@@ -32,6 +33,9 @@ function AbrirCaixa() {
     };
     
     httpConfig(caixa, "POST");
+
+  localStorage.setItem(`caixaAberto_${usuarioKey}`, 'true');
+  localStorage.setItem(`caixaFechado_${usuarioKey}`, 'false');
 
     navigate('/app/home-caixa');
   };
@@ -58,10 +62,7 @@ function AbrirCaixa() {
   onChange={(event) => {
     const nomeSelecionado = event.target.value;
     setLoja(nomeSelecionado);
-    const jogoSelecionado = lojas.find(j => j.loja === nomeSelecionado);
-    if (jogoSelecionado) {
-      setValorJogo(jogoSelecionado.valorJogo);
-    }
+   
   }}
 >
   <option value="">Selecione uma Loja</option>

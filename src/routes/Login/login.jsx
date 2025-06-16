@@ -9,9 +9,10 @@ function Login() {
   const [usuario, setNome] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
-
+  
   const { login } = useAuth(); // 👈 pega a função login do contexto
 
+  
 
   const handleLogin = () => {
 
@@ -20,8 +21,10 @@ function Login() {
     admin: { senha: '1234', tipo: 'admin' },
     operador: { senha: '1234', tipo: 'operador' },
     rafael: { senha: '1234', tipo: 'caixa' },
-    barbie: { senha: '1234', tipo: 'admin' },
+    barbie: { senha: '1234', tipo: 'caixa' },
   };
+
+  
 
   if (usuarios[usuario] && usuarios[usuario].senha === senha) {
     const usuarioLogado = { nome: usuario, tipo: usuarios[usuario].tipo };
@@ -32,6 +35,8 @@ function Login() {
     alert('Usuário ou senha inválidos');
   }
 };
+
+
   
 
   return (
