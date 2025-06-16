@@ -27,12 +27,16 @@ import PagamentosSuperios from './routes/PagamentosSuperiores/PagamentosSuperior
 import ProcurarPagamentos from './routes/ProcurarPagamentos/ProcurarPagamentos.jsx';
 import NaoAutorizado from './routes/NaoAutorizado/NaoAutorizado.jsx';
 import HomeCaixa from './routes/HomeCaixa/homeCaixa.jsx';
+import Reforco from './routes/Reforco/reforco.jsx';
+import Despesas from './Despesas/despesas.jsx';
+
 
 import Login from './routes/Login/login.jsx';
 import { PrivateRoute } from './components/PrivateRoute.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 
 const router = createBrowserRouter([
   {
@@ -48,10 +52,10 @@ const router = createBrowserRouter([
       { path: "/app/maquinas", element: <PrivateRoute allowed={["admin"]}><Maquinas /></PrivateRoute> },
       { path: "/app/jogos", element: <PrivateRoute allowed={["admin"]}><Jogos /></PrivateRoute> },
       { path: "/app/lojas", element: <PrivateRoute allowed={["admin"]}><Loja /></PrivateRoute> },
-      { path: "/app/cartoes", element: <PrivateRoute allowed={["admin"]}><Cartão /></PrivateRoute> },
+      { path: "/app/cartoes", element: <PrivateRoute allowed={["admin", "operador", "caixa"]}><Cartão /></PrivateRoute> },
       { path: "/app/conta", element: <PrivateRoute allowed={["admin"]}><Conta /></PrivateRoute> },
       { path: "/app/cadastros", element: <PrivateRoute allowed={["admin"]}><Cadastro /></PrivateRoute> },
-      { path: "/app/despesas-extra", element: <PrivateRoute allowed={["admin", "operador"]}><DespesasExtras /></PrivateRoute> },
+      { path: "/app/despesas-extra", element: <PrivateRoute allowed={["admin", "operador", "caixa"]}><DespesasExtras /></PrivateRoute> },
       { path: "/app/gerenciar-cozinha", element: <PrivateRoute allowed={["admin"]}><GerenciarCozinha /></PrivateRoute> },
       { path: "/app/cozinha-add-produto", element: <PrivateRoute allowed={["admin"]}><CozinhaAddProduto /></PrivateRoute> },
       { path: "/app/cozinha-add-categoria", element: <PrivateRoute allowed={["admin"]}><CozinhaAddCategoria /></PrivateRoute> },
@@ -67,6 +71,8 @@ const router = createBrowserRouter([
       { path: "/app/pagamento-superios", element: <PrivateRoute allowed={["admin"]}><PagamentosSuperios /></PrivateRoute> },
       { path: "/app/procurar-pagamentos", element: <PrivateRoute allowed={["admin"]}><ProcurarPagamentos /></PrivateRoute> },
       { path: "/app/home-caixa", element: <PrivateRoute allowed={["admin", "operador", "caixa"]}><HomeCaixa/></PrivateRoute> },
+      { path: "/app/reforco", element: <PrivateRoute allowed={["admin", "operador", "caixa"]}><Reforco/></PrivateRoute> },
+      { path: "/app/despesas", element: <PrivateRoute allowed={["admin", "operador", "caixa"]}><Despesas/></PrivateRoute> },
 
       { path: "/app/nao-autorizado", element: <PrivateRoute><NaoAutorizado /></PrivateRoute> },
       

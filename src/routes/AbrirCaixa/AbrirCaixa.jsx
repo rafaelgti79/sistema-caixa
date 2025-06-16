@@ -10,7 +10,7 @@ function AbrirCaixa() {
   const [fundoInicial, setFundoInicial] = useState('');
   const [data, setData] = useState('');
   const [setor, setSetor] = useState('');
-  const { data: lojas, } = useFetch('http://localhost:3000/lojas');
+  const { data: lojas, } = useFetch('http://localhost:3000/caixa');
   const navigate = useNavigate();
   
   const {data: items, httpConfig} = useFetch(url);
@@ -19,12 +19,16 @@ function AbrirCaixa() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    
+
+
     const caixa = {
       loja,
       fundoInicial,
       data,
       setor,
-      
+      usuario: usuarioLogado.nome,  // ou usuarioId: usuarioLogado.id
     };
     
     httpConfig(caixa, "POST");

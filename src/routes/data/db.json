@@ -40,53 +40,116 @@
   ],
   "caixa": [
     {
-      "id": "88a3",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "1400",
-      "data": "2025-06-12",
-      "setor": "1"
+      "id": "9cb5",
+      "loja": "",
+      "fundoInicial": "2500",
+      "data": "2025-06-16",
+      "setor": "setor 1",
+      "usuario": "rafael"
     },
     {
-      "id": "54b8",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "200",
-      "data": "2025-06-15",
-      "setor": "1"
-    },
-    {
-      "id": "ff5c",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "200",
-      "data": "2025-06-15",
-      "setor": "1"
-    },
-    {
-      "id": "8fb6",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "22",
-      "data": "2025-06-15",
-      "setor": "1"
-    },
-    {
-      "id": "a823",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "22",
-      "data": "2025-06-15",
-      "setor": "1"
-    },
-    {
-      "id": "f08c",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "2",
-      "data": "2025-06-15",
-      "setor": "2"
-    },
-    {
-      "id": "333f",
+      "id": "6df0",
       "loja": "",
       "fundoInicial": "",
       "data": "",
-      "setor": ""
+      "setor": "",
+      "usuario": "rafael"
+    }
+  ],
+  "totalentrada": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "totalsaida": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "resultadobruto": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "resultadoliquido": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "fundoinicial": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "reforco": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "extras": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "composicaototal": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "dinheiro": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "vales": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "sangria": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "total": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "sobra": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "falta": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "reposicao": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+   "despesas": [
+    {
+      "id": "",
+      "valor": ""
     }
   ],
   "conta": [

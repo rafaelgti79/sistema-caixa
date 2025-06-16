@@ -8,9 +8,13 @@ import './home.css';
 const url = "http://localhost:3000/caixa";
 
 function Home() {
+  const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
   const { user } = useAuth();
-  const { data: conta } = useFetch('http://localhost:3000/conta');
+  const { data: caixas } = useFetch(`http://localhost:3000/caixa?usuario=${usuarioLogado.nome}`);
+
+  //const { data: conta } = useFetch('http://localhost:3000/conta');
   const { data: items } = useFetch(url);
+
 
   if (!user) return null; // Segurança: aguarda login
 

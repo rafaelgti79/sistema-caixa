@@ -12,7 +12,9 @@ function App() {
     '/app/home-caixa',
     '/app/tela-de-caixa',
     '/app/login',
-    '/app/tela-admin'
+    '/app/tela-admin',
+    '/app/despesas-extra',
+    '/app/reforco'
   ];
 
   const esconderNavbar = rotasSemNavbar.includes(location.pathname);

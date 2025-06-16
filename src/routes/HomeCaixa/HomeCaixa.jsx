@@ -9,20 +9,20 @@ function HomeCaixa() {
   return (
     <div className="containercd">
           <div className="colunatabel">
-           <Link to="/app/maquinas">Conta</Link>
-           <Link to="/app/jogos">Data</Link>
-           <Link to="/app/lojas">Fundo I</Link>
-           <Link to="/app/cartoes">Lista Maquinas</Link>
-            <Link to="/app/conta">Fechar 0</Link>
-            <Link to="/app/conta">Fechar 2</Link>
-            <Link to="/app/conta">Despesas</Link>
-            <Link to="/app/conta">Reforço</Link>
-            <Link to="/app/conta">Cartoes</Link>
-            <Link to="/app/conta">Dinheiro</Link>
-            <Link to="/app/conta">Sangria</Link>
-            <Link to="/app/conta">extras</Link>
-            <Link to="/app/conta">Sair Deslogar</Link>
+           <Link to="#">Conta</Link>
+           <Link to="#">Data</Link>
+           <Link to="/app/fundo">Fundo I</Link>
+           <Link to="/app/fechar0">Fechar 0</Link>
+            <Link to="/app/fechar2">Fechar 2</Link>
+            <Link to="/app/despesas-extra">Despesas</Link>
+            <Link to="/app/reforco">Reforço</Link>
+            <Link to="/app/cartoes">Cartoes</Link>
+            <Link to="/app/dinheiro">Dinheiro</Link>
+            <Link to="/app/sangria">Sangria</Link>
+            <Link to="/app/extras">extras</Link>
+            <Link to="/">Sair Deslogar</Link>
           </div>
+                    
        
     </div>
   );
