@@ -36,6 +36,18 @@
       "lojas": [],
       "descricaoCatao": "ddd",
       "procentagemAluguel": "ccccc"
+    },
+    {
+      "id": "a434",
+      "valor": "50",
+      "tipo": "DEBITO",
+      "usuario": "rafael"
+    },
+    {
+      "id": "8b93",
+      "valor": "20",
+      "tipo": "credito",
+      "usuario": "rafael"
     }
   ],
   "caixa": [
@@ -161,6 +173,11 @@
     {
       "id": "",
       "valor": ""
+    },
+    {
+      "id": "bbf6",
+      "valor": "130",
+      "usuario": "rafael"
     }
   ],
   "extras": [
@@ -179,6 +196,11 @@
     {
       "id": "",
       "valor": ""
+    },
+    {
+      "id": "b985",
+      "valor": "100",
+      "usuario": "rafael"
     }
   ],
   "vales": [
@@ -191,6 +213,14 @@
     {
       "id": "",
       "valor": ""
+    },
+    {
+      "id": "fa00",
+      "descricao": "teste",
+      "valor": "20",
+      "contas": "rafael",
+      "loja": "BARSOLIDO",
+      "usuario": "rafael"
     }
   ],
   "total": [
@@ -225,6 +255,30 @@
       "categoria": "cozinha",
       "loja": "BARSOLIDO",
       "usuario": "barbie"
+    },
+    {
+      "id": "e6da",
+      "descricao": "teste",
+      "valor": "30",
+      "categoria": "cozinha",
+      "loja": "BARSOLIDO",
+      "usuario": "rafael"
+    },
+    {
+      "id": "1a97",
+      "descricao": "teste",
+      "valor": "40",
+      "categoria": "cozinha",
+      "loja": "BARSOLIDO",
+      "usuario": "rafael"
+    },
+    {
+      "id": "1e10",
+      "descricao": "teste",
+      "valor": "30",
+      "contas": "rafael",
+      "loja": "BARSOLIDO",
+      "usuario": "rafael"
     }
   ],
   "conta": [

@@ -12,7 +12,7 @@ function Cadastro() {
            <Link to="/app/maquinas">Maquinas</Link>
            <Link to="/app/jogos">Jogos</Link>
            <Link to="/app/lojas">Lojas</Link>
-           <Link to="/app/cartoes">Cartões</Link>
+           <Link to="/app/cadastrocartao">Cartões</Link>
             <Link to="/app/conta">Contas</Link>
           </div>
        

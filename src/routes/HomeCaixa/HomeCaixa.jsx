@@ -11,12 +11,12 @@ function HomeCaixa() {
           <div className="colunatabel">
            <Link to="#">Conta</Link>
            <Link to="#">Data</Link>
-           <Link to="/app/fundo">Fundo I</Link>
+           <Link to="#">Fundo I</Link>
            <Link to="/app/fecharCaixa">Fechar 0</Link>
             <Link to="/app/fechar2">Fechar 2</Link>
             <Link to="/app/despesas">Despesas</Link>
             <Link to="/app/reforco">Reforço</Link>
-            <Link to="/app/cartoes">Cartoes</Link>
+            <Link to="/app/cartao">Cartões</Link>
             <Link to="/app/dinheiro">Dinheiro</Link>
             <Link to="/app/sangria">Sangria</Link>
             <Link to="/app/extras">extras</Link>

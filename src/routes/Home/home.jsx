@@ -21,6 +21,10 @@ function Home() {
 
   const { data: items } = useFetch(urlCaixa);
   const { data: despesas } = useFetch('http://localhost:3000/despesas');
+  const { data: cartao } = useFetch('http://localhost:3000/cartao');
+  const { data: reforco } = useFetch('http://localhost:3000/reforco');
+  const { data: sangria } = useFetch('http://localhost:3000/sangria');
+
 
 
 
@@ -95,12 +99,47 @@ function Home() {
                         .toFixed(2)
                     }
                   </span>
-                </div>              
-                <div className="grid-row"><span className="label">Reforço:</span> <span className="value">0</span></div>
-                <div className="grid-row"><span className="label">Cartões:</span> <span className="value">0</span></div>
+                </div>  
+
+                <div className="grid-row">
+                  <span className="label">Reforço:</span>
+                  <span className="value">
+                    R$ {
+                      reforco
+                        ?.filter((d) => d.usuario === item.usuario)
+                        .reduce((total, d) => total + Number(d.valor), 0)
+                        .toFixed(2)
+                    }
+                  </span>
+                </div>  
+
+                 <div className="grid-row">
+                  <span className="label">Cartões:</span>
+                  <span className="value">
+                    R$ {
+                      cartao
+                        ?.filter((d) => d.usuario === item.usuario)
+                        .reduce((total, d) => total + Number(d.valor), 0)
+                        .toFixed(2)
+                    }
+                  </span>
+                </div>  
+
                 <div className="grid-row"><span className="label">Cheques:</span> <span className="value">0</span></div>
                 <div className="grid-row"><span className="label">Vales:</span> <span className="value">0</span></div>
-                <div className="grid-row"><span className="label">Sangrias:</span> <span className="value">0</span></div>
+
+                <div className="grid-row">
+                  <span className="label">Sangria:</span>
+                  <span className="value">
+                    R$ {
+                      sangria
+                        ?.filter((d) => d.usuario === item.usuario)
+                        .reduce((total, d) => total + Number(d.valor), 0)
+                        .toFixed(2)
+                    }
+                  </span>
+                </div>  
+                                
                 <p>PARCIAL DO CAIXA</p>
                 <div className="grid-row"><span className="label">Arrecadações:</span> <span className="value">0</span></div>
                 <div className="grid-row"><span className="label">Pagamentos:</span> <span className="value">0</span></div>

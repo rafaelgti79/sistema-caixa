@@ -6,7 +6,7 @@ const url = "http://localhost:3000/cartao";
 
 
 
-function Cartão() {
+function CadastroCartao() {
   const [loja, setLoja] = useState('');
   const [descricaoCatao, setDescricaoCatao] = useState('');
   const [procentagemAluguel, setProcentagemAluguel] = useState('');
@@ -30,7 +30,7 @@ function Cartão() {
 
   return (
     <div className="container">
-      <h1>Cadastro de Tipos de cartões</h1>
+      <h1>Cadastro de Cartões</h1>
       <form onSubmit={handleSubmit}>
         <div className="colunas">
           <div className="coluna-esquerda">
@@ -72,6 +72,6 @@ function Cartão() {
     </div>
   );
 }
-export default Cartão;
+export default CadastroCartao;
 
         

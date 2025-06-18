@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useFetch } from '../hooks/useFetch';
 
-const url = "http://localhost:3000/reforco";
+const url = "http://localhost:3000/dinheiro";
 
 
-function Reforco() {
+function Dinheiro() {
   
   const [valor, setValor] = useState('');
-  
   
 
  const {data: items, httpConfig} = useFetch(url);
@@ -18,29 +17,27 @@ function Reforco() {
 
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     
-    const cartao = {
+    const dinheiro = {
 
       valor,
        usuario: usuarioLogado.nome
     };
-    httpConfig(cartao, "POST");
+    httpConfig(dinheiro, "POST");
     
     // Limpar os campos
     setValor('');
-   
   
 
   };
 
   return (
     <div className="containerDespesas">
-      <h1>REFORÇO</h1>
+      <h1>DINHEIRO</h1>
       <form onSubmit={handleSubmit}>
           <div className="subcontainer">
            
            <label>VALOR:</label>
             <input type="text" value={valor} onChange={(event) => setValor(event.target.value)} />
-            
 
           </div>
         
@@ -51,7 +48,7 @@ function Reforco() {
     </div>
   );
 }
-export default Reforco;
+export default Dinheiro;
             
           
        

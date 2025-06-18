@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { useFetch } from '../routes/hooks/useFetch';
+import { useFetch } from '../hooks/useFetch';
 
-const url = "http://localhost:3000/despesas";
+const url = "http://localhost:3000/sangria";
 
 
-function Despesas() {
+function Sangria() {
   const [descricao, setDescricao] = useState('');
   const [valor, setValor] = useState('');
-  const [categoria, setCategoria] = useState('');
+  const [contas, setContas] = useState('');
   const [loja, setLoja] = useState('');
 
  const { data: lojas, } = useFetch('http://localhost:3000/lojas');
+ const { data: conta, } = useFetch('http://localhost:3000/conta');
 
   const {data: items, httpConfig} = useFetch(url);
   
@@ -20,38 +21,54 @@ function Despesas() {
 
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     
-    const despesas = {
+    const sangria = {
 
       descricao,
       valor,
-      categoria,
+      contas,
       loja,
-       usuario: usuarioLogado.nome
+      usuario: usuarioLogado.nome
     };
-    httpConfig(despesas, "POST");
+    httpConfig(sangria, "POST");
+    // Limpar os campos
+  setDescricao('');
+  setValor('');
+  setContas('');
+  setLoja('');
+
   };
 
+  
   return (
     <div className="containerDespesas">
-      <h1>DESPESAS EXTRAS</h1>
+      <h1>SANGRIA</h1>
       <form onSubmit={handleSubmit}>
           <div className="subcontainer">
             <label>DESCRICAO :</label>
             <input type="text" value={descricao} onChange={(event) => setDescricao(event.target.value)} />
            <label>VALOR:</label>
             <input type="text" value={valor} onChange={(event) => setValor(event.target.value)} />
-            <label>CATEGORIA:</label>
-            <input type="text" value={categoria} onChange={(event) => setCategoria(event.target.value)} />
 
-            <select
+<select
+  value={contas}
+  onChange={(event) => {
+    const contaSelecionado = event.target.value;
+    setContas(contaSelecionado);
+  }}
+>
+  <option value="">RESPONSAVEL</option>
+  {conta && conta.map((j) => (
+    <option key={j.id || j.nome} value={j.nome}>
+      {j.nome}
+    </option>
+  ))}
+</select>
+
+<select
   value={loja}
   onChange={(event) => {
     const nomeSelecionado = event.target.value;
     setLoja(nomeSelecionado);
-    const jogoSelecionado = lojas.find(j => j.loja === nomeSelecionado);
-    if (jogoSelecionado) {
-      setValorJogo(jogoSelecionado.valorJogo);
-    }
   }}
 >
   <option value="">Selecione uma Loja</option>
@@ -70,7 +87,7 @@ function Despesas() {
     </div>
   );
 }
-export default Despesas;
+export default Sangria;
             
           
        

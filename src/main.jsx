@@ -7,7 +7,7 @@ import Home from './routes/Home/home.jsx';
 import Maquinas from './routes/Maquinas/maquinas.jsx';
 import Jogos from './routes/Jogos/jogos.jsx';
 import Loja from './routes/Lojas/lojas.jsx';
-import Cartão from './routes/Cartoes/cartao.jsx';
+import CadastroCartao from './routes/CadastroCartoes/CadastroCartao.jsx';
 import Conta from './routes/Contas/contas.jsx';
 import Cadastro from './routes/CadastrosGerais/cadastro.jsx';
 import DespesasExtras from './routes/DespesasExtras/despesa-extra.jsx';
@@ -28,9 +28,11 @@ import ProcurarPagamentos from './routes/ProcurarPagamentos/ProcurarPagamentos.j
 import NaoAutorizado from './routes/NaoAutorizado/NaoAutorizado.jsx';
 import HomeCaixa from './routes/HomeCaixa/homeCaixa.jsx';
 import Reforco from './routes/Reforco/reforco.jsx';
-import Despesas from './Despesas/despesas.jsx';
+import Despesas from './routes/Despesas/despesas.jsx';
 import { BloqueioCaixa } from './routes/BloqueioCaixa/BloqueioCaixa.jsx';
 import HistoricoFechamentos from './routes/HistorioFechamento/HistoricoFechamento.jsx';
+import Dinheiro from './routes/Dinheiro/Dinheiro.jsx';
+import Cartao from './routes/Cartao/Cartao.jsx';
 
 
 
@@ -40,6 +42,7 @@ import { AuthProvider } from './context/AuthContext.jsx';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import FecharCaixa from './routes/FecharCaixa/FecharCaixa.jsx';
+import Sangria from './routes/Sangria/Sangria.jsx';
 
 
 
@@ -65,7 +68,7 @@ const router = createBrowserRouter([
       { path: "/app/maquinas", element: <PrivateRoute allowed={["admin"]}><Maquinas /></PrivateRoute> },
       { path: "/app/jogos", element: <PrivateRoute allowed={["admin"]}><Jogos /></PrivateRoute> },
       { path: "/app/lojas", element: <PrivateRoute allowed={["admin"]}><Loja /></PrivateRoute> },
-      { path: "/app/cartoes", element: <PrivateRoute allowed={["admin", "operador", "caixa"]}><Cartão /></PrivateRoute> },
+      { path: "/app/cadastrocartao", element: <PrivateRoute allowed={["admin"]}><CadastroCartao /></PrivateRoute> },
       { path: "/app/conta", element: <PrivateRoute allowed={["admin"]}><Conta /></PrivateRoute> },
       { path: "/app/cadastros", element: <PrivateRoute allowed={["admin"]}><Cadastro /></PrivateRoute> },
       { path: "/app/despesas-extra", element: <PrivateRoute allowed={["admin", "operador", "caixa"]}><DespesasExtras /></PrivateRoute> },
@@ -88,6 +91,10 @@ const router = createBrowserRouter([
       { path: "/app/despesas", element: <PrivateRoute allowed={["admin", "operador", "caixa"]}><Despesas/></PrivateRoute> },
       { path: "/app/fecharcaixa", element: <PrivateRoute allowed={["admin", "operador", "caixa"]}><FecharCaixa/></PrivateRoute> },
       { path: "/app/historicofechamento", element: <PrivateRoute allowed={["admin" ]}><HistoricoFechamentos/></PrivateRoute> },
+      { path: "/app/dinheiro", element: <PrivateRoute allowed={["admin", "caixa" ]}><Dinheiro/></PrivateRoute> },
+      { path: "/app/cartao", element: <PrivateRoute allowed={["admin", "caixa" ]}><Cartao/></PrivateRoute> },
+      { path: "/app/sangria", element: <PrivateRoute allowed={["admin", "caixa" ]}><Sangria/></PrivateRoute> },
+
 
     
 
