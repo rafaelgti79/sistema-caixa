@@ -47,6 +47,84 @@
       "setor": "1",
       "usuario": "barbie",
       "status": "fechado"
+    },
+    {
+      "id": "59c8",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "2000",
+      "data": "2025-06-17",
+      "setor": "setor1",
+      "usuario": "barbie",
+      "status": "fechado"
+    },
+    {
+      "id": "7038",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "444",
+      "data": "2025-06-17",
+      "setor": "1",
+      "usuario": "barbie",
+      "status": "fechado"
+    },
+    {
+      "id": "cea6",
+      "loja": "",
+      "fundoInicial": "",
+      "data": "",
+      "setor": "",
+      "usuario": "barbie",
+      "status": "fechado",
+      "despesas": 60,
+      "cartoes": 0,
+      "fechamento": 1940,
+      "totalEntrada": 2000
+    },
+    {
+      "id": "a6ca",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "1000",
+      "data": "2025-06-17",
+      "setor": "1",
+      "usuario": "barbie",
+      "status": "fechado",
+      "despesas": 0,
+      "cartoes": 0,
+      "fechamento": 1100,
+      "totalEntrada": 100
+    },
+    {
+      "id": "a30a",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "2000",
+      "data": "2025-06-17",
+      "setor": "1",
+      "usuario": "barbie",
+      "status": "fechado",
+      "despesas": 20,
+      "cartoes": 0,
+      "fechamento": 4980,
+      "totalEntrada": 3000
+    },
+    {
+      "id": "02f4",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "1000",
+      "data": "2025-06-17",
+      "setor": "1",
+      "usuario": "barbie",
+      "status": "fechado",
+      "despesas": 20,
+      "cartoes": 0,
+      "fechamento": 2180,
+      "totalEntrada": 1200
+    },
+    {
+      "id": "f8ef",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "2000",
+      "data": "2025-06-18",
+      "setor": "2",
+      "usuario": "rafael"
     }
   ],
   "totalentrada": [
@@ -141,19 +219,11 @@
   ],
   "despesas": [
     {
-      "id": "773a",
-      "descricao": "",
+      "id": "006f",
+      "descricao": "teste",
       "valor": "20",
-      "categoria": "",
-      "loja": "",
-      "usuario": "barbie"
-    },
-    {
-      "id": "d2e6",
-      "descricao": "",
-      "valor": "20",
-      "categoria": "",
-      "loja": "",
+      "categoria": "cozinha",
+      "loja": "BARSOLIDO",
       "usuario": "barbie"
     }
   ],

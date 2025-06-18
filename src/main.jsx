@@ -30,6 +30,8 @@ import HomeCaixa from './routes/HomeCaixa/homeCaixa.jsx';
 import Reforco from './routes/Reforco/reforco.jsx';
 import Despesas from './Despesas/despesas.jsx';
 import { BloqueioCaixa } from './routes/BloqueioCaixa/BloqueioCaixa.jsx';
+import HistoricoFechamentos from './routes/HistorioFechamento/HistoricoFechamento.jsx';
+
 
 
 import Login from './routes/Login/login.jsx';
@@ -85,6 +87,7 @@ const router = createBrowserRouter([
       { path: "/app/reforco", element: <PrivateRoute allowed={["admin", "operador", "caixa"]}><Reforco/></PrivateRoute> },
       { path: "/app/despesas", element: <PrivateRoute allowed={["admin", "operador", "caixa"]}><Despesas/></PrivateRoute> },
       { path: "/app/fecharcaixa", element: <PrivateRoute allowed={["admin", "operador", "caixa"]}><FecharCaixa/></PrivateRoute> },
+      { path: "/app/historicofechamento", element: <PrivateRoute allowed={["admin" ]}><HistoricoFechamentos/></PrivateRoute> },
 
     
 

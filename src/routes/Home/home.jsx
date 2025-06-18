@@ -18,7 +18,7 @@ function Home() {
   const urlCaixa = tipo === "admin" 
   ? `${url}?status=aberto` 
   : `${url}?status=aberto&usuario=${usuarioLogado.nome}`;
-  
+
   const { data: items } = useFetch(urlCaixa);
   const { data: despesas } = useFetch('http://localhost:3000/despesas');
 
@@ -48,7 +48,7 @@ function Home() {
         {(tipo === "admin" || tipo === "caixa") && (
           <>
             <Link to="/app/abrir-caixa">Abrir Caixa</Link>
-            <Link to="/app/fechamento">Fechamento</Link>
+           
           </>
         )}
 
@@ -63,6 +63,7 @@ function Home() {
             <Link to="/app/gerenciar-sistema">Gerenciar Sistema</Link>
             <Link to="/app/pagamento-superios">Pagamento Superior</Link>
             <Link to="/app/procurar-pagamentos">Procurar Pagamentos</Link>
+             <Link to="/app/fechamento">Fechamento</Link>
           </>
         )}
 
