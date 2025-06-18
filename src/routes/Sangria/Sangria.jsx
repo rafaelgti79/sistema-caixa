@@ -12,8 +12,8 @@ function Sangria() {
 
  const { data: lojas, } = useFetch('http://localhost:3000/lojas');
  const { data: conta, } = useFetch('http://localhost:3000/conta');
+ const {data: items, httpConfig} = useFetch(url);
 
-  const {data: items, httpConfig} = useFetch(url);
   
 
   const handleSubmit = (event) => {

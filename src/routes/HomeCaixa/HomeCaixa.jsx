@@ -13,7 +13,7 @@ function HomeCaixa() {
            <Link to="#">Data</Link>
            <Link to="#">Fundo I</Link>
            <Link to="/app/fecharCaixa">Fechar 0</Link>
-            <Link to="/app/fechar2">Fechar 2</Link>
+            <Link to="/app/fechamentomaquinas">Fechar 2</Link>
             <Link to="/app/despesas">Despesas</Link>
             <Link to="/app/reforco">Reforço</Link>
             <Link to="/app/cartao">Cartões</Link>

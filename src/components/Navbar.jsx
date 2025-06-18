@@ -21,7 +21,8 @@ const Navbar = () => {
     "/app/reforco",
     "/app/cartoes",
     "/app/dinheiro",
-    "/app/cartao"
+    "/app/cartao",
+    "/app/fechamentomaquinas"
   ];
   if (rotasSemNavbar.includes(location.pathname)) {
     return null; // Não renderiza o navbar

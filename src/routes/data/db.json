@@ -5,11 +5,141 @@
       "loja": "BARSOLIDO",
       "numeroMaquina": "3344455",
       "jogo": "AVALAN",
-      "valorJogo": "0.05",
+      "valorJogo": "0.25",
       "maquineiro": "",
       "setor": "1",
-      "entrada": "4455566666",
-      "saida": "456556565"
+      "entradaAtual": "4455566666",
+      "saidaAtual": "456556565"
+    }
+  ],
+  "fecharmaquinas": [
+    {
+      "id": "3391",
+      "maquinaId": "249d",
+      "maquina": "AVALAN",
+      "entradaInicial": "4455566666",
+      "entradaFinal": "1200",
+      "saidaInicial": "456556565",
+      "saidaFinal": "2000",
+      "resultado": "200.00",
+      "usuario": "rafael",
+      "usuarioId": null,
+      "dataHora": "2025-06-18T22:04:32.176Z"
+    },
+    {
+      "id": "be4e",
+      "maquinaId": "249d",
+      "maquina": "AVALAN",
+      "entradaInicial": "4455566666",
+      "entradaFinal": "1200",
+      "saidaInicial": "456556565",
+      "saidaFinal": "2000",
+      "resultado": "200.00",
+      "usuario": "rafael",
+      "usuarioId": null,
+      "dataHora": "2025-06-18T22:09:30.704Z"
+    },
+    {
+      "id": "0321",
+      "maquinaId": "249d",
+      "maquina": "AVALAN",
+      "entradaInicial": "4455566666",
+      "entradaFinal": "1200",
+      "saidaInicial": "456556565",
+      "saidaFinal": "2000",
+      "resultado": "200.00",
+      "usuario": "rafael",
+      "usuarioId": null,
+      "dataHora": "2025-06-18T22:20:32.849Z"
+    },
+    {
+      "id": "1b38",
+      "maquinaId": "249d",
+      "maquina": "AVALAN",
+      "entradaInicial": "4455566666",
+      "entradaFinal": "1000",
+      "saidaInicial": "456556565",
+      "saidaFinal": "2000",
+      "resultado": "250.00",
+      "usuario": "rafael",
+      "usuarioId": null,
+      "dataHora": "2025-06-18T22:28:24.218Z"
+    },
+    {
+      "id": "2226",
+      "maquinaId": "249d",
+      "maquina": "AVALAN",
+      "entradaInicial": "4455566666",
+      "entradaFinal": "1200",
+      "saidaInicial": "456556565",
+      "saidaFinal": "2000",
+      "resultado": "200.00",
+      "usuario": "rafael",
+      "usuarioId": null,
+      "dataHora": "2025-06-18T22:36:21.042Z"
+    },
+    {
+      "id": "4a7d",
+      "maquinaId": "249d",
+      "maquina": "AVALAN",
+      "entradaInicial": "4455566666",
+      "entradaFinal": "1200",
+      "saidaInicial": "456556565",
+      "saidaFinal": "2000",
+      "resultado": "200.00",
+      "usuario": "rafael",
+      "usuarioId": null,
+      "dataHora": "2025-06-18T22:49:40.643Z"
+    }
+  ],
+  "caixa": [
+    {
+      "id": "2b36",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "2000",
+      "data": "2025-06-18",
+      "setor": "1",
+      "usuario": "rafael",
+      "status": "fechado",
+      "despesas": 100,
+      "cartoes": 0,
+      "fechamento": 2000,
+      "totalEntrada": 100
+    },
+    {
+      "id": "bc9e",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "2000",
+      "data": "2025-06-18",
+      "setor": "1",
+      "fechamento": 2000,
+      "usuario": "rafael",
+      "status": "fechado",
+      "despesas": 100,
+      "cartoes": 0,
+      "totalEntrada": 100
+    },
+    {
+      "id": "72c6",
+      "loja": "",
+      "fundoInicial": "1000",
+      "data": "",
+      "setor": "",
+      "fechamento": 901,
+      "usuario": "rafael",
+      "status": "fechado",
+      "despesas": 100,
+      "cartoes": 0,
+      "totalEntrada": 1
+    },
+    {
+      "id": "cb33",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "1000",
+      "data": "2025-06-18",
+      "setor": "1",
+      "fechamento": "",
+      "usuario": "rafael"
     }
   ],
   "jogos": [
@@ -47,95 +177,6 @@
       "id": "8b93",
       "valor": "20",
       "tipo": "credito",
-      "usuario": "rafael"
-    }
-  ],
-  "caixa": [
-    {
-      "id": "9a02",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "1222",
-      "data": "2025-06-16",
-      "setor": "1",
-      "usuario": "barbie",
-      "status": "fechado"
-    },
-    {
-      "id": "59c8",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "2000",
-      "data": "2025-06-17",
-      "setor": "setor1",
-      "usuario": "barbie",
-      "status": "fechado"
-    },
-    {
-      "id": "7038",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "444",
-      "data": "2025-06-17",
-      "setor": "1",
-      "usuario": "barbie",
-      "status": "fechado"
-    },
-    {
-      "id": "cea6",
-      "loja": "",
-      "fundoInicial": "",
-      "data": "",
-      "setor": "",
-      "usuario": "barbie",
-      "status": "fechado",
-      "despesas": 60,
-      "cartoes": 0,
-      "fechamento": 1940,
-      "totalEntrada": 2000
-    },
-    {
-      "id": "a6ca",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "1000",
-      "data": "2025-06-17",
-      "setor": "1",
-      "usuario": "barbie",
-      "status": "fechado",
-      "despesas": 0,
-      "cartoes": 0,
-      "fechamento": 1100,
-      "totalEntrada": 100
-    },
-    {
-      "id": "a30a",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "2000",
-      "data": "2025-06-17",
-      "setor": "1",
-      "usuario": "barbie",
-      "status": "fechado",
-      "despesas": 20,
-      "cartoes": 0,
-      "fechamento": 4980,
-      "totalEntrada": 3000
-    },
-    {
-      "id": "02f4",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "1000",
-      "data": "2025-06-17",
-      "setor": "1",
-      "usuario": "barbie",
-      "status": "fechado",
-      "despesas": 20,
-      "cartoes": 0,
-      "fechamento": 2180,
-      "totalEntrada": 1200
-    },
-    {
-      "id": "f8ef",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "2000",
-      "data": "2025-06-18",
-      "setor": "2",
       "usuario": "rafael"
     }
   ],

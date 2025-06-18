@@ -33,6 +33,7 @@ import { BloqueioCaixa } from './routes/BloqueioCaixa/BloqueioCaixa.jsx';
 import HistoricoFechamentos from './routes/HistorioFechamento/HistoricoFechamento.jsx';
 import Dinheiro from './routes/Dinheiro/Dinheiro.jsx';
 import Cartao from './routes/Cartao/Cartao.jsx';
+import FechamentoMaquinas from './routes/FechamentoMaquinas/FechamentoMaquinas.jsx';
 
 
 
@@ -94,6 +95,7 @@ const router = createBrowserRouter([
       { path: "/app/dinheiro", element: <PrivateRoute allowed={["admin", "caixa" ]}><Dinheiro/></PrivateRoute> },
       { path: "/app/cartao", element: <PrivateRoute allowed={["admin", "caixa" ]}><Cartao/></PrivateRoute> },
       { path: "/app/sangria", element: <PrivateRoute allowed={["admin", "caixa" ]}><Sangria/></PrivateRoute> },
+      { path: "/app/fechamentomaquinas", element: <PrivateRoute allowed={["admin", "caixa" ]}><FechamentoMaquinas/></PrivateRoute> },
 
 
     

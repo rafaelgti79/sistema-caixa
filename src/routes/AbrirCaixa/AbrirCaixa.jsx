@@ -10,6 +10,7 @@ function AbrirCaixa() {
   const [fundoInicial, setFundoInicial] = useState('');
   const [data, setData] = useState('');
   const [setor, setSetor] = useState('');
+  const [fechamento, setFechamento] = useState('');
   const { data: lojas, } = useFetch('http://localhost:3000/lojas');
   const navigate = useNavigate();
   
@@ -29,6 +30,7 @@ const usuarioKey = usuarioLogado.nome;
       fundoInicial,
       data,
       setor,
+      fechamento,
       usuario: usuarioLogado.nome,  // ou usuarioId: usuarioLogado.id
     };
     

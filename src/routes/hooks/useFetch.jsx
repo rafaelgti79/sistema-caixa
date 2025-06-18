@@ -1,4 +1,4 @@
-import { use } from "react";
+
 import { useState, useEffect } from "react";
 
 export const useFetch = (url) => {
@@ -11,6 +11,33 @@ export const useFetch = (url) => {
     const [responseData, setResponseData] = useState(null);
     const [fetchUrl, setFetchUrl] = useState(url); // usado para GET dinâmico
 
+
+  const updateData = async (data, method, id) => {
+  let urlToUpdate = url;
+  if (method === "PUT" && id) {
+    urlToUpdate = `${url}/${id}`;
+  }
+
+  const res = await fetch(urlToUpdate, {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  });
+
+  const json = await res.json();
+
+  // Atualiza a lista local
+  setData(prevData =>
+    Array.isArray(prevData)
+      ? prevData.map(item => (item.id === json.id ? json : item))
+      : json
+  );
+
+  setCallFetch(prev => !prev); // força reexecução
+  return json;
+};
 
 
     const httpConfig = (data, method) => {
@@ -69,7 +96,7 @@ export const useFetch = (url) => {
     if (config && method) httpRequest();
   }, [config, method, url]);
 
-  return { data, httpConfig };
+  return { data, httpConfig, updateData  };
 
 };
 

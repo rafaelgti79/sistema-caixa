@@ -11,8 +11,8 @@ function Home() {
   const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
   const { user } = useAuth();
 
- if (!user) return null; // Segurança: aguarda login
-  const tipo = user.tipo;
+ 
+  const tipo = user?.tipo || null;
 
   // Busca só caixas abertos do usuário logado
   const urlCaixa = tipo === "admin" 
@@ -25,7 +25,7 @@ function Home() {
   const { data: reforco } = useFetch('http://localhost:3000/reforco');
   const { data: sangria } = useFetch('http://localhost:3000/sangria');
 
-
+if (!user) return null; // Segurança: aguarda login
 
 
   
