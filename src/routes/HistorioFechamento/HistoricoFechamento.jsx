@@ -1,3 +1,82 @@
+// src/pages/HistoricoCaixa.jsx
+import React, { useEffect, useState } from 'react';
+import { useFetch } from '../hooks/useFetch';
+
+function HistoricoCaixa() {
+  const { data: historico } = useFetch('http://localhost:3000/historicocaixa');
+  const [filtroUsuario, setFiltroUsuario] = useState('');
+  const [filtroData, setFiltroData] = useState('');
+  const [historicoFiltrado, setHistoricoFiltrado] = useState([]);
+
+  useEffect(() => {
+    if (historico) {
+      const filtrado = historico.filter(item => {
+        const matchUsuario = filtroUsuario === '' || item.usuario.toLowerCase().includes(filtroUsuario.toLowerCase());
+        const matchData = filtroData === '' || item.data === filtroData;
+        return matchUsuario && matchData;
+      });
+      setHistoricoFiltrado(filtrado);
+    }
+  }, [historico, filtroUsuario, filtroData]);
+
+  return (
+    <div className="containerDespesas">
+      <h2>Histórico de Fechamentos de Caixa</h2>
+
+      <div style={{ marginBottom: '1rem' }}>
+        <input
+          type="text"
+          placeholder="Filtrar por usuário"
+          value={filtroUsuario}
+          onChange={(e) => setFiltroUsuario(e.target.value)}
+        />
+        <input
+          type="date"
+          value={filtroData}
+          onChange={(e) => setFiltroData(e.target.value)}
+          style={{ marginLeft: '1rem' }}
+        />
+      </div>
+
+      <table border="1" cellPadding="5" style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Usuário</th>
+            <th>Bruto</th>
+            <th>Líquido</th>
+            <th>Composição</th>
+            <th>Sobra</th>
+            <th>Falta</th>
+            <th>Dinheiro</th>
+          </tr>
+        </thead>
+        <tbody>
+          {historicoFiltrado.map((item, index) => (
+            <tr key={index}>
+              <td>{item.data}</td>
+              <td>{item.usuario}</td>
+              <td>R$ {parseFloat(item.bruto).toFixed(2)}</td>
+              <td>R$ {parseFloat(item.liquido).toFixed(2)}</td>
+              <td>R$ {parseFloat(item.composicao).toFixed(2)}</td>
+              <td>R$ {parseFloat(item.dinheiro).toFixed(2)}</td>
+              <td style={{ color: 'green' }}>R$ {parseFloat(item.sobra).toFixed(2)}</td>
+              <td style={{  }}>R$ {parseFloat(item.falta).toFixed(2)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default HistoricoCaixa;
+
+
+
+
+/*
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFetch } from '../hooks/useFetch';
@@ -59,7 +138,7 @@ useEffect(() => {
     <div className="containerHistorico">
       <h1>Histórico de Fechamentos</h1>
 
-      {/* Filtros */}
+      {/* Filtros }
       <div className="filtros">
         <label>
           Data:
@@ -81,7 +160,7 @@ useEffect(() => {
         <button onClick={aplicarFiltros}>Filtrar</button>
       </div>
 
-      {/* Tabela */}
+      {/* Tabela }
       {!fechamentosFiltrados || fechamentosFiltrados.length === 0 ? (
         <p>Nenhum fechamento encontrado.</p>
       ) : (
@@ -119,3 +198,4 @@ useEffect(() => {
 }
 
 export default HistoricoFechamentos;
+*/

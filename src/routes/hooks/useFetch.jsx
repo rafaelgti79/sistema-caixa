@@ -7,7 +7,7 @@ export const useFetch = (url) => {
     //Methodo POST
     const [config, setConfig] = useState(null);
     const [method, setMethod] = useState(null);
-    const [callFetch, setCallFetch] = useState(null);
+    const [callFetch, setCallFetch] = useState(false);
     const [responseData, setResponseData] = useState(null);
     const [fetchUrl, setFetchUrl] = useState(url); // usado para GET dinâmico
 
@@ -40,63 +40,82 @@ export const useFetch = (url) => {
 };
 
 
-    const httpConfig = (data, method) => {
-        if (method === "POST"){
-            // Remover o id se vier do formulário
-      if (data.id) {
-        delete data.id;
-      }
-
-        setConfig({
-            method,
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify(data),
-        });
-
-        setMethod(method);
+    const httpConfig = async (data, method) => {
+  if (method === "POST") {
+    // Remove o id se vier do formulário
+    if (data.id) {
+      delete data.id;
     }
 
-     if (method === "GET") {
-      const queryParams = new URLSearchParams(data).toString();
-      setFetchUrl(`${url}?${queryParams}`);
-      setMethod(method);
-      setCallFetch(prev => !prev); // força reexecução do fetch
+    const config = {
+      method,
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    try {
+      const res = await fetch(url, config);
+      const json = await res.json();
+
+      setCallFetch(json); // força reexecução do useEffect principal
+      return json;
+    } catch (error) {
+      console.error("Erro ao fazer POST:", error);
+      throw error;
     }
+  }
+
+  if (method === "GET") {
+    const queryParams = new URLSearchParams(data).toString();
+    setFetchUrl(`${url}?${queryParams}`);
+    setMethod(method);
+    setCallFetch(prev => !prev);
+  }
 };
-
-
 
     useEffect(() => {
         const fetchData = async () => {
             const res = await fetch(url);
             const json = await res.json();
-
             setData(json);
         };
 
         fetchData();
+      }, [url, callFetch]);
 
-    }, [url, callFetch]);
+
 
     //Methodo POST
     useEffect(()=> {
- 
-    const httpRequest = async() => {
-        let json
-
-       if (method === "POST") {
+      const httpRequest = async() => {
+          let json
+  
+          if (method === "POST" && config) {
         const res = await fetch(url, config);
-        json = await res.json();
-        setCallFetch(json); // força novo fetch
+        const json = await res.json();
+        setCallFetch(prev => !prev);
       }
-    };
+
+          /* backup 
+         if (method === "POST") {
+          const res = await fetch(url, config);
+          json = await res.json();
+          setCallFetch(json); // força novo fetch
+        }
+
+        */
+      };
+ 
 
     if (config && method) httpRequest();
   }, [config, method, url]);
 
-  return { data, httpConfig, updateData  };
+  // ✅ Retorna função refetch
+  const refetch = () => setCallFetch(prev => !prev);
+
+  return { data, httpConfig, updateData, refetch   };
 
 };
 

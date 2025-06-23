@@ -5,18 +5,24 @@ import { useNavigate } from 'react-router-dom';
 const urlCaixa = "http://localhost:3000/caixa";
 const urlFecharCaixa = "http://localhost:3000/fecharcaixa";
 const urlDespesas = "http://localhost:3000/despesas";
-const urlCartoes = "http://localhost:3000/cartoes"; // Ajuste conforme seu endpoint real
+const urlCartoes = "http://localhost:3000/cartao"; // Ajuste conforme seu endpoint real
+const urlDinheiro = "http://localhost:3000/dinheiro"; // Ajuste conforme seu endpoint real
+
+
 
 function FecharCaixa() {
   const [totalEntrada, setTotalEntrada] = useState('');
   const [caixaAberto, setCaixaAberto] = useState(null);
   const [despesasTotal, setDespesasTotal] = useState(0);
   const [cartoesTotal, setCartoesTotal] = useState(0);
+  const [dinheiroTotal, setDinheiroTotal] = useState(0);
   const navigate = useNavigate();
-  const { httpConfig } = useFetch(urlFecharCaixa);
+  const { httpConfig } = useFetch(urlFecharCaixa );
 
   const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
 
+
+  
   useEffect(() => {
     const buscarDados = async () => {
       if (!usuarioLogado) return;
@@ -26,8 +32,8 @@ function FecharCaixa() {
       const caixas = await resCaixa.json();
       const caixa = caixas[0];
       if (!caixa) return;
-
       setCaixaAberto(caixa);
+
 
       // Buscar despesas
       const resDespesas = await fetch(`${urlDespesas}?usuario=${usuarioLogado.nome}`);
@@ -40,54 +46,125 @@ function FecharCaixa() {
       const cartoes = await resCartoes.json();
       const totalCartoes = cartoes.reduce((acc, item) => acc + Number(item.valor || 0), 0);
       setCartoesTotal(totalCartoes);
+
+      // Buscar dinheiro
+      const resDinheiro = await fetch(`${urlDinheiro}?usuario=${usuarioLogado.nome}`);
+      const dinheiro = await resDinheiro.json();
+      const totalDinheiro = dinheiro.reduce((acc, item) => acc + Number(item.valor || 0), 0);
+      setDinheiroTotal(totalDinheiro);
     };
 
     buscarDados();
   }, [usuarioLogado]);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (!usuarioLogado || !caixaAberto) {
-      alert("Usuário ou caixa não encontrado");
-      return;
-    }
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  if (!usuarioLogado || !caixaAberto) {
+    alert("Usuário ou caixa não encontrado");
+    return;
+  }
 
-    const fundoInicial = Number(caixaAberto.fundoInicial || 0);
-    const entrada = Number(totalEntrada || 0);
-    const fechamentoFinal = fundoInicial + entrada - despesasTotal;
+  const fundoInicial = Number(caixaAberto.fundoInicial || 0);
+  const entrada = Number(totalEntrada || 0);
+  const bruto = entrada + cartoesTotal ;
+  const liquido = bruto - despesasTotal;
+  const composicao = fundoInicial + bruto;
+  const fechamentoFinal = fundoInicial + entrada - despesasTotal;
+  const sobra = 0;
+  const falta = 0;
 
-    // Atualizar caixa
-    await fetch(`${urlCaixa}/${caixaAberto.id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        status: 'fechado',
-        despesas: despesasTotal,
-        cartoes: cartoesTotal,
-        fechamento: fechamentoFinal,
-        totalEntrada: entrada,
-      }),
-    });
+  // Atualizar o status do caixa para fechado
+  await fetch(`${urlCaixa}/${caixaAberto.id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      status: 'fechado',
+      despesas: despesasTotal,
+      cartao: cartoesTotal,
+      dinheiro: dinheiroTotal,
+      fechamento: fechamentoFinal,
+      totalEntrada: entrada,
+    }),
+  });
 
-    // Salvar histórico de fechamento
-    const fecharCaixaRegistro = {
-  totalEntrada: entrada,
-  usuario: usuarioLogado.nome,
-  dataFechamento: new Date().toISOString(),
-  fechamentoFinal,
-  despesas: despesasTotal,
-  cartoes: cartoesTotal,
-  loja: caixaAberto.loja || '',
-  setor: caixaAberto.setor || '',
+  // Salvar fechamento do caixa
+  const fecharCaixaRegistro = {
+
+    totalEntrada: entrada,
+    usuario: usuarioLogado.nome,
+    dataFechamento: new Date().toISOString(),
+    fechamentoFinal,
+    despesas: despesasTotal,
+    cartao: cartoesTotal,
+    dinheiro: dinheiroTotal,
+    loja: caixaAberto.loja || '',
+    setor: caixaAberto.setor || '',
+  };
+  httpConfig(fecharCaixaRegistro, "POST");
+
+  // Salvar CARTÃO
+  const novoCartao = {
+    valor: cartoesTotal,
+    usuario: usuarioLogado.nome,
+    dataHora: new Date().toLocaleString('pt-BR', { hour12: false }),
+  };
+  await fetch("http://localhost:3000/cartao", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(novoCartao),
+  });
+
+  // Salvar DINHEIRO
+  const novoDinheiro = {
+    valor: entrada,
+    usuario: usuarioLogado.nome,
+    dataHora: new Date().toLocaleString('pt-BR', { hour12: false }),
+  };
+  await fetch("http://localhost:3000/dinheiro", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(novoDinheiro),
+  });
+
+  // Salvar FECHAMENTO DE MÁQUINAS
+  const fechamentoMaquinas = {
+    valor: bruto,
+    usuario: usuarioLogado.nome,
+    dataHora: new Date().toLocaleString('pt-BR', { hour12: false }),
+  };
+  await fetch("http://localhost:3000/fecharmaquinas", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(fechamentoMaquinas),
+  });
+
+  
+
+  // Histórico geral
+  await fetch('http://localhost:3000/historicocaixa', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      usuario: usuarioLogado.nome,
+      data: new Date().toISOString(),
+      bruto,
+      liquido,
+      composicao,
+      sobra,
+      falta,
+      cartao: cartoesTotal,
+      dinheiro: entrada,
+    }),
+  });
+
+  // Limpar status local
+  localStorage.setItem(`caixaAberto_${usuarioLogado.nome}`, 'false');
+  localStorage.setItem(`caixaFechado_${usuarioLogado.nome}`, 'true');
+
+  navigate('/app/home');
 };
 
-    httpConfig(fecharCaixaRegistro, "POST");
-
-    localStorage.setItem(`caixaAberto_${usuarioLogado.nome}`, 'false');
-    localStorage.setItem(`caixaFechado_${usuarioLogado.nome}`, 'true');
-
-    navigate('/app/home');
-  };
+ 
 
   return (
     <div className="containerCaixa">
@@ -107,7 +184,9 @@ function FecharCaixa() {
             />
             <p><strong>Fechamento Final:</strong> R$ {(Number(caixaAberto.fundoInicial) + Number(totalEntrada || 0) - despesasTotal).toFixed(2)}</p>
           </div>
-          <button className='btn-abrir'>Fechar Caixa</button>
+          <button type="submit" style={{ marginTop: '10px', background: 'red', color: 'white' }}>
+  Fechar o Caixa (salvar e limpar)
+</button>
         </form>
       ) : (
         <p>Carregando dados do caixa...</p>

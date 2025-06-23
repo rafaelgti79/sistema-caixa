@@ -22,6 +22,7 @@ function Login() {
     operador: { senha: '1234', tipo: 'operador' },
     rafael: { senha: '1234', tipo: 'caixa' },
     barbie: { senha: '1234', tipo: 'caixa' },
+    teste: { senha: '1234', tipo: 'caixa' },
   };
 
   

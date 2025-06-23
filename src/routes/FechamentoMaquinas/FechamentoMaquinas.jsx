@@ -52,13 +52,11 @@ const { data: caixas } = useFetch("http://localhost:3000/caixa");
 
 
     useEffect(() => {
-    if (maquinas && currentIndex >= maquinas.length) {
-      // Aguarda 1 segundo e redireciona para a Home
-      setTimeout(() => {
-        navigate('/app/home');
-      }, 1000);
-    }
-  }, [currentIndex, maquinas, navigate]);
+  if (maquinas && currentIndex >= maquinas.length) {
+    // Redireciona direto para a página de fechamento final
+    navigate('/app/fechamento/final');
+  }
+}, [currentIndex, maquinas, navigate]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -139,12 +137,16 @@ const { data: caixas } = useFetch("http://localhost:3000/caixa");
 
            <label>INICIAL:</label>
             <input type="text" value={entradaInicial} onChange={(event) => setEntradaInicial(event.target.value)} />
+
             <label>ENTRADA INICIAL:</label>
             <input type="text" value={entradaFinal} onChange={(event) => setEntradaFinal(event.target.value)} />
+
              <label>FINAL:</label>
             <input type="text" value={saidaInicial} onChange={(event) => setSaidaInicial(event.target.value)} />
+
             <label>ENTRADA FINAL:</label>
             <input type="text" value={saidaFinal} onChange={(event) => setSaidaFinal(event.target.value)} />
+            
 
             <label>RESULTADO:</label>
             <input type="text" value={resultado} onChange={(event) => setResultado(event.target.value)} />

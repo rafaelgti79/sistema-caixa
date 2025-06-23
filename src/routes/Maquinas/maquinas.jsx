@@ -37,6 +37,15 @@ function Maquinas() {
     };
     
     httpConfig(maquinas, "POST");
+    // Limpar os campos
+  setLoja('');
+  setNumeroMaquina('');
+  setJogo('');
+  setMaquineiro('');
+  setSetor('');
+  setEntrada('');
+  setSaida('');
+
   };
 
   return (

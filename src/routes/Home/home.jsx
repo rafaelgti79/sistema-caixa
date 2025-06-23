@@ -24,6 +24,8 @@ function Home() {
   const { data: cartao } = useFetch('http://localhost:3000/cartao');
   const { data: reforco } = useFetch('http://localhost:3000/reforco');
   const { data: sangria } = useFetch('http://localhost:3000/sangria');
+  const { data: dinheiro } = useFetch('http://localhost:3000/dinheiro');
+  
 
 if (!user) return null; // Segurança: aguarda login
 
@@ -94,6 +96,18 @@ if (!user) return null; // Segurança: aguarda login
                   <span className="value">
                     R$ {
                       despesas
+                        ?.filter((d) => d.usuario === item.usuario)
+                        .reduce((total, d) => total + Number(d.valor), 0)
+                        .toFixed(2)
+                    }
+                  </span>
+                </div>  
+
+                <div className="grid-row">
+                  <span className="label">Dinheiro:</span>
+                  <span className="value">
+                    R$ {
+                      dinheiro
                         ?.filter((d) => d.usuario === item.usuario)
                         .reduce((total, d) => total + Number(d.valor), 0)
                         .toFixed(2)

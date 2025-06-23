@@ -44,6 +44,7 @@ import { AuthProvider } from './context/AuthContext.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import FecharCaixa from './routes/FecharCaixa/FecharCaixa.jsx';
 import Sangria from './routes/Sangria/Sangria.jsx';
+import FechamentoFinal from './routes/FechamentoFinal/FechamentoFinal.jsx';
 
 
 
@@ -96,6 +97,7 @@ const router = createBrowserRouter([
       { path: "/app/cartao", element: <PrivateRoute allowed={["admin", "caixa" ]}><Cartao/></PrivateRoute> },
       { path: "/app/sangria", element: <PrivateRoute allowed={["admin", "caixa" ]}><Sangria/></PrivateRoute> },
       { path: "/app/fechamentomaquinas", element: <PrivateRoute allowed={["admin", "caixa" ]}><FechamentoMaquinas/></PrivateRoute> },
+      { path: "/app/fechamento/final", element: <PrivateRoute allowed={["admin", "caixa" ]}><FechamentoFinal/></PrivateRoute> },
 
 
     

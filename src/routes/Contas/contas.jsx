@@ -25,6 +25,11 @@ function Conta() {
     };
     
     httpConfig(conta, "POST");
+    setNome('');
+    setSenha('');
+    setTipo('');
+    setPorcentagem('');
+
   };
 
   return (
