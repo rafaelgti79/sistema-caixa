@@ -122,7 +122,7 @@ useEffect(() => {
 
 
 
-    const calculoSobra = composicaoTotal > resultadoLiquido ? composicaoTotal - resultadoLiquido : 0;
+    //const calculoSobra = composicaoTotal > resultadoLiquido ? composicaoTotal - resultadoLiquido : 0;
     const calculoFalta = composicaoTotal < resultadoLiquido ? resultadoLiquido - composicaoTotal : 0;
 
 
@@ -267,7 +267,7 @@ localStorage.setItem(`caixaFechado_${usuarioKey}`, 'true');
       <p><strong>Dinheiro:</strong> R$ {formatarMoeda(totalDinheiro)} </p>
       <p><strong>Sangria:</strong> R$ {formatarMoeda(totalSangria)} </p>
       <p><strong>Total:</strong> R$ {formatarMoeda(composicaoTotal)}</p>
-      <p><strong>Sobra:</strong> R$ {}</p>
+      <p><strong>Sobra:</strong> R$ {formatarMoeda(sobra)}</p>
       <p><strong>Falta:</strong> R$ {formatarMoeda(falta)}</p>
       <p><strong>Dinheiro Liquido:</strong> R$ {formatarMoeda(dinheiroLiquido)}</p>
 

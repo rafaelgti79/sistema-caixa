@@ -20,6 +20,8 @@ function Sangria() {
     event.preventDefault();
 
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    // Adicionar data atual altomatico
+      const dataHoje = new Date().toISOString().split('T')[0];
     
     const sangria = {
 
@@ -27,7 +29,8 @@ function Sangria() {
       valor,
       contas,
       loja,
-      usuario: usuarioLogado.nome
+      usuario: usuarioLogado.nome,
+      data: dataHoje  // ✅ Adiciona a data automaticamente
     };
     httpConfig(sangria, "POST");
     // Limpar os campos

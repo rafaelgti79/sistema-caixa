@@ -51,109 +51,34 @@
       "setor": "",
       "usuario": "rafael",
       "status": "fechado"
+    },
+    {
+      "id": "ff4b",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "1000",
+      "data": "2025-06-25",
+      "setor": "setor 1",
+      "usuario": "rafael",
+      "status": "fechado"
     }
   ],
   "historicocaixa": [
     {
-      "id": "8607",
-      "usuario": "rafael",
-      "data": "2025-06-25",
-      "entrada": 0,
-      "saida": 0,
-      "bruto": 0,
-      "liquido": 0,
-      "composicaoTotal": 0,
-      "sobra": 0,
-      "falta": 0,
-      "cartao": 0,
-      "dinheiro": 0,
-      "fecharmaquinas": [
-        {
-          "id": "4b33",
-          "maquinaId": "c198",
-          "maquina": "1",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-25T12:42:41.542Z"
-        },
-        {
-          "id": "6294",
-          "maquinaId": "c6ab",
-          "maquina": "2",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-25T12:42:41.701Z"
-        }
-      ],
-      "despesas": 0,
-      "sangria": [],
-      "fundoInicial": 0,
-      "reforco": 0
-    },
-    {
-      "id": "de97",
-      "usuario": "rafael",
-      "data": "2025-06-25",
-      "entrada": 0,
-      "saida": 0,
-      "bruto": 0,
-      "liquido": 0,
-      "composicaoTotal": 0,
-      "sobra": 0,
-      "falta": 0,
-      "cartao": 0,
-      "dinheiro": 0,
-      "fecharmaquinas": [
-        {
-          "id": "4b33",
-          "maquinaId": "c198",
-          "maquina": "1",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-25T12:42:41.542Z"
-        },
-        {
-          "id": "6294",
-          "maquinaId": "c6ab",
-          "maquina": "2",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-25T12:42:41.701Z"
-        }
-      ],
-      "despesas": 0,
-      "sangria": [],
-      "fundoInicial": 0,
-      "reforco": 0
-    },
-    {
-      "id": "496d",
+      "id": "7c1a",
       "usuario": "rafael",
       "data": "2025-06-25",
       "entrada": 150,
       "saida": 50,
       "bruto": 100,
       "liquido": 50,
-      "composicaoTotal": 1550,
-      "sobra": 1500,
+      "composicaoTotal": 2050,
+      "sobra": 2000,
       "falta": 0,
-      "cartao": 200,
+      "cartao": 300,
       "dinheiro": 0,
       "fecharmaquinas": [
         {
-          "id": "a6bc",
+          "id": "2870",
           "maquinaId": "c198",
           "maquina": "1",
           "saidaInicial": "",
@@ -161,10 +86,10 @@
           "resultado": "200.00",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-25T12:50:32.981Z"
+          "dataHora": "2025-06-25T17:11:45.305Z"
         },
         {
-          "id": "6409",
+          "id": "ac64",
           "maquinaId": "c6ab",
           "maquina": "2",
           "saidaInicial": "",
@@ -172,10 +97,10 @@
           "resultado": "-50.00",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-25T12:50:41.180Z"
+          "dataHora": "2025-06-25T17:11:54.072Z"
         },
         {
-          "id": "f642",
+          "id": "c20a",
           "maquinaId": "c198",
           "maquina": "1",
           "saidaInicial": "",
@@ -183,10 +108,10 @@
           "resultado": "",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-25T13:06:01.660Z"
+          "dataHora": "2025-06-25T17:14:58.865Z"
         },
         {
-          "id": "e1a8",
+          "id": "b05d",
           "maquinaId": "c6ab",
           "maquina": "2",
           "saidaInicial": "",
@@ -194,164 +119,14 @@
           "resultado": "",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-25T13:06:01.987Z"
-        },
-        {
-          "id": "a37c",
-          "maquinaId": "c198",
-          "maquina": "1",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-25T13:18:12.299Z"
-        },
-        {
-          "id": "b077",
-          "maquinaId": "c6ab",
-          "maquina": "2",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-25T13:18:12.450Z"
-        }
-      ],
-      "despesas": 50,
-      "sangria": [],
-      "fundoInicial": 1000,
-      "reforco": 500
-    },
-    {
-      "id": "868c",
-      "usuario": "rafael",
-      "data": "2025-06-25",
-      "entrada": 0,
-      "saida": 0,
-      "bruto": 0,
-      "liquido": 0,
-      "composicaoTotal": 0,
-      "sobra": 0,
-      "falta": 0,
-      "cartao": 0,
-      "dinheiro": 0,
-      "fecharmaquinas": [
-        {
-          "id": "587b",
-          "maquinaId": "c198",
-          "maquina": "1",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-25T13:43:47.713Z"
-        },
-        {
-          "id": "23fb",
-          "maquinaId": "c6ab",
-          "maquina": "2",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-25T13:43:47.945Z"
-        }
-      ],
-      "despesas": 0,
-      "sangria": [],
-      "fundoInicial": 0,
-      "reforco": 0
-    },
-    {
-      "id": "a909",
-      "usuario": "rafael",
-      "data": "2025-06-25",
-      "entrada": 150,
-      "saida": 50,
-      "bruto": 100,
-      "liquido": 50,
-      "composicaoTotal": 1050,
-      "sobra": 1000,
-      "falta": 0,
-      "cartao": 0,
-      "dinheiro": 0,
-      "fecharmaquinas": [
-        {
-          "id": "1c98",
-          "maquinaId": "c198",
-          "maquina": "1",
-          "saidaInicial": "",
-          "saidaFinal": "2000",
-          "resultado": "200.00",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-25T13:50:20.417Z"
-        },
-        {
-          "id": "2844",
-          "maquinaId": "c6ab",
-          "maquina": "2",
-          "saidaInicial": "",
-          "saidaFinal": "200",
-          "resultado": "-50.00",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-25T13:50:26.872Z"
-        },
-        {
-          "id": "69bf",
-          "maquinaId": "c198",
-          "maquina": "1",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-25T13:52:29.113Z"
-        },
-        {
-          "id": "2181",
-          "maquinaId": "c6ab",
-          "maquina": "2",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-25T13:52:29.272Z"
-        },
-        {
-          "id": "f602",
-          "maquinaId": "c198",
-          "maquina": "1",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-25T15:13:56.195Z"
-        },
-        {
-          "id": "92a4",
-          "maquinaId": "c6ab",
-          "maquina": "2",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-25T15:13:56.370Z"
+          "dataHora": "2025-06-25T17:14:59.248Z"
         }
       ],
       "despesas": 50,
       "sangria": 500,
       "fundoInicial": 1000,
-      "reforco": 0,
-      "dinheiroLiquido": 450
+      "reforco": 1000,
+      "dinheiroLiquido": -250
     }
   ],
   "jogos": [
