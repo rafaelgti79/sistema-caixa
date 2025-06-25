@@ -19,6 +19,10 @@ function Despesas() {
     event.preventDefault();
 
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+      // Adicionar data atual altomatico
+      const dataHoje = new Date().toISOString().split('T')[0];
+
     
     const despesas = {
 
@@ -26,7 +30,8 @@ function Despesas() {
       valor,
       categoria,
       loja,
-       usuario: usuarioLogado.nome
+      usuario: usuarioLogado.nome,
+      data: dataHoje  // ✅ Adiciona a data automaticamente
     };
     httpConfig(despesas, "POST");
     // Limpar os campos
@@ -54,10 +59,7 @@ function Despesas() {
   onChange={(event) => {
     const nomeSelecionado = event.target.value;
     setLoja(nomeSelecionado);
-    const jogoSelecionado = lojas.find(j => j.loja === nomeSelecionado);
-    if (jogoSelecionado) {
-      setValorJogo(jogoSelecionado.valorJogo);
-    }
+    
   }}
 >
   <option value="">Selecione uma Loja</option>

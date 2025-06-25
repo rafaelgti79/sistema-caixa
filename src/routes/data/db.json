@@ -8,8 +8,8 @@
       "valorJogo": "0.25",
       "maquineiro": "",
       "setor": "1",
-      "entradaInicial": "989006",
-      "saida": "877098"
+      "inicial": "989006",
+      "final": "877098"
     },
     {
       "id": "c6ab",
@@ -19,177 +19,35 @@
       "valorJogo": "0.05",
       "maquineiro": "",
       "setor": "1",
-      "entradaInicial": "986574",
-      "saida": "875903"
-    },
-    {
-      "id": "3abe",
-      "loja": "BARSOLIDO",
-      "numeroMaquina": "3",
-      "jogo": "AVALAN",
-      "valorJogo": "0.05",
-      "maquineiro": "",
-      "setor": "1",
-      "entradaInicial": "445367",
-      "saida": "336756"
+      "inicial": "986574",
+      "final": "875903"
     }
   ],
-  "fecharmaquinas": [
-    {
-      "id": "b45d",
-      "maquinaId": "c198",
-      "maquina": "BIMBASH",
-      "entradaInicial": "",
-      "entradaFinal": "1200",
-      "saidaInicial": "",
-      "saidaFinal": "2000",
-      "resultado": "200.00",
-      "usuario": "rafael",
-      "usuarioId": null,
-      "dataHora": "2025-06-23T16:14:56.658Z"
-    },
-    {
-      "id": "5a97",
-      "maquinaId": "c6ab",
-      "maquina": "AVALAN",
-      "entradaInicial": "",
-      "entradaFinal": "",
-      "saidaInicial": "",
-      "saidaFinal": "",
-      "resultado": "",
-      "usuario": "rafael",
-      "usuarioId": null,
-      "dataHora": "2025-06-23T16:15:29.697Z"
-    },
-    {
-      "id": "78a5",
-      "maquinaId": "3abe",
-      "maquina": "AVALAN",
-      "entradaInicial": "",
-      "entradaFinal": "",
-      "saidaInicial": "",
-      "saidaFinal": "",
-      "resultado": "",
-      "usuario": "rafael",
-      "usuarioId": null,
-      "dataHora": "2025-06-23T16:15:48.921Z"
-    },
-    {
-      "id": "72ce",
-      "maquinaId": "4ec3",
-      "maquina": "BIMBASH",
-      "entradaInicial": "",
-      "entradaFinal": "",
-      "saidaInicial": "",
-      "saidaFinal": "",
-      "resultado": "",
-      "usuario": "rafael",
-      "usuarioId": null,
-      "dataHora": "2025-06-23T16:15:49.915Z"
-    },
-    {
-      "id": "9cbc",
-      "maquinaId": "c198",
-      "maquina": "BIMBASH",
-      "entradaInicial": "",
-      "entradaFinal": "",
-      "saidaInicial": "",
-      "saidaFinal": "",
-      "resultado": "",
-      "usuario": "barbie",
-      "usuarioId": null,
-      "dataHora": "2025-06-23T18:19:36.287Z"
-    },
-    {
-      "id": "a36b",
-      "maquinaId": "c6ab",
-      "maquina": "AVALAN",
-      "entradaInicial": "",
-      "entradaFinal": "",
-      "saidaInicial": "",
-      "saidaFinal": "",
-      "resultado": "",
-      "usuario": "barbie",
-      "usuarioId": null,
-      "dataHora": "2025-06-23T18:19:36.519Z"
-    },
-    {
-      "id": "4b5e",
-      "maquinaId": "3abe",
-      "maquina": "AVALAN",
-      "entradaInicial": "",
-      "entradaFinal": "",
-      "saidaInicial": "",
-      "saidaFinal": "",
-      "resultado": "",
-      "usuario": "barbie",
-      "usuarioId": null,
-      "dataHora": "2025-06-23T18:19:36.751Z"
-    },
-    {
-      "id": "0b50",
-      "maquinaId": "c198",
-      "maquina": "BIMBASH",
-      "entradaInicial": "",
-      "entradaFinal": "",
-      "saidaInicial": "",
-      "saidaFinal": "",
-      "resultado": "",
-      "usuario": "rafael",
-      "usuarioId": null,
-      "dataHora": "2025-06-23T18:20:56.847Z"
-    },
-    {
-      "id": "273a",
-      "maquinaId": "c6ab",
-      "maquina": "AVALAN",
-      "entradaInicial": "",
-      "entradaFinal": "",
-      "saidaInicial": "",
-      "saidaFinal": "",
-      "resultado": "",
-      "usuario": "rafael",
-      "usuarioId": null,
-      "dataHora": "2025-06-23T18:20:57.007Z"
-    },
-    {
-      "id": "a8ee",
-      "maquinaId": "3abe",
-      "maquina": "AVALAN",
-      "entradaInicial": "",
-      "entradaFinal": "",
-      "saidaInicial": "",
-      "saidaFinal": "",
-      "resultado": "",
-      "usuario": "rafael",
-      "usuarioId": null,
-      "dataHora": "2025-06-23T18:20:57.239Z"
-    }
-  ],
+  "fecharmaquinas": [],
   "caixa": [
     {
-      "id": "df69",
+      "id": "6c0d",
       "loja": "BARSOLIDO",
-      "fundoInicial": "1200",
-      "data": "2025-06-23",
-      "setor": "1",
+      "fundoInicial": "1000",
+      "data": "2025-06-25",
+      "setor": "",
       "usuario": "rafael",
       "status": "fechado"
     },
     {
-      "id": "f05f",
-      "loja": "BARSOLIDO",
-      "fundoInicial": "2000",
-      "data": "2025-06-23",
+      "id": "8d29",
+      "loja": "",
+      "fundoInicial": "",
+      "data": "",
       "setor": "",
-      "usuario": "barbie",
+      "usuario": "rafael",
       "status": "fechado"
     },
     {
-      "id": "8e4b",
+      "id": "f1bb",
       "loja": "BARSOLIDO",
-      "fundoInicial": "2000",
-      "data": "2025-06-23",
+      "fundoInicial": "1000",
+      "data": "2025-06-25",
       "setor": "",
       "usuario": "rafael",
       "status": "fechado"
@@ -197,633 +55,303 @@
   ],
   "historicocaixa": [
     {
-      "id": "d301",
+      "id": "8607",
       "usuario": "rafael",
-      "data": "2025-06-23",
-      "bruto": 200,
-      "liquido": 100,
-      "composicao": 300,
-      "sobra": 200,
+      "data": "2025-06-25",
+      "entrada": 0,
+      "saida": 0,
+      "bruto": 0,
+      "liquido": 0,
+      "composicaoTotal": 0,
+      "sobra": 0,
       "falta": 0,
-      "cartao": [
-        {
-          "id": "f3d6",
-          "valor": 100,
-          "tipo": "dd",
-          "usuario": "rafael",
-          "dataHora": "23/06/2025, 13:13:46"
-        }
-      ],
-      "dinheiro": [
-        {
-          "id": "f461",
-          "valor": 100,
-          "usuario": "rafael",
-          "dataHora": "23/06/2025, 12:54:53"
-        },
-        {
-          "id": "e1c5",
-          "valor": 100,
-          "usuario": "rafael",
-          "dataHora": "23/06/2025, 13:13:39"
-        }
-      ],
+      "cartao": 0,
+      "dinheiro": 0,
       "fecharmaquinas": [
         {
-          "id": "b45d",
+          "id": "4b33",
           "maquinaId": "c198",
-          "maquina": "BIMBASH",
-          "entradaInicial": "",
-          "entradaFinal": "1200",
+          "maquina": "1",
           "saidaInicial": "",
-          "saidaFinal": "2000",
-          "resultado": "200.00",
+          "saidaFinal": "",
+          "resultado": "",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T16:14:56.658Z"
+          "dataHora": "2025-06-25T12:42:41.542Z"
         },
         {
-          "id": "5a97",
+          "id": "6294",
           "maquinaId": "c6ab",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
+          "maquina": "2",
           "saidaInicial": "",
           "saidaFinal": "",
           "resultado": "",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T16:15:29.697Z"
-        },
-        {
-          "id": "78a5",
-          "maquinaId": "3abe",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T16:15:48.921Z"
-        },
-        {
-          "id": "72ce",
-          "maquinaId": "4ec3",
-          "maquina": "BIMBASH",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T16:15:49.915Z"
+          "dataHora": "2025-06-25T12:42:41.701Z"
         }
       ],
-      "despesas": [
-        {
-          "id": "78e8",
-          "descricao": "dd",
-          "valor": "100",
-          "categoria": "",
-          "loja": "BARSOLIDO",
-          "usuario": "rafael"
-        }
-      ],
-      "sangria": []
+      "despesas": 0,
+      "sangria": [],
+      "fundoInicial": 0,
+      "reforco": 0
     },
     {
-      "id": "207b",
-      "usuario": "barbie",
-      "data": "2025-06-23",
-      "bruto": 200,
+      "id": "de97",
+      "usuario": "rafael",
+      "data": "2025-06-25",
+      "entrada": 0,
+      "saida": 0,
+      "bruto": 0,
       "liquido": 0,
-      "composicao": 400,
-      "sobra": 400,
+      "composicaoTotal": 0,
+      "sobra": 0,
       "falta": 0,
-      "cartao": [
-        {
-          "id": "f3d6",
-          "valor": 100,
-          "tipo": "dd",
-          "usuario": "rafael",
-          "dataHora": "23/06/2025, 13:13:46"
-        }
-      ],
-      "dinheiro": [
-        {
-          "id": "f461",
-          "valor": 100,
-          "usuario": "rafael",
-          "dataHora": "23/06/2025, 12:54:53"
-        },
-        {
-          "id": "e1c5",
-          "valor": 100,
-          "usuario": "rafael",
-          "dataHora": "23/06/2025, 13:13:39"
-        },
-        {
-          "id": "d04a",
-          "valor": 100,
-          "usuario": "barbie",
-          "dataHora": "23/06/2025, 15:19:30"
-        }
-      ],
+      "cartao": 0,
+      "dinheiro": 0,
       "fecharmaquinas": [
         {
-          "id": "b45d",
+          "id": "4b33",
           "maquinaId": "c198",
-          "maquina": "BIMBASH",
-          "entradaInicial": "",
-          "entradaFinal": "1200",
+          "maquina": "1",
           "saidaInicial": "",
-          "saidaFinal": "2000",
-          "resultado": "200.00",
+          "saidaFinal": "",
+          "resultado": "",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T16:14:56.658Z"
+          "dataHora": "2025-06-25T12:42:41.542Z"
         },
         {
-          "id": "5a97",
+          "id": "6294",
           "maquinaId": "c6ab",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
+          "maquina": "2",
           "saidaInicial": "",
           "saidaFinal": "",
           "resultado": "",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T16:15:29.697Z"
-        },
-        {
-          "id": "78a5",
-          "maquinaId": "3abe",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T16:15:48.921Z"
-        },
-        {
-          "id": "72ce",
-          "maquinaId": "4ec3",
-          "maquina": "BIMBASH",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T16:15:49.915Z"
-        },
-        {
-          "id": "9cbc",
-          "maquinaId": "c198",
-          "maquina": "BIMBASH",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "barbie",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T18:19:36.287Z"
-        },
-        {
-          "id": "a36b",
-          "maquinaId": "c6ab",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "barbie",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T18:19:36.519Z"
-        },
-        {
-          "id": "4b5e",
-          "maquinaId": "3abe",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "barbie",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T18:19:36.751Z"
+          "dataHora": "2025-06-25T12:42:41.701Z"
         }
       ],
-      "despesas": [
-        {
-          "id": "78e8",
-          "descricao": "dd",
-          "valor": "100",
-          "categoria": "",
-          "loja": "BARSOLIDO",
-          "usuario": "rafael"
-        },
-        {
-          "id": "1f89",
-          "descricao": "",
-          "valor": "100",
-          "categoria": "",
-          "loja": "BARSOLIDO",
-          "usuario": "barbie"
-        }
-      ],
-      "sangria": []
+      "despesas": 0,
+      "sangria": [],
+      "fundoInicial": 0,
+      "reforco": 0
     },
     {
-      "id": "906e",
+      "id": "496d",
       "usuario": "rafael",
-      "data": "2025-06-23",
-      "bruto": 200,
-      "liquido": 0,
-      "composicao": 400,
-      "sobra": 400,
+      "data": "2025-06-25",
+      "entrada": 150,
+      "saida": 50,
+      "bruto": 100,
+      "liquido": 50,
+      "composicaoTotal": 1550,
+      "sobra": 1500,
       "falta": 0,
-      "cartao": [
-        {
-          "id": "f3d6",
-          "valor": 100,
-          "tipo": "dd",
-          "usuario": "rafael",
-          "dataHora": "23/06/2025, 13:13:46"
-        }
-      ],
-      "dinheiro": [
-        {
-          "id": "f461",
-          "valor": 100,
-          "usuario": "rafael",
-          "dataHora": "23/06/2025, 12:54:53"
-        },
-        {
-          "id": "e1c5",
-          "valor": 100,
-          "usuario": "rafael",
-          "dataHora": "23/06/2025, 13:13:39"
-        },
-        {
-          "id": "d04a",
-          "valor": 100,
-          "usuario": "barbie",
-          "dataHora": "23/06/2025, 15:19:30"
-        }
-      ],
+      "cartao": 200,
+      "dinheiro": 0,
       "fecharmaquinas": [
         {
-          "id": "b45d",
+          "id": "a6bc",
           "maquinaId": "c198",
-          "maquina": "BIMBASH",
-          "entradaInicial": "",
-          "entradaFinal": "1200",
+          "maquina": "1",
           "saidaInicial": "",
           "saidaFinal": "2000",
           "resultado": "200.00",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T16:14:56.658Z"
+          "dataHora": "2025-06-25T12:50:32.981Z"
         },
         {
-          "id": "5a97",
+          "id": "6409",
           "maquinaId": "c6ab",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
+          "maquina": "2",
           "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
+          "saidaFinal": "200",
+          "resultado": "-50.00",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T16:15:29.697Z"
+          "dataHora": "2025-06-25T12:50:41.180Z"
         },
         {
-          "id": "78a5",
-          "maquinaId": "3abe",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T16:15:48.921Z"
-        },
-        {
-          "id": "72ce",
-          "maquinaId": "4ec3",
-          "maquina": "BIMBASH",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T16:15:49.915Z"
-        },
-        {
-          "id": "9cbc",
+          "id": "f642",
           "maquinaId": "c198",
-          "maquina": "BIMBASH",
-          "entradaInicial": "",
-          "entradaFinal": "",
+          "maquina": "1",
           "saidaInicial": "",
           "saidaFinal": "",
           "resultado": "",
-          "usuario": "barbie",
+          "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T18:19:36.287Z"
+          "dataHora": "2025-06-25T13:06:01.660Z"
         },
         {
-          "id": "a36b",
+          "id": "e1a8",
           "maquinaId": "c6ab",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
+          "maquina": "2",
           "saidaInicial": "",
           "saidaFinal": "",
           "resultado": "",
-          "usuario": "barbie",
+          "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T18:19:36.519Z"
+          "dataHora": "2025-06-25T13:06:01.987Z"
         },
         {
-          "id": "4b5e",
-          "maquinaId": "3abe",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "barbie",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T18:19:36.751Z"
-        },
-        {
-          "id": "0b50",
+          "id": "a37c",
           "maquinaId": "c198",
-          "maquina": "BIMBASH",
-          "entradaInicial": "",
-          "entradaFinal": "",
+          "maquina": "1",
           "saidaInicial": "",
           "saidaFinal": "",
           "resultado": "",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T18:20:56.847Z"
+          "dataHora": "2025-06-25T13:18:12.299Z"
         },
         {
-          "id": "273a",
+          "id": "b077",
           "maquinaId": "c6ab",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
+          "maquina": "2",
           "saidaInicial": "",
           "saidaFinal": "",
           "resultado": "",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T18:20:57.007Z"
-        },
-        {
-          "id": "a8ee",
-          "maquinaId": "3abe",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T18:20:57.239Z"
+          "dataHora": "2025-06-25T13:18:12.450Z"
         }
       ],
-      "despesas": [
-        {
-          "id": "78e8",
-          "descricao": "dd",
-          "valor": "100",
-          "categoria": "",
-          "loja": "BARSOLIDO",
-          "usuario": "rafael"
-        },
-        {
-          "id": "1f89",
-          "descricao": "",
-          "valor": "100",
-          "categoria": "",
-          "loja": "BARSOLIDO",
-          "usuario": "barbie"
-        }
-      ],
-      "sangria": []
+      "despesas": 50,
+      "sangria": [],
+      "fundoInicial": 1000,
+      "reforco": 500
     },
     {
-      "id": "e2c6",
+      "id": "868c",
       "usuario": "rafael",
-      "data": "2025-06-23",
-      "bruto": 200,
+      "data": "2025-06-25",
+      "entrada": 0,
+      "saida": 0,
+      "bruto": 0,
       "liquido": 0,
-      "composicao": 400,
-      "sobra": 400,
+      "composicaoTotal": 0,
+      "sobra": 0,
       "falta": 0,
-      "cartao": [
-        {
-          "id": "f3d6",
-          "valor": 100,
-          "tipo": "dd",
-          "usuario": "rafael",
-          "dataHora": "23/06/2025, 13:13:46"
-        }
-      ],
-      "dinheiro": [
-        {
-          "id": "f461",
-          "valor": 100,
-          "usuario": "rafael",
-          "dataHora": "23/06/2025, 12:54:53"
-        },
-        {
-          "id": "e1c5",
-          "valor": 100,
-          "usuario": "rafael",
-          "dataHora": "23/06/2025, 13:13:39"
-        },
-        {
-          "id": "d04a",
-          "valor": 100,
-          "usuario": "barbie",
-          "dataHora": "23/06/2025, 15:19:30"
-        }
-      ],
+      "cartao": 0,
+      "dinheiro": 0,
       "fecharmaquinas": [
         {
-          "id": "b45d",
+          "id": "587b",
           "maquinaId": "c198",
-          "maquina": "BIMBASH",
-          "entradaInicial": "",
-          "entradaFinal": "1200",
+          "maquina": "1",
+          "saidaInicial": "",
+          "saidaFinal": "",
+          "resultado": "",
+          "usuario": "rafael",
+          "usuarioId": null,
+          "dataHora": "2025-06-25T13:43:47.713Z"
+        },
+        {
+          "id": "23fb",
+          "maquinaId": "c6ab",
+          "maquina": "2",
+          "saidaInicial": "",
+          "saidaFinal": "",
+          "resultado": "",
+          "usuario": "rafael",
+          "usuarioId": null,
+          "dataHora": "2025-06-25T13:43:47.945Z"
+        }
+      ],
+      "despesas": 0,
+      "sangria": [],
+      "fundoInicial": 0,
+      "reforco": 0
+    },
+    {
+      "id": "a909",
+      "usuario": "rafael",
+      "data": "2025-06-25",
+      "entrada": 150,
+      "saida": 50,
+      "bruto": 100,
+      "liquido": 50,
+      "composicaoTotal": 1050,
+      "sobra": 1000,
+      "falta": 0,
+      "cartao": 0,
+      "dinheiro": 0,
+      "fecharmaquinas": [
+        {
+          "id": "1c98",
+          "maquinaId": "c198",
+          "maquina": "1",
           "saidaInicial": "",
           "saidaFinal": "2000",
           "resultado": "200.00",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T16:14:56.658Z"
+          "dataHora": "2025-06-25T13:50:20.417Z"
         },
         {
-          "id": "5a97",
+          "id": "2844",
           "maquinaId": "c6ab",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
+          "maquina": "2",
           "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
+          "saidaFinal": "200",
+          "resultado": "-50.00",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T16:15:29.697Z"
+          "dataHora": "2025-06-25T13:50:26.872Z"
         },
         {
-          "id": "78a5",
-          "maquinaId": "3abe",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T16:15:48.921Z"
-        },
-        {
-          "id": "72ce",
-          "maquinaId": "4ec3",
-          "maquina": "BIMBASH",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T16:15:49.915Z"
-        },
-        {
-          "id": "9cbc",
+          "id": "69bf",
           "maquinaId": "c198",
-          "maquina": "BIMBASH",
-          "entradaInicial": "",
-          "entradaFinal": "",
+          "maquina": "1",
           "saidaInicial": "",
           "saidaFinal": "",
           "resultado": "",
-          "usuario": "barbie",
+          "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T18:19:36.287Z"
+          "dataHora": "2025-06-25T13:52:29.113Z"
         },
         {
-          "id": "a36b",
+          "id": "2181",
           "maquinaId": "c6ab",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
+          "maquina": "2",
           "saidaInicial": "",
           "saidaFinal": "",
           "resultado": "",
-          "usuario": "barbie",
+          "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T18:19:36.519Z"
+          "dataHora": "2025-06-25T13:52:29.272Z"
         },
         {
-          "id": "4b5e",
-          "maquinaId": "3abe",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "barbie",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T18:19:36.751Z"
-        },
-        {
-          "id": "0b50",
+          "id": "f602",
           "maquinaId": "c198",
-          "maquina": "BIMBASH",
-          "entradaInicial": "",
-          "entradaFinal": "",
+          "maquina": "1",
           "saidaInicial": "",
           "saidaFinal": "",
           "resultado": "",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T18:20:56.847Z"
+          "dataHora": "2025-06-25T15:13:56.195Z"
         },
         {
-          "id": "273a",
+          "id": "92a4",
           "maquinaId": "c6ab",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
+          "maquina": "2",
           "saidaInicial": "",
           "saidaFinal": "",
           "resultado": "",
           "usuario": "rafael",
           "usuarioId": null,
-          "dataHora": "2025-06-23T18:20:57.007Z"
-        },
-        {
-          "id": "a8ee",
-          "maquinaId": "3abe",
-          "maquina": "AVALAN",
-          "entradaInicial": "",
-          "entradaFinal": "",
-          "saidaInicial": "",
-          "saidaFinal": "",
-          "resultado": "",
-          "usuario": "rafael",
-          "usuarioId": null,
-          "dataHora": "2025-06-23T18:20:57.239Z"
+          "dataHora": "2025-06-25T15:13:56.370Z"
         }
       ],
-      "despesas": [
-        {
-          "id": "78e8",
-          "descricao": "dd",
-          "valor": "100",
-          "categoria": "",
-          "loja": "BARSOLIDO",
-          "usuario": "rafael"
-        },
-        {
-          "id": "1f89",
-          "descricao": "",
-          "valor": "100",
-          "categoria": "",
-          "loja": "BARSOLIDO",
-          "usuario": "barbie"
-        }
-      ],
-      "sangria": []
+      "despesas": 50,
+      "sangria": 500,
+      "fundoInicial": 1000,
+      "reforco": 0,
+      "dinheiroLiquido": 450
     }
   ],
   "jogos": [
@@ -836,6 +364,16 @@
       "id": "cd00",
       "nomedojogo": "AVALAN",
       "valorJogo": "0.05"
+    },
+    {
+      "id": "5342",
+      "nomedojogo": "bucteA",
+      "valorJogo": "0.25"
+    },
+    {
+      "id": "8000",
+      "nomedojogo": "bucteA",
+      "valorJogo": "0.25"
     }
   ],
   "lojas": [
@@ -844,53 +382,12 @@
       "loja": "BARSOLIDO"
     }
   ],
-  "cartao": [
-    {
-      "id": "f3d6",
-      "valor": 100,
-      "tipo": "dd",
-      "usuario": "rafael",
-      "dataHora": "23/06/2025, 13:13:46"
-    }
-  ],
-  "totalentrada": [
-    {
-      "id": "",
-      "valor": ""
-    }
-  ],
-  "totalsaida": [
-    {
-      "id": "",
-      "valor": ""
-    }
-  ],
-  "resultadobruto": [
-    {
-      "id": "",
-      "valor": ""
-    }
-  ],
-  "registrocaixa": [
-    {
-      "id": "teste001",
-      "usuario": "admin",
-      "data": "2025-06-23",
-      "bruto": 200,
-      "liquido": 180,
-      "composicao": 300,
-      "sobra": 0,
-      "falta": 0,
-      "cartao": 50,
-      "dinheiro": 130
-    }
-  ],
-  "resultadoliquido": [
-    {
-      "id": "",
-      "valor": ""
-    }
-  ],
+  "cartao": [],
+  "totalentrada": [],
+  "totalsaida": [],
+  "resultadobruto": [],
+  "registrocaixa": [],
+  "resultadoliquido": [],
   "fundoinicial": [
     {
       "id": "",
@@ -910,26 +407,7 @@
       "valor": ""
     }
   ],
-  "dinheiro": [
-    {
-      "id": "f461",
-      "valor": 100,
-      "usuario": "rafael",
-      "dataHora": "23/06/2025, 12:54:53"
-    },
-    {
-      "id": "e1c5",
-      "valor": 100,
-      "usuario": "rafael",
-      "dataHora": "23/06/2025, 13:13:39"
-    },
-    {
-      "id": "d04a",
-      "valor": 100,
-      "usuario": "barbie",
-      "dataHora": "23/06/2025, 15:19:30"
-    }
-  ],
+  "dinheiro": [],
   "vales": [
     {
       "id": "",
@@ -961,24 +439,7 @@
       "valor": ""
     }
   ],
-  "despesas": [
-    {
-      "id": "78e8",
-      "descricao": "dd",
-      "valor": "100",
-      "categoria": "",
-      "loja": "BARSOLIDO",
-      "usuario": "rafael"
-    },
-    {
-      "id": "1f89",
-      "descricao": "",
-      "valor": "100",
-      "categoria": "",
-      "loja": "BARSOLIDO",
-      "usuario": "barbie"
-    }
-  ],
+  "despesas": [],
   "conta": [
     {
       "id": "4c4d",

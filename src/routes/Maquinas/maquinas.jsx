@@ -11,8 +11,8 @@ function Maquinas() {
   const [jogo, setJogo] = useState('');
   const [maquineiro, setMaquineiro] = useState('');
   const [setor, setSetor] = useState('');
-  const [entrada, setEntrada] = useState('');
-  const [saida, setSaida] = useState('');
+  const [inicial, setInicial] = useState('');
+  const [final, setFinal] = useState('');
   const { data: jogos, } = useFetch('http://localhost:3000/jogos');
   const { data: lojas, } = useFetch('http://localhost:3000/lojas');
   const [valorJogo, setValorJogo] = useState('');
@@ -32,8 +32,8 @@ function Maquinas() {
       valorJogo,
       maquineiro,
       setor,
-      entrada,
-      saida,
+      inicial,
+      final,
     };
     
     httpConfig(maquinas, "POST");
@@ -43,8 +43,8 @@ function Maquinas() {
   setJogo('');
   setMaquineiro('');
   setSetor('');
-  setEntrada('');
-  setSaida('');
+  setInicial('');
+  setFinal('');
 
   };
 
@@ -106,9 +106,9 @@ function Maquinas() {
             <label>Setor:</label>
             <input type="text" value={setor} onChange={(event) => setSetor(event.target.value)} />
             <label>Entrada:</label>
-            <input type="number" value={entrada} onChange={(event) => setEntrada(event.target.value)} />
+            <input type="number" value={inicial} onChange={(event) => setInicial(event.target.value)} />
             <label>Saída:</label>
-            <input type="number" value={saida} onChange={(event) => setSaida(event.target.value)} />
+            <input type="number" value={final} onChange={(event) => setFinal(event.target.value)} />
           </div>
         </div>
         <div className="botao-salvar">

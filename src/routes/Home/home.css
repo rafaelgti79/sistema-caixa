@@ -37,14 +37,6 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.colunatabel a:hover {
-  background-color: rgb(185, 241, 185);
-  color: #000;
-  transform: scale(1.05);
-}
-
-
-
 
   
  /*  backup css
@@ -81,23 +73,29 @@
   transform: scale(1.05);
 }
 
-
+*/
 
 .grid-list {
-  list-style: none;            /* Remove bolinhas da lista <ul> 
-  padding: 0;                  /* Remove espaçamento interno 
-  margin: 0 auto;              /* Centraliza a lista horizontalmente 
-  max-width: 600px;            /* Define largura máxima para evitar que fique muito esticado 
-  
+  display: flex;
+  flex-wrap: wrap;          /* Permite quebra de linha se houver múltiplos .grid-item */
+  justify-content: center;  /* Centraliza horizontalmente */
+  gap: 20px;                /* Espaço entre os blocos */
+  padding: 10px;
+  margin: 0 auto;
+  max-width: 800px;         /* Mesmo valor de `.colunatabel` */
 }
-*/
+
+
 .grid-item {
+  width: 100%;
+  max-width: 300px;
+  padding: 12px;
   border: 1px solid #ccc;      /* Borda cinza clara ao redor de cada item (como célula) */
   margin-bottom: 20px;         /* Espaço entre cada 'linha da tabela' */
   border-radius: 6px;          /* Cantos arredondados */
   overflow: hidden;            /* Esconde qualquer conteúdo que ultrapasse o limite */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra leve para dar profundidade */
-  gap: 30px;
+
 }
 
 .grid-row {
@@ -112,7 +110,7 @@
 
 .label {
   flex: 1;                     /* Ocupa 1 parte da linha (rótulo) */
-  padding: 10px;               /* Espaçamento interno */
+  padding: 4px 6px;               /* Espaçamento interno */
   background: #f9f9f9;         /* Fundo mais claro para diferenciar o rótulo */
   font-weight: bold;           /* Texto em negrito */
   border-right: 1px solid #ddd;/* Linha vertical entre rótulo e valor */
@@ -120,9 +118,9 @@
 
 .value {
   flex: 2;                     /* Ocupa 2 partes da linha (valor) */
-  padding: 10px;               /* Espaçamento interno */
+  padding: 4px 6px;              /* Espaçamento interno */
   background: #fff;            /* Fundo branco para o valor */
-   max-width: 110px;          /* Largura máxima da grade*/
+   max-width: 100px;          /* Largura máxima da grade*/
    
 }
 

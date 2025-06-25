@@ -10,9 +10,10 @@ const url = "http://localhost:3000/fecharmaquinas";
 
 function FechamentoMaquinas() {
   const [maquina, setMaquina] = useState('');
-  const [entradaInicial, setEntradaInicial] = useState('');
-  const [entradaFinal, setEntradaFinal] = useState('');
+  const [inicial, setInicial] = useState('');
+  const [final, setFinal] = useState('');
   const [saidaInicial, setSaidaInicial] = useState('');
+  const [entradaFinal, setEntradaFinal] = useState('');
   const [saidaFinal, setSaidaFinal] = useState('');
   const [resultado, setResultado] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,8 +46,8 @@ const { data: caixas } = useFetch("http://localhost:3000/caixa");
    useEffect(() => {
     if (maquinas && currentIndex < maquinas.length) {
       const maquinaAtual = maquinas[currentIndex];
-      setEntradaInicial(maquinaAtual.entradaAtual || '');
-      setSaidaInicial(maquinaAtual.saidaAtual || '');
+      setInicial(maquinaAtual.entradaAtual || '');
+      setFinal(maquinaAtual.saidaAtual || '');
     }
   }, [currentIndex, maquinas]);
 
@@ -70,9 +71,7 @@ const { data: caixas } = useFetch("http://localhost:3000/caixa");
      const fecharmaquinas = {
 
       maquinaId: maquinaAtual.id,
-      maquina: maquinaAtual.jogo || maquinaAtual.numeroMaquina || maquinaAtual.id, // ajuste conforme seu JSON,
-      entradaInicial,
-      entradaFinal,
+      maquina: maquinaAtual.numeroMaquina || maquinaAtual.jogo  || maquinaAtual.id || maquinaAtual.inicial || maquinaAtual.final, // ajuste conforme seu JSON,
       saidaInicial,
       saidaFinal,
       resultado,
@@ -109,11 +108,12 @@ const { data: caixas } = useFetch("http://localhost:3000/caixa");
 
 
    // Limpar campos e avançar para a próxima máquina
-    setEntradaInicial('');
-    setEntradaFinal('');
+    setInicial('');
+    setFinal('');
     setSaidaInicial('');
     setSaidaFinal('');
     setResultado('');
+    setEntradaFinal('');
     setCurrentIndex(prev => prev + 1);
   };
 
@@ -133,16 +133,16 @@ const { data: caixas } = useFetch("http://localhost:3000/caixa");
       <form onSubmit={handleSubmit}>
           <div className="subcontainer">
             <label>Máquina Atual:</label>
-          <input type="text" value={maquinaAtual.jogo || maquinaAtual.numero || maquinaAtual.id} readOnly />
+          <input type="number" value={ maquinaAtual.numeroMaquina || maquinaAtual.jogo  || maquinaAtual.id} readOnly />
 
            <label>INICIAL:</label>
-            <input type="text" value={entradaInicial} onChange={(event) => setEntradaInicial(event.target.value)} />
+            <input type="text" value={maquinaAtual.inicial} onChange={(event) => setInicial(event.target.value)} />
 
             <label>ENTRADA INICIAL:</label>
             <input type="text" value={entradaFinal} onChange={(event) => setEntradaFinal(event.target.value)} />
 
              <label>FINAL:</label>
-            <input type="text" value={saidaInicial} onChange={(event) => setSaidaInicial(event.target.value)} />
+            <input type="text" value={maquinaAtual.final} onChange={(event) => setFinal(event.target.value)} />
 
             <label>ENTRADA FINAL:</label>
             <input type="text" value={saidaFinal} onChange={(event) => setSaidaFinal(event.target.value)} />

@@ -19,11 +19,14 @@ function Cartao() {
 
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
 
+    // Adicionar data atual altomatico
+      const dataHoje = new Date().toISOString().split('T')[0];
+
     const cartao = {
       valor: parseFloat(valor),
       tipo,
       usuario: usuarioLogado.nome,
-      dataHora: new Date().toLocaleString('pt-BR', { hour12: false })
+      data: dataHoje  // ✅ Adiciona a data automaticamente
     };
 
     httpConfig(cartao, "POST");
@@ -45,12 +48,13 @@ function Cartao() {
             onChange={(event) => setValor(event.target.value)}
           />
 
-          <label>TIPO:</label>
-          <input
-            type="text"
-            value={tipo}
-            onChange={(event) => setTipo(event.target.value)}
-          />
+          <label>Tipo:</label>
+<select value={tipo} onChange={(event) => setTipo(event.target.value)}>
+  <option value="">Selecione o Tipo</option>
+  <option value="credito">Credito</option>
+  <option value="debito">Debito</option>
+  <option value="pix">Pix</option>
+</select>
         </div>
 
         <div className="botao-salvar">

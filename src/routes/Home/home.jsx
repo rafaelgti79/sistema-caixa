@@ -8,16 +8,16 @@ import './home.css';
 const url = "http://localhost:3000/caixa";
 
 function Home() {
-  const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
   const { user } = useAuth();
 
- 
-  const tipo = user?.tipo || null;
+  if (!user) return <p>Carregando ou não autenticado...</p>; // Evita erro
 
-  // Busca só caixas abertos do usuário logado
-  const urlCaixa = tipo === "admin" 
-  ? `${url}?status=aberto` 
-  : `${url}?status=aberto&usuario=${usuarioLogado.nome}`;
+  const tipo = user.tipo;
+  const nomeUsuario = user.nome;
+
+  const urlCaixa = tipo === "admin"
+    ? `${url}?status=aberto`
+    : `${url}?status=aberto&usuario=${nomeUsuario}`;
 
   const { data: items } = useFetch(urlCaixa);
   const { data: despesas } = useFetch('http://localhost:3000/despesas');
