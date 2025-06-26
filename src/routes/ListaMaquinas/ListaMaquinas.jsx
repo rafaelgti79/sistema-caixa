@@ -1,11 +1,22 @@
-import { useFetch } from '../hooks/useFetch';
+import React, { useEffect, useState } from 'react';
+import api from '../../constants/api.js'; // ajuste o caminho conforme sua estrutura
 import './ListaMaquinas.css';
 
-const url = "http://localhost:3000/maquinas";
-
 function ListaMaquinas() {
-const {data: items} = useFetch(url)
+  const [items, setItems] = useState([]);
 
+  useEffect(() => {
+    async function fetchMaquinas() {
+      try {
+        const response = await api.get('/maquinas');
+        setItems(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar máquinas:', error);
+      }
+    }
+
+    fetchMaquinas();
+  }, []);
 
   return (
     <div className="table-container">

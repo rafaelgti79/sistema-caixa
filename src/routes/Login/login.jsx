@@ -17,7 +17,7 @@ function Login() {
     try {
       const response = await api.post('/login', { nome: usuario, senha });
 
-      const usuarioLogado = response.data.usuario;
+      const usuarioLogado = response.data.contas;
 
       if (usuarioLogado) {
         login(usuarioLogado); // contexto

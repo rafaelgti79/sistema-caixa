@@ -1,61 +1,62 @@
 import React, { useState, useEffect } from 'react';
-import { useFetch } from '../hooks/useFetch.jsx';
 import { useNavigate } from 'react-router-dom';
+import api from '../../constants/api.js'; // atualize o caminho conforme sua estrutura
 import './AbrirCaixa.css';
-
-const url = "http://localhost:3000/caixa";
 
 function AbrirCaixa() {
   const [loja, setLoja] = useState('');
   const [fundoInicial, setFundoInicial] = useState('');
   const [data, setData] = useState('');
   const [setor, setSetor] = useState('');
-  const { data: lojas, } = useFetch('http://localhost:3000/lojas');
+  const [lojas, setLojas] = useState([]);
   const navigate = useNavigate();
-  
-  const {data: items, httpConfig} = useFetch(url);
 
-  // 🔒 Proteção: impede abrir caixa se já estiver aberto
+  // 🏬 Buscar lojas
+  useEffect(() => {
+    async function fetchLojas() {
+      try {
+        const res = await api.get('/lojas');
+        setLojas(res.data);
+      } catch (err) {
+        console.error('Erro ao buscar lojas:', err);
+      }
+    }
+    fetchLojas();
+  }, []);
+
+  // 🔒 Proteção: redireciona se caixa já estiver aberto
   useEffect(() => {
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    const usuarioKey = usuarioLogado?.nome;
-
-    const caixaAberto = localStorage.getItem(`caixaAberto_${usuarioKey}`);
-    const caixaFechado = localStorage.getItem(`caixaFechado_${usuarioKey}`);
-
-    if (caixaAberto === 'true' && caixaFechado !== 'true') {
+    const key = usuarioLogado?.nome;
+    if (localStorage.getItem(`caixaAberto_${key}`) === 'true' &&
+        localStorage.getItem(`caixaFechado_${key}`) !== 'true') {
       navigate('/app/home-caixa');
     }
   }, [navigate]);
-  
 
+  // 📤 Envio de dados
   const handleSubmit = async (event) => {
-  event.preventDefault();
-  
+    event.preventDefault();
 
-  const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-  const usuarioKey = usuarioLogado?.nome;
-
-  const caixa = {
-    loja,
-    fundoInicial,
-    data,
-    setor,
-    usuario: usuarioLogado.nome,
-  };
-
-  try {
-    await httpConfig(caixa, "POST");
-
-    localStorage.setItem(`caixaAberto_${usuarioKey}`, 'true');
-    localStorage.setItem(`caixaFechado_${usuarioKey}`, 'false');
-
-    navigate('/app/home-caixa');
-  } catch (error) {
-    alert("Erro ao abrir o caixa.");
-  }
-};
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    const caixa = { 
       
+      fundoInicial, 
+      data, 
+      setor, 
+      loja,
+      usuario: usuarioLogado.nome };
+
+    try {
+      await api.post('/caixa', caixa); // 👈 Rota ajustada para o backend
+      localStorage.setItem(`caixaAberto_${usuarioLogado.nome}`, 'true');
+      localStorage.setItem(`caixaFechado_${usuarioLogado.nome}`, 'false');
+      navigate('/app/home-caixa');
+    } catch (err) {
+      console.error('Erro ao abrir caixa:', err);
+      alert('Erro ao abrir o caixa.');
+    }
+  };
 
   return (
     <div className="containerCaixa">

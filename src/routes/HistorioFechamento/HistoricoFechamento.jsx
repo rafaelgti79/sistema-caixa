@@ -1,24 +1,34 @@
 // src/pages/HistoricoCaixa.jsx
 import React, { useEffect, useState } from 'react';
-import { useFetch } from '../hooks/useFetch';
+import api from '../../constants/api.js'; // verifique o caminho conforme estrutura
 import './HistorioFechamento.css';
 
-
 function HistoricoCaixa() {
-  const { data: historico } = useFetch('http://localhost:3000/historicocaixa');
+  const [historico, setHistorico] = useState([]);
   const [filtroUsuario, setFiltroUsuario] = useState('');
   const [filtroData, setFiltroData] = useState('');
   const [historicoFiltrado, setHistoricoFiltrado] = useState([]);
 
+  // 🔄 Buscar histórico ao montar
   useEffect(() => {
-    if (historico) {
-      setHistoricoFiltrado(
-        historico.filter(item =>
-          (filtroUsuario === '' || item.usuario.toLowerCase().includes(filtroUsuario.toLowerCase())) &&
-          (filtroData === '' || item.data === filtroData)
-        )
-      );
+    async function fetchHistorico() {
+      try {
+        const res = await api.get('/historicocaixa');
+        setHistorico(res.data);
+      } catch (err) {
+        console.error('Erro ao buscar histórico:', err);
+      }
     }
+    fetchHistorico();
+  }, []);
+
+  // ⚙️ Filtrar quando histórico ou filtros mudarem
+  useEffect(() => {
+    const filtrado = historico.filter(item =>
+      (filtroUsuario === '' || item.usuario.toLowerCase().includes(filtroUsuario.toLowerCase())) &&
+      (filtroData === '' || item.data === filtroData)
+    );
+    setHistoricoFiltrado(filtrado);
   }, [historico, filtroUsuario, filtroData]);
 
   return (
