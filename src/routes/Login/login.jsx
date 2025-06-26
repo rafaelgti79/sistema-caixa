@@ -34,21 +34,28 @@ function Login() {
 
   return (
     <div className='containerLogi'>
-      <form onSubmit={handleLogin}>
-        <h2>Login</h2>
-        <div>
-          <input className='input-box' type="text" placeholder="Nome" onChange={(e) => setNome(e.target.value)} />
-          <FaUser className='icon' />
-        </div>
-        <div>
-          <input className='input-box' type="password" placeholder="Senha" onChange={(e) => setSenha(e.target.value)} />
-          <FaLock className='icon' />
-        </div>
-        <label>
-          <input type="checkbox" />
-          Lembrar de mim
-        </label>
-        <button type="submit">Entrar</button>
+      <form >
+      <h2>Login</h2>
+
+      <div>
+      <input className='input-box' type="email" placeholder="Nome" onChange={(e) => setNome(e.target.value)} />
+      <FaUser className='icon' />
+      </div>
+
+      <div>
+      <input className='input-box' type="password" placeholder="Senha" onChange={(e) => setSenha(e.target.value)} />
+
+      
+      <FaLock className='icon' />
+      
+      </div>
+
+      <label>
+        <input type="checkbox" />
+        Lembrar de mim
+      </label>
+      
+      <button onClick={handleLogin}>Entrar</button>
       </form>
     </div>
   );
