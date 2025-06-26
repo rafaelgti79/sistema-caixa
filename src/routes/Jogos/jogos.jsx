@@ -1,28 +1,39 @@
 import React, { useState } from 'react';
-import { useFetch } from '../hooks/useFetch.jsx';
 import { Link } from 'react-router-dom';
+import api from '../../constants/api.js'; 
 
-const url = "http://localhost:3000/jogos";
 
 function Jogos() {
   
   const [nomedojogo, setNomeJogo] = useState('');
   const [valorJogo, setValorJogo] = useState('');
-
-  const {data: items, httpConfig} = useFetch(url);
   
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-   const jogos = {
-      nomedojogo,
-      valorJogo,
-    };
-    
-    httpConfig(jogos, "POST");
-  };
+    if (!nomedojogo.trim() || !valorJogo.trim()) {
+      alert("Preencha todos os campos.");
+      return;
+    }
 
+    try {
+      const jogo = {
+        nomedojogo,
+        valor: parseFloat(valorJogo),
+      };
+
+      await api.post("/jogos", jogo);
+      alert("Jogo cadastrado com sucesso!");
+
+      // Limpar os campos
+      setNomeJogo('');
+      setValorJogo('');
+    } catch (error) {
+      console.error("Erro ao cadastrar jogo:", error);
+      alert("Erro ao cadastrar jogo");
+    }
+  };
   return (
     <div className="container">
       <h1>Cadastro de Jogos</h1>

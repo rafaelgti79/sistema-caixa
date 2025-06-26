@@ -1,35 +1,78 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useFetch } from '../hooks/useFetch.jsx';
+import api from '../../constants/api.js';
 import './contas.css';
-
-const url = "http://localhost:3000/conta";
 
 function Conta() {
   const [nome, setNome] = useState('');
   const [senha, setSenha] = useState('');
   const [tipo, setTipo] = useState('');
   const [porcentagem, setPorcentagem] = useState('');
-  
-  const {data: items, httpConfig} = useFetch(url);
+  const [contas, setContas] = useState([]);
+  const [editandoId, setEditandoId] = useState(null);
 
-  const handleSubmit = (event) => {
+
+  // Buscar contas existentes (GET)
+  useEffect(() => {
+    async function fetchContas() {
+      try {
+        const response = await api.get('/conta');
+        setContas(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar contas:', error);
+      }
+    }
+
+    fetchContas();
+  }, []);
+
+const preencherParaEditar = (conta) => {
+  setNome(conta.nome);
+  setSenha(conta.senha);
+  setTipo(conta.tipo);
+  setPorcentagem(conta.porcentagem);
+  setEditandoId(conta.id);
+};
+
+const deletarConta = async (id) => {
+  if (!window.confirm("Tem certeza que deseja excluir?")) return;
+
+  try {
+    await api.delete(`/conta/${id}`);
+    const { data } = await api.get('/conta');
+    setContas(data);
+  } catch (error) {
+    console.error("Erro ao excluir conta:", error);
+    alert("Erro ao excluir conta");
+  }
+};
+
+  // Enviar nova conta (POST)
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const conta = {
+    const novaConta = {
       nome,
       senha,
       tipo,
       porcentagem,
-      
     };
-    
-    httpConfig(conta, "POST");
-    setNome('');
-    setSenha('');
-    setTipo('');
-    setPorcentagem('');
 
+    try {
+      await api.post('/conta', novaConta);
+      setNome('');
+      setSenha('');
+      setTipo('');
+      setPorcentagem('');
+
+      // Recarregar lista
+      const { data } = await api.get('/conta');
+      setContas(data);
+
+    } catch (error) {
+      console.error('Erro ao cadastrar conta:', error);
+      alert('Erro ao salvar conta.');
+    }
   };
 
   return (
@@ -62,6 +105,32 @@ function Conta() {
           <Link className="BotaoVoltar" to="/app/cadastros">Voltar</Link>
         </div>
       </form>
+
+      <h2>Contas cadastradas</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Tipo</th>
+      <th>Porcentagem</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {contas.map((c) => (
+      <tr key={c.id}>
+        <td>{c.nome}</td>
+        <td>{c.tipo}</td>
+        <td>{c.porcentagem}</td>
+        <td>
+          <button onClick={() => preencherParaEditar(c)}>Editar</button>
+          <button onClick={() => deletarConta(c.id)}>Excluir</button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
     </div>
   );
 }

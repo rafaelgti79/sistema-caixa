@@ -1,9 +1,6 @@
-import { useState } from 'react';
-import { useFetch } from '../hooks/useFetch.jsx';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-const url = "http://localhost:3000/maquinas";
-
+import api from "../../constants/api.js"; 
 
 function Maquinas() {
   const [loja, setLoja] = useState('');
@@ -13,19 +10,32 @@ function Maquinas() {
   const [setor, setSetor] = useState('');
   const [inicial, setInicial] = useState('');
   const [final, setFinal] = useState('');
-  const { data: jogos, } = useFetch('http://localhost:3000/jogos');
-  const { data: lojas, } = useFetch('http://localhost:3000/lojas');
   const [valorJogo, setValorJogo] = useState('');
-  
+  const [lojas, setLojas] = useState([]);
+  const [jogos, setJogos] = useState([]);
 
+  // 🔄 Buscar lojas e jogos da API (porta 3001)
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [resLojas, resJogos] = await Promise.all([
+          api.get("/lojas"),
+          api.get("/jogos"),
+        ]);
+        setLojas(resLojas.data);
+        setJogos(resJogos.data);
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      }
+    }
 
+    fetchData();
+  }, []);
 
-  const {data: items, httpConfig} = useFetch(url);
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    const maquinas = {
+
+    const maquina = {
       loja,
       numeroMaquina,
       jogo,
@@ -35,18 +45,24 @@ function Maquinas() {
       inicial,
       final,
     };
-    
-    httpConfig(maquinas, "POST");
-    // Limpar os campos
-  setLoja('');
-  setNumeroMaquina('');
-  setJogo('');
-  setMaquineiro('');
-  setSetor('');
-  setInicial('');
-  setFinal('');
 
+    try {
+      await api.post("/maquinas", maquina);
+      alert("Máquina cadastrada com sucesso!");
+      setLoja('');
+      setNumeroMaquina('');
+      setJogo('');
+      setMaquineiro('');
+      setSetor('');
+      setInicial('');
+      setFinal('');
+      setValorJogo('');
+    } catch (error) {
+      console.error("Erro ao cadastrar máquina:", error);
+      alert("Erro ao cadastrar máquina");
+    }
   };
+
 
   return (
     <div className="container">

@@ -1,39 +1,48 @@
 import React, { useState } from 'react';
-import { useFetch } from '../hooks/useFetch';
+import api from '../../constants/api';
 
 const url = "http://localhost:3000/cartao";
 
 function Cartao() {
   const [valor, setValor] = useState('');
   const [tipo, setTipo] = useState('');
+  const [cartoes, setCartoes] = useState([]);
 
-  const { data: items, httpConfig } = useFetch(url);
-
-  const handleSubmit = (event) => {
+  
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!valor.trim() || !tipo.trim()) {
+    if (!valor || !tipo) {
       alert("Preencha todos os campos.");
       return;
     }
 
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if (!usuarioLogado || !usuarioLogado.nome) {
+      alert("Usuário não autenticado.");
+      return;
+    }
 
-    // Adicionar data atual altomatico
-      const dataHoje = new Date().toISOString().split('T')[0];
+    const dataHoje = new Date().toISOString().split('T')[0];
 
-    const cartao = {
+    const novoCartao = {
       valor: parseFloat(valor),
       tipo,
       usuario: usuarioLogado.nome,
-      data: dataHoje  // ✅ Adiciona a data automaticamente
+      data: dataHoje
     };
 
-    httpConfig(cartao, "POST");
-
-    setValor('');
-    setTipo('');
+    try {
+      const response = await api.post("/cartao", novoCartao);
+      setCartoes((prev) => [...prev, response.data]); // adiciona novo
+      setValor('');
+      setTipo('');
+    } catch (error) {
+      console.error("Erro ao salvar cartão:", error);
+      alert("Erro ao salvar cartão.");
+    }
   };
+
 
   return (
     <div className="containerDespesas">
