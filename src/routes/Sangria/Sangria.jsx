@@ -1,22 +1,41 @@
-import React, { useState } from 'react';
-import { useFetch } from '../hooks/useFetch';
+import React, { useState, useEffect } from 'react';
+import api from '../../constants/api';
 
-const url = "http://localhost:3000/sangria";
+
 
 
 function Sangria() {
   const [descricao, setDescricao] = useState('');
   const [valor, setValor] = useState('');
-  const [contas, setContas] = useState('');
+  const [conta, setConta] = useState('');
+  const [contas, setContas] = useState([]);
+  const [nome, setNome] = useState([]);
   const [loja, setLoja] = useState('');
+  const [lojas, setLojas] = useState([]);
 
- const { data: lojas, } = useFetch('http://localhost:3000/lojas');
- const { data: conta, } = useFetch('http://localhost:3000/conta');
- const {data: items, httpConfig} = useFetch(url);
 
+
+
+  // 🔄 Buscar lojas e jogos da API (porta 3001)
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          const [resLojas, resContas] = await Promise.all([
+            api.get("/lojas"),
+            api.get("/conta"),
+          ]);
+          setLojas(resLojas.data);
+          setContas(resContas.data);
+        } catch (error) {
+          console.error("Erro ao buscar dados:", error);
+        }
+      }
+  
+      fetchData();
+    }, []);
   
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -27,18 +46,21 @@ function Sangria() {
 
       descricao,
       valor,
-      contas,
+      nome,
       loja,
       usuario: usuarioLogado.nome,
       data: dataHoje  // ✅ Adiciona a data automaticamente
     };
-    httpConfig(sangria, "POST");
-    // Limpar os campos
-  setDescricao('');
-  setValor('');
-  setContas('');
-  setLoja('');
 
+   try {
+      await api.post('/sangria', sangria);
+      setDescricao('');
+      setValor('');
+      setConta('');
+      setLoja('');
+    } catch (error) {
+      console.error('Erro ao salvar sangria:', error);
+    }
   };
 
   
@@ -53,14 +75,14 @@ function Sangria() {
             <input type="text" value={valor} onChange={(event) => setValor(event.target.value)} />
 
 <select
-  value={contas}
+  value={conta}
   onChange={(event) => {
     const contaSelecionado = event.target.value;
-    setContas(contaSelecionado);
+    setConta(contaSelecionado);
   }}
 >
   <option value="">RESPONSAVEL</option>
-  {conta && conta.map((j) => (
+   {contas && contas.map((j) => (
     <option key={j.id || j.nome} value={j.nome}>
       {j.nome}
     </option>

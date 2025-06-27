@@ -10,7 +10,7 @@ function HomeCaixa() {
     <div className="containercd">
           <div className="colunatabel">
            <Link to="#">Fundo I</Link>
-           <Link to="/app/fecharCaixa">Fechar 0</Link>
+           <Link to="/app/fechamentoindividual">Fechar I</Link>
             <Link to="/app/fechamentomaquinas">Fechar 2</Link>
             <Link to="/app/despesas">Despesas</Link>
             <Link to="/app/reforco">Reforço</Link>

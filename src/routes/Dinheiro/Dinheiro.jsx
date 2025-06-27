@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { useFetch } from '../hooks/useFetch';
+import api from '../../constants/api';
 
-const url = "http://localhost:3000/dinheiro";
 
 function Dinheiro() {
   const [valor, setValor] = useState('');
 
-  const { data: items, httpConfig } = useFetch(url);
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!valor.trim()) {
@@ -21,12 +18,16 @@ function Dinheiro() {
     const dinheiro = {
       valor: parseFloat(valor),
       usuario: usuarioLogado.nome,
-      dataHora: new Date().toLocaleString('pt-BR', { hour12: false })
+      data: new Date().toLocaleString('pt-BR', { hour12: false })
     };
 
-    httpConfig(dinheiro, "POST");
-
-    setValor('');
+  try 
+    {
+      await api.post('/dinheiro', dinheiro);
+      setValor('');
+    } catch (error) {
+      console.error('Erro ao salvar despesa:', error);
+    }
   };
 
   return (

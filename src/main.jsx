@@ -26,7 +26,7 @@ import GerenciarSistema from './routes/GerenciarSistema/GerenciarSistema.jsx';
 import PagamentosSuperios from './routes/PagamentosSuperiores/PagamentosSuperiores.jsx';
 import ProcurarPagamentos from './routes/ProcurarPagamentos/ProcurarPagamentos.jsx';
 import NaoAutorizado from './routes/NaoAutorizado/NaoAutorizado.jsx';
-import HomeCaixa from './routes/HomeCaixa/homeCaixa.jsx';
+import HomeCaixa from './routes/HomeCaixa/HomeCaixa.jsx';
 import Reforco from './routes/Reforco/reforco.jsx';
 import Despesas from './routes/Despesas/despesas.jsx';
 import { BloqueioCaixa } from './routes/BloqueioCaixa/BloqueioCaixa.jsx';
@@ -34,6 +34,7 @@ import HistoricoFechamentos from './routes/HistorioFechamento/HistoricoFechament
 import Dinheiro from './routes/Dinheiro/Dinheiro.jsx';
 import Cartao from './routes/Cartao/Cartao.jsx';
 import FechamentoMaquinas from './routes/FechamentoMaquinas/FechamentoMaquinas.jsx';
+import FechamentoIndividual from './routes/FechamentoMaquinas/FechamentoIndividual/FechamentoIndividual.jsx';
 
 
 
@@ -98,7 +99,7 @@ const router = createBrowserRouter([
       { path: "/app/sangria", element: <PrivateRoute allowed={["admin", "caixa" ]}><Sangria/></PrivateRoute> },
       { path: "/app/fechamentomaquinas", element: <PrivateRoute allowed={["admin", "caixa" ]}><FechamentoMaquinas/></PrivateRoute> },
       { path: "/app/fechamento/final", element: <PrivateRoute allowed={["admin", "caixa" ]}><FechamentoFinal/></PrivateRoute> },
-
+      { path: "/app/fechamentoindividual", element: <PrivateRoute allowed={["admin", "caixa" ]}><FechamentoIndividual/></PrivateRoute> },
 
     
 

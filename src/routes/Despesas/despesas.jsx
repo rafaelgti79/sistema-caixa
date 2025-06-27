@@ -1,46 +1,53 @@
-import React, { useState } from 'react';
-import { useFetch } from '../hooks/useFetch';
+import React, { useState, useEffect } from 'react';
+import api from '../../constants/api.js';
 
-const url = "http://localhost:3000/despesas";
 
 
 function Despesas() {
   const [descricao, setDescricao] = useState('');
   const [valor, setValor] = useState('');
   const [categoria, setCategoria] = useState('');
-  const [loja, setLoja] = useState('');
+  const [lojaSelecionada, setLojaSelecionada] = useState('');
+  const [lojas, setLojas] = useState([]);
 
- const { data: lojas, } = useFetch('http://localhost:3000/lojas');
+  useEffect(() => {
+    async function carregarLojas() {
+      try {
+        const response = await api.get('/lojas');
+        setLojas(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar lojas:', error);
+      }
+    }
 
-  const {data: items, httpConfig} = useFetch(url);
+    carregarLojas();
+  }, []);
   
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async (event) => {
+  event.preventDefault();
+  const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+  const dataHoje = new Date().toISOString().split('T')[0];
 
-    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-
-      // Adicionar data atual altomatico
-      const dataHoje = new Date().toISOString().split('T')[0];
-
-    
-    const despesas = {
-
-      descricao,
-      valor,
-      categoria,
-      loja,
-      usuario: usuarioLogado.nome,
-      data: dataHoje  // ✅ Adiciona a data automaticamente
-    };
-    httpConfig(despesas, "POST");
-    // Limpar os campos
-  setDescricao('');
-  setValor('');
-  setCategoria('');
-  setLoja('');
-
+  const despesas = {
+    descricao,
+    valor,
+    categoria,
+    loja: lojaSelecionada,
+    usuario: usuarioLogado.nome,
+    data: dataHoje
   };
+
+  try {
+    await api.post("/despesas", despesas);
+    setDescricao('');
+    setValor('');
+    setCategoria('');
+    setLojaSelecionada('');
+  } catch (error) {
+    console.error("Erro ao salvar despesa:", error);
+  }
+};
 
   return (
     <div className="containerDespesas">
@@ -54,21 +61,19 @@ function Despesas() {
             <label>CATEGORIA:</label>
             <input type="text" value={categoria} onChange={(event) => setCategoria(event.target.value)} />
 
-            <select
-  value={loja}
-  onChange={(event) => {
-    const nomeSelecionado = event.target.value;
-    setLoja(nomeSelecionado);
-    
-  }}
->
-  <option value="">Selecione uma Loja</option>
-  {lojas && lojas.map((j) => (
-    <option key={j.id || j.loja} value={j.loja}>
-      {j.loja}
-    </option>
-  ))}
-</select>
+          <label>LOJA:</label>
+          <select
+            value={lojaSelecionada}
+            onChange={(e) => setLojaSelecionada(e.target.value)}
+          >
+            <option value="">Selecione uma Loja</option>
+            {Array.isArray(lojas) &&
+              lojas.map((j) => (
+                <option key={j.id || j.loja} value={j.loja}>
+                  {j.loja}
+                </option>
+              ))}
+          </select>
           </div>
         
         <div className="botao-salvar">

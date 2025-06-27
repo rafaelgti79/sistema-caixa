@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
-import { useFetch } from '../hooks/useFetch';
-
-const url = "http://localhost:3000/reforco";
+import api from '../../constants/api.js';
 
 
 function Reforco() {
   
   const [valor, setValor] = useState('');
-  
-  const {data: items, httpConfig} = useFetch(url);
-  
+   
 
-  
-
-  const handleSubmit = (event) => {
+   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -21,19 +15,18 @@ function Reforco() {
     const dataHoje = new Date().toISOString().split('T')[0];
 
     
-    const cartao = {
-
+    const reforco = {
       valor,
       usuario: usuarioLogado.nome,
       data: dataHoje  // ✅ Adiciona a data automaticamente
     };
-    httpConfig(cartao, "POST");
-    
-    // Limpar os campos
-    setValor('');
-   
-  
 
+     try {
+      await api.post('/reforco', reforco);
+      setValor('');
+    } catch (error) {
+      console.error('Erro ao salvar despesa:', error);
+    }
   };
 
   return (
@@ -41,13 +34,9 @@ function Reforco() {
       <h1>REFORÇO</h1>
       <form onSubmit={handleSubmit}>
           <div className="subcontainer">
-           
            <label>VALOR:</label>
             <input type="text" value={valor} onChange={(event) => setValor(event.target.value)} />
-            
-
           </div>
-        
         <div className="botao-salvar">
           <button type="submit">Salvar</button>
         </div>
@@ -56,6 +45,10 @@ function Reforco() {
   );
 }
 export default Reforco;
+           
+            
+
+        
             
           
        
