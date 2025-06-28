@@ -87,7 +87,12 @@ function FechamentoFinal() {
     const dataHoje = new Date().toISOString().split('T')[0];
 
     const filtrarPorDataEUsuario = (arr, campoData = 'dataHora') =>
-      arr.filter(item => item.usuario === usuarioLogado.nome && item[campoData]?.startsWith(dataHoje));
+      arr.filter(item => 
+        item.usuario === usuarioLogado.nome && 
+        item[campoData]?.startsWith(dataHoje) &&
+        !item.fechado // 👈 NOVO: apenas não fechados
+      );
+        
 
     const fecharFiltrado = filtrarPorDataEUsuario(fecharmaquinas);
     const despesasFiltradas = filtrarPorDataEUsuario(despesas, 'data');
@@ -143,44 +148,49 @@ function FechamentoFinal() {
 
   // Função fechar caixa
   const limparDados = async () => {
-    const dataHoje = new Date().toISOString().split('T')[0];
+  const dataHoje = new Date().toISOString().split('T')[0];
 
-    await api.post('/historicocaixa', {
-      usuario: usuarioLogado.nome,
-      data: dataHoje,
-      entrada,
-      saida,
-      bruto,
-      liquido,
-      composicaoTotal,
-      sobra,
-      falta,
-      cartao: cartoes.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0),
-      dinheiro: dinheiro.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0),
-      fecharmaquinas,
-      despesas: totalDespesas,
-      sangria: totalSangria,
-      fundoInicial,
-      reforco: valorReforco,
-      dinheiroLiquido
-    });
+  // 1. Salva o histórico do caixa
+  await api.post('/historicocaixa', {
+    usuario: usuarioLogado.nome,
+    data: dataHoje,
+    entrada,
+    saida,
+    bruto,
+    liquido,
+    composicaoTotal,
+    sobra,
+    falta,
+    cartao: cartoes.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0),
+    dinheiro: dinheiro.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0),
+    fecharmaquinas,
+    despesas: totalDespesas,
+    sangria: totalSangria,
+    fundoInicial,
+    reforco: valorReforco,
+    dinheiroLiquido
+  });
 
-    for (const caixa of caixasAbertos) {
-      await api.patch(`/caixa/${caixa.id}`, { status: 'fechado' });
+  // 2. Fecha os caixas abertos do usuário
+  for (const caixa of caixasAbertos) {
+    await api.patch(`/caixa/${caixa.id}`, { status: 'fechado' });
+  }
+
+  // 3. Lista de endpoints a marcar como fechados
+  const endpoints = ['fecharmaquinas', 'despesas', 'sangria', 'cartao', 'dinheiro', 'reforco'];
+
+  for (const endpoint of endpoints) {
+    const res = await api.get(`/${endpoint}`);
+
+    for (const item of res.data) {
+      // Marca todos como fechado: true
+      await api.patch(`/${endpoint}/${item.id}`, { fechado: true });
     }
+  }
 
-    
-    const endpoints = ['fecharmaquinas', 'despesas', 'sangria', 'cartao', 'dinheiro', 'reforco'];
-    for (const endpoint of endpoints) {
-      const res = await api.get(`/${endpoint}`);
-      for (const item of res.data) {
-        await api.delete(`/${endpoint}/${item.id}`);
-      }
-    }
+  navigate('/app/home');
+};
 
-   
-    navigate('/app/home');
-  };
 
   return (
     <div className="containerDespesas">

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import api from '../../constants/api';
+import { Link } from 'react-router-dom';
 
 const url = "http://localhost:3000/cartao";
 
@@ -68,6 +69,7 @@ function Cartao() {
 
         <div className="botao-salvar">
           <button type="submit">Salvar</button>
+          <Link className="BotaoVoltar" to="/app/home-caixa">Voltar</Link>
         </div>
       </form>
     </div>

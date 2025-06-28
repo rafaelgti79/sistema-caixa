@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../constants/api.js'; // Certifique-se que está importando corretamente
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './fechamentoMaquinas.css';
 
 function FechamentoMaquinas() {
@@ -208,6 +208,7 @@ return (
         
         <div className="botao-salvar">
           <button type="submit">Salvar</button>
+          <Link className="BotaoVoltar" to="/app/home-caixa">Voltar</Link>
         </div>
       </form>
     </div>

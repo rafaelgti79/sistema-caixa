@@ -92,8 +92,10 @@
 }
 
 .botao-salvar {
+  display: flex;
   text-align: center;
   margin-top: 20px;
+  
 }
 
 button[type="submit"] {
@@ -110,6 +112,7 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #3a6fd9;
 }
+
 
 /* Estilo dos botões com ícones */
 .icones-rodape {
