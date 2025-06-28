@@ -98,15 +98,15 @@
   border-left-color: #6c757d;
 }
 .containerDespesas p:nth-child(16) {
-  background-color: #0c0c0c;
-  border-left-color: #090a0a; /* cinza escuro */
-  color: #eee;
+  background-color: #d4f9d4;
+  border-left-color: #28a745; /* verde */
+  color: #0a0707;
   font-weight: bold;
   font-size: 17px;
 }
 .containerDespesas p:nth-child(17) {
-  background-color: #f2f2f2;
-  border-left-color: #6c757d;
+  background-color: #f8d7da;
+  border-left-color: #ff4d4f;
 }
 
 .containerDespesas p:nth-child(18) {
