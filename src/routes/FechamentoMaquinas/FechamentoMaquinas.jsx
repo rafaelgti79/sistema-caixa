@@ -45,23 +45,37 @@ function FechamentoMaquinas() {
     }
   }, [currentIndex, maquinas]);
 
-  // Calcular resultado automaticamente
-  useEffect(() => {
-    if (maquinas && currentIndex < maquinas.length) {
-      const maquinaAtual = maquinas[currentIndex];
-      const valorJogo = parseFloat(maquinaAtual.valorJogo);
+ 
 
-      const entradaIni = parseFloat(saidaInicial);
-      const entradaFin = parseFloat(saidaFinal);
+   useEffect(() => {
+  if (maquinas && currentIndex < maquinas.length) {
+    const maquinaAtual = maquinas[currentIndex];
+    
+    const valorJogo = parseFloat(maquinaAtual.valorJogo);
 
-      if (!isNaN(entradaIni) && !isNaN(entradaFin) && !isNaN(valorJogo)) {
-        const calculo = (entradaFin - entradaIni) * valorJogo;
-        setResultado(calculo.toFixed(2));
-      } else {
-        setResultado('');
-      }
+    const entradaIni = parseFloat(maquinaAtual.inicial);  // E.I
+    const entradaFin = parseFloat(saidaFinal);            // E.F
+
+    const saidaIni = parseFloat(maquinaAtual.final);      // S.I
+    const saidaFin = parseFloat(saidaInicial);            // S.F
+
+    if (
+      !isNaN(valorJogo) &&
+      !isNaN(entradaIni) && !isNaN(entradaFin) &&
+      !isNaN(saidaIni) && !isNaN(saidaFin)
+    ) {
+      const entradaTotal = (entradaFin - entradaIni) * valorJogo;
+      const saidaTotal = (saidaFin - saidaIni) * valorJogo;
+      const resultadoFinal = entradaTotal - saidaTotal;
+
+      setResultado(resultadoFinal.toFixed(2));
+    } else {
+      setResultado('');
     }
-  }, [saidaInicial, saidaFinal, maquinas, currentIndex]);
+  }
+}, [saidaInicial, saidaFinal, maquinas, currentIndex]);
+
+
 
   useEffect(() => {
   if (!maquinas || maquinas.length === 0) return;
@@ -173,7 +187,7 @@ return (
 
   <div className="form-row1">
     <label className='label4'>E.F:</label>
-    <input className='input4' type="text" value={saidaInicial} onChange={(event) => setSaidaInicial(event.target.value)} />
+    <input className='input4' type="text" value={saidaFinal} onChange={(event) => setSaidaFinal(event.target.value)} />
   </div>
 
   <div className="form-row1">
@@ -183,7 +197,7 @@ return (
 
   <div className="form-row1">
     <label className='label4'>S.F:</label>
-    <input className='input4' type="text" value={saidaFinal} onChange={(event) => setSaidaFinal(event.target.value)} />
+    <input className='input4' type="text" value={saidaInicial} onChange={(event) => setSaidaInicial(event.target.value)} />
   </div>
 
   <div className="form-row1">
