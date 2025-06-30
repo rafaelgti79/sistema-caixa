@@ -36,7 +36,48 @@ function FechamentoMaquinas() {
     fetchData();
   }, []);
 
-  // Preencher campos quando a máquina atual muda
+
+  
+useEffect(() => {
+  if (maquinas && currentIndex < maquinas.length) {
+    const maquinaAtual = maquinas[currentIndex];
+    const dataHoje = new Date().toISOString().split('T')[0];
+
+    async function buscarFechamentoAnterior() {
+      try {
+        const res = await api.get('/fecharmaquinas');
+        const registrosDoDia = res.data.filter(item =>
+          item.usuario === usuarioLogado.nome &&
+          item.maquinaId === maquinaAtual.id &&
+          item.dataHora.startsWith(dataHoje)
+        );
+
+        if (registrosDoDia.length > 0) {
+          const dado = registrosDoDia[0];
+          setSaidaInicial(dado.saidaInicial || '');
+          setSaidaFinal(dado.saidaFinal || '');
+          setResultado(dado.resultado || '');
+        } else {
+          setSaidaInicial('');
+          setSaidaFinal('');
+          setResultado('');
+        }
+      } catch (err) {
+        console.error("Erro ao buscar fechamento anterior:", err);
+      }
+    }
+
+    buscarFechamentoAnterior();
+
+    setInicial(maquinaAtual.entradaAtual || '');
+    setFinal(maquinaAtual.saidaAtual || '');
+  }
+}, [currentIndex, maquinas, usuarioLogado.nome]);
+
+
+
+  /*
+  // Preencher campos quando a máquina atual muda backup
   useEffect(() => {
     if (maquinas && currentIndex < maquinas.length) {
       const maquinaAtual = maquinas[currentIndex];
@@ -44,7 +85,7 @@ function FechamentoMaquinas() {
       setFinal(maquinaAtual.saidaAtual || '');
     }
   }, [currentIndex, maquinas]);
-
+*/
  
 
    useEffect(() => {
@@ -116,10 +157,21 @@ function FechamentoMaquinas() {
 
 
     try {
-      await api.post('/fecharmaquinas', fecharmaquinas);
-
       const dataHoje = new Date().toISOString().split('T')[0];
+    const resFechamentos = await api.get('/fecharmaquinas');
+    const existente = resFechamentos.data.find(item =>
+      item.usuario === usuarioLogado.nome &&
+      item.maquinaId === maquinaAtual.id &&
+      item.dataHora.startsWith(dataHoje)
+    );
 
+    if (existente) {
+      await api.put(`/fecharmaquinas/${existente.id}`, fecharmaquinas);
+    } else {
+      await api.post('/fecharmaquinas', fecharmaquinas);
+    }
+
+      
       const caixaAtual = caixas.find(caixa =>
         caixa.usuario === usuarioLogado.nome &&
         caixa.loja === maquinaAtual.loja &&
