@@ -39,8 +39,8 @@ function ListaMaquinas() {
     {items && items.map((item) => (
       <tr key={item.id}>
         <td>{item.id}</td>
-        <td>{item.entrada}</td>
-        <td>{item.saida}</td>
+        <td>{item.inicial}</td>
+        <td>{item.final}</td>
         <td>{item.jogo}</td>
         <td>{item.valorJogo}</td>
         <td>{item.setor}</td>

@@ -15,11 +15,12 @@ function Dinheiro() {
     }
 
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-
+    const dataHoje = new Date().toISOString().split('T')[0];
     const dinheiro = {
       valor: parseFloat(valor),
       usuario: usuarioLogado.nome,
-      data: new Date().toLocaleString('pt-BR', { hour12: false })
+      data: dataHoje
+      
     };
 
   try 

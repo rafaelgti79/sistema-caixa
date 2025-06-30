@@ -43,6 +43,11 @@ function FechamentoFinal() {
   const [totalDinheiro, setTotalDinheiro] = useState(0);
   const [totalSangria, setTotalSangria] = useState(0);
   const [dinheiroLiquido, setDinheiroLiquido] = useState(0);
+  const [totalFalta, setTotalfalta] = useState(0);
+  //const [dinheiroTotal, setDinheiroTotal] = useState(0);
+
+
+  
   
 
 
@@ -106,6 +111,7 @@ function FechamentoFinal() {
     const sangriaFiltrada = filtrarPorDataEUsuario(sangrias, 'data');
     const cartaoFiltrado = filtrarPorDataEUsuario(cartoes, 'data');
     const reforcoFiltrado = filtrarPorDataEUsuario(reforcos, 'data');
+    const dinheiroFiltrado = filtrarPorDataEUsuario(dinheiro, 'data');
     
 
 
@@ -118,11 +124,12 @@ function FechamentoFinal() {
     const totalEntrada = fecharFiltrado.reduce((acc, item) => acc + parseFloat((item.resultado || "0").toString().replace(',', '.')), 0);
 
     const totalSaida = fecharFiltrado
-      .filter(item => parseFloat((item.resultado || "0").toString().replace(',', '.')) < 0)
-      .reduce((acc, item) => acc + Math.abs(parseFloat((item.resultado || "0").toString().replace(',', '.'))), 0);
+    .filter(item => parseFloat((item.resultado || "0").toString().replace(',', '.')) < 0)
+    .reduce((acc, item) => acc + Math.abs(parseFloat((item.resultado || "0").toString().replace(',', '.'))), 0);
 
     const totalDespesas = despesasFiltradas.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
     const totalSangria = sangriaFiltrada.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
+    const dinheiroTotal = dinheiroFiltrado.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
 
    
 
@@ -133,12 +140,18 @@ function FechamentoFinal() {
     const fundoDoCaixaAtual = caixaAbertoAtual ? parseFloat(caixaAbertoAtual.fundoInicial || 0) : 0;
 
     const composicaoTotal = resultadoLiquido + fundoDoCaixaAtual + totalReforco;
-    const totalDinheiroCalculado = falta - dinheiro;
+    
+    const totalDinheiroCalculado = dinheiroFiltrado.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
+    setTotalDinheiro(totalDinheiroCalculado);
 
-    const dinheiroLiquido = fundoDoCaixaAtual - totalDinheiroCalculado;
+    const totalFalta = composicaoTotal + totalCartaoCredito + totalCartaoDebito + totalCartaoPix - totalSangria - totalDinheiroCalculado ;
+
+    const dinheiroLiquido = fundoDoCaixaAtual - dinheiroTotal;
     //const calculoSobra = composicaoTotal > resultadoLiquido ? composicaoTotal - resultadoLiquido : 0;
     const calculoFalta = composicaoTotal < resultadoLiquido ? resultadoLiquido - composicaoTotal : 0;
 
+    setTotalDinheiro(totalDinheiroCalculado);
+    setTotalfalta(totalFalta);
     setEntrada(totalEntrada);
     setSaida(totalSaida);
     setBruto(resultadoBruto);
@@ -156,7 +169,7 @@ function FechamentoFinal() {
     setTotalSangria(totalSangria);
     setDinheiroLiquido(dinheiroLiquido);
     
-  }, [fecharmaquinas, despesas, sangrias, cartoes, reforcos, caixasAbertos]);
+  }, [fecharmaquinas, despesas, sangrias, cartoes, reforcos, caixasAbertos, dinheiro]);
 
   // Função fechar caixa
   const limparDados = async () => {
@@ -172,7 +185,7 @@ function FechamentoFinal() {
     liquido,
     composicaoTotal,
     sobra,
-    falta,
+    totalFalta,
     cartao: cartoes.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0),
     dinheiro: dinheiro.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0),
     fecharmaquinas,
@@ -180,7 +193,7 @@ function FechamentoFinal() {
     sangria: totalSangria,
     fundoInicial,
     reforco: valorReforco,
-    dinheiroLiquido
+    dinheiroLiquido,
   });
 
   // 2. Fecha os caixas abertos do usuário
@@ -218,14 +231,15 @@ if (carregando) {
       <p><strong>Fundo Inicial:</strong> {formatarMoeda(fundoInicial)}</p>
       <p><strong>Reforço:</strong> {formatarMoeda(valorReforco)}</p>
       <p><strong>Composição Total:</strong> {formatarMoeda(composicaoTotal)}</p>
-      <p><strong>Dinheiro:</strong> {formatarMoeda(dinheiro)}</p>
+      <p><strong>Dinheiro:</strong> {formatarMoeda(totalDinheiro)}</p>
       <p><strong>Crédito:</strong> {formatarMoeda(cartaoCredito)}</p>
       <p><strong>Débito:</strong> {formatarMoeda(cartaoDebito)}</p>
       <p><strong>Pix:</strong> {formatarMoeda(cartaoPix)}</p>
-      <p><strong>Total:</strong> {}</p>
       <p><strong>Sangria:</strong> {formatarMoeda(totalSangria)}</p>
+      <p><strong>Total:</strong> {}</p>
+      
       <p><strong>Sobra:</strong> {formatarMoeda(sobra)}</p>
-      <p><strong>Falta:</strong> {}</p>
+      <p><strong>Falta:</strong> {formatarMoeda(totalFalta)}</p>
       <p><strong>Reposição:</strong> {formatarMoeda(dinheiroLiquido)}</p>
 
       <button onClick={limparDados}>Fechar Caixa</button>
