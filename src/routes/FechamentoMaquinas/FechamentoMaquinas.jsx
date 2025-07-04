@@ -4,19 +4,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import './fechamentoMaquinas.css';
 
 function FechamentoMaquinas() {
-  const [maquina, setMaquina] = useState('');
+  
   const [inicial, setInicial] = useState('');
   const [final, setFinal] = useState('');
-  const [saidaInicial, setSaidaInicial] = useState('');
-  const [entradaFinal, setEntradaFinal] = useState('');
   const [saidaFinal, setSaidaFinal] = useState('');
+  const [entradaFinal, setEntradaFinal] = useState('');
   const [resultado, setResultado] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const [caixas, setCaixas] = useState([]);
   const [maquinas, setMaquinas] = useState([]);
   const navigate = useNavigate();
-
+  
   const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
 
   // Carregar máquinas e caixas
@@ -25,7 +23,7 @@ function FechamentoMaquinas() {
       try {
         const [maquinasRes, caixasRes] = await Promise.all([
           api.get('/maquinas'),
-          api.get('/caixa')
+          api.get('/caixa'),
         ]);
         setMaquinas(maquinasRes.data);
         setCaixas(caixasRes.data);
@@ -35,86 +33,83 @@ function FechamentoMaquinas() {
     }
     fetchData();
   }, []);
-
+        
 
   
 useEffect(() => {
   if (maquinas && currentIndex < maquinas.length) {
     const maquinaAtual = maquinas[currentIndex];
     const dataHoje = new Date().toISOString().split('T')[0];
-
-    async function buscarFechamentoAnterior() {
-      try {
-        const res = await api.get('/fecharmaquinas');
-        const registrosDoDia = res.data.filter(item =>
-          item.usuario === usuarioLogado.nome &&
-          item.maquinaId === maquinaAtual.id &&
-          item.dataHora.startsWith(dataHoje)
-        );
-
-        if (registrosDoDia.length > 0) {
-          const dado = registrosDoDia[0];
-          setSaidaInicial(dado.saidaInicial || '');
-          setSaidaFinal(dado.saidaFinal || '');
-          setResultado(dado.resultado || '');
-        } else {
-          setSaidaInicial('');
-          setSaidaFinal('');
-          setResultado('');
-        }
-      } catch (err) {
-        console.error("Erro ao buscar fechamento anterior:", err);
-      }
-    }
-
-    buscarFechamentoAnterior();
-
-    setInicial(maquinaAtual.entradaAtual || '');
-    setFinal(maquinaAtual.saidaAtual || '');
-  }
-}, [currentIndex, maquinas, usuarioLogado.nome]);
-
-
-
-  /*
-  // Preencher campos quando a máquina atual muda backup
-  useEffect(() => {
-    if (maquinas && currentIndex < maquinas.length) {
-      const maquinaAtual = maquinas[currentIndex];
-      setInicial(maquinaAtual.entradaAtual || '');
-      setFinal(maquinaAtual.saidaAtual || '');
-    }
-  }, [currentIndex, maquinas]);
-*/
  
 
-   useEffect(() => {
-  if (maquinas && currentIndex < maquinas.length) {
-    const maquinaAtual = maquinas[currentIndex];
-    
-    const valorJogo = parseFloat(maquinaAtual.valorJogo);
 
-    const entradaIni = parseFloat(maquinaAtual.inicial);  // E.I
-    const entradaFin = parseFloat(saidaFinal);            // E.F
+   async function buscarFechamentoAnterior() {
+  try {
+    const res = await api.get('/fecharmaquinas');
+    const dataHoje = new Date().toISOString().split('T')[0];
 
-    const saidaIni = parseFloat(maquinaAtual.final);      // S.I
-    const saidaFin = parseFloat(saidaInicial);            // S.F
+    // Verifica se já existe fechamento feito hoje para a máquina
+    const registrosDoDia = res.data.filter(item =>
+      item.usuario === usuarioLogado.nome &&
+      item.maquinaId === maquinaAtual.id &&
+      item.dataHora.startsWith(dataHoje) &&
+      item.fechado === 0 // só pega registros em aberto
+    );
 
-    if (
-      !isNaN(valorJogo) &&
-      !isNaN(entradaIni) && !isNaN(entradaFin) &&
-      !isNaN(saidaIni) && !isNaN(saidaFin)
-    ) {
-      const entradaTotal = (entradaFin - entradaIni) * valorJogo;
-      const saidaTotal = (saidaFin - saidaIni) * valorJogo;
-      const resultadoFinal = entradaTotal - saidaTotal;
+    if (registrosDoDia.length > 0) {
+      const dado = registrosDoDia[0];
+      setSaidaFinal(dado.saidaFinal || '');
+      setEntradaFinal(dado.entradaFinal || '');
+      setResultado(dado.resultado || '');
 
-      setResultado(resultadoFinal.toFixed(2));
     } else {
+      // Limpa tudo se não houver registros válidos
+      setSaidaFinal('');
+      setEntradaFinal('');
       setResultado('');
     }
+  } catch (err) {
+    console.error("Erro ao buscar fechamento anterior:", err);
   }
-}, [saidaInicial, saidaFinal, maquinas, currentIndex]);
+}
+buscarFechamentoAnterior();
+setInicial(maquinaAtual.entradaAtual || '');
+setFinal(maquinaAtual.saidaAtual || '');
+}
+}, [currentIndex, maquinas, usuarioLogado.nome]);
+      
+
+
+
+useEffect(() => {
+if (maquinas && currentIndex < maquinas.length) {
+ const maquinaAtual = maquinas[currentIndex];
+ 
+ const valorJogo = parseFloat(maquinaAtual.valorJogo);
+
+ const entradaIni = parseFloat(maquinaAtual.inicial);  // E.I
+ const entradaFin = parseFloat(entradaFinal);            // E.F
+
+ const saidaIni = parseFloat(maquinaAtual.final);      // S.I
+ const saidaFin = parseFloat(saidaFinal);            // S.F
+
+ if (
+   !isNaN(valorJogo) &&
+   !isNaN(entradaIni) && !isNaN(entradaFin) &&
+   !isNaN(saidaIni) && !isNaN(saidaFin)
+ ) {
+   const entradaTotal = (entradaFin - entradaIni) * valorJogo;
+   const saidaTotal = (saidaFin - saidaIni) * valorJogo;
+   const resultadoFinal = entradaTotal - saidaTotal;
+
+   setResultado(resultadoFinal.toFixed(2));
+ } else {
+   setResultado('');
+ }
+}
+}, [saidaFinal, entradaFinal, maquinas, currentIndex]);
+ 
+
 
 
 
@@ -136,19 +131,23 @@ useEffect(() => {
     const fecharmaquinas = {
       maquinaId: maquinaAtual.id,
       maquina: maquinaAtual.numeroMaquina || maquinaAtual.jogo || maquinaAtual.id || maquinaAtual.inicial || maquinaAtual.final,
-      saidaInicial,
-      saidaFinal,
-      resultado,
+      saidaFinal: parseFloat(saidaFinal),            // E.F digitada
+      entradaFinal: parseFloat(entradaFinal),      // S.F digitada
+      //maquinaEntradaInicial: maquinaAtual.inicial, // 👈 valor original da máquina (E.I)
+      //maquinaSaidaInicial: maquinaAtual.final,      // 👈 valor original da máquina (S.I)
+      resultado: parseFloat(resultado),
       usuario: usuarioLogado.nome,
       usuarioId: usuarioLogado.id || null,
-      dataHora: new Date().toISOString()
+      dataHora: new Date().toISOString(),
+      
+     
     };
 
-    console.log({
+  console.log({
   maquinaId: maquinaAtual.id,
   maquina: maquinaAtual.numeroMaquina || maquinaAtual.jogo || maquinaAtual.id || maquinaAtual.inicial || maquinaAtual.final,
-  saidaInicial,
   saidaFinal,
+  entradaFinal,
   resultado,
   usuario: usuarioLogado.nome,
   usuarioId: usuarioLogado.id || null,
@@ -157,25 +156,26 @@ useEffect(() => {
 
 
     try {
-      const dataHoje = new Date().toISOString().split('T')[0];
+    const dataHoje = new Date().toISOString().split('T')[0];
     const resFechamentos = await api.get('/fecharmaquinas');
     const existente = resFechamentos.data.find(item =>
-      item.usuario === usuarioLogado.nome &&
-      item.maquinaId === maquinaAtual.id &&
-      item.dataHora.startsWith(dataHoje)
+    item.usuario === usuarioLogado.nome &&
+    item.maquinaId === maquinaAtual.id &&
+    item.dataHora.startsWith(dataHoje) 
+    
     );
 
     if (existente) {
-      await api.put(`/fecharmaquinas/${existente.id}`, fecharmaquinas);
+      await api.patch(`/fecharmaquinas/atualizar/${existente.id}`, fecharmaquinas);
     } else {
       await api.post('/fecharmaquinas', fecharmaquinas);
     }
 
       
       const caixaAtual = caixas.find(caixa =>
-        caixa.usuario === usuarioLogado.nome &&
-        caixa.loja === maquinaAtual.loja &&
-        caixa.data === dataHoje
+      caixa.usuario === usuarioLogado.nome &&
+      caixa.loja === maquinaAtual.loja &&
+      caixa.data === dataHoje
       );
 
       if (caixaAtual && valorResultado && !isNaN(valorResultado)) {
@@ -195,10 +195,9 @@ useEffect(() => {
       // Limpa os campos e avança para a próxima máquina
       setInicial('');
       setFinal('');
-      setSaidaInicial('');
       setSaidaFinal('');
-      setResultado('');
       setEntradaFinal('');
+      setResultado('');
       if (currentIndex + 1 >= maquinas.length) {
       navigate('/app/fechamento/final');
     } else {
@@ -223,8 +222,6 @@ return (
 <div className="containerFechamento3">
 
   <form onSubmit={handleSubmit}>
-
-
   <div className="subcontainer3">
    <div className="form-row1">
     <label className='labelnumero'>Nº:</label>
@@ -239,7 +236,7 @@ return (
 
   <div className="form-row1">
     <label className='label4'>E.F:</label>
-    <input className='input4' type="text" value={saidaFinal} onChange={(event) => setSaidaFinal(event.target.value)} />
+    <input className='input4' type="text" value={entradaFinal} onChange={(event) => setEntradaFinal(event.target.value)} />
   </div>
 
   <div className="form-row1">
@@ -249,7 +246,7 @@ return (
 
   <div className="form-row1">
     <label className='label4'>S.F:</label>
-    <input className='input4' type="text" value={saidaInicial} onChange={(event) => setSaidaInicial(event.target.value)} />
+    <input className='input4' type="text" value={saidaFinal} onChange={(event) => setSaidaFinal(event.target.value)} />
   </div>
 
   <div className="form-row1">
@@ -267,6 +264,8 @@ return (
   );
 }
 export default FechamentoMaquinas;
+
+
             
           
        

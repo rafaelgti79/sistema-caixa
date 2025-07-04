@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../constants/api.js';
+import { useNavigate } from 'react-router-dom';
 import './contas.css';
 
 function Conta() {
@@ -10,6 +11,7 @@ function Conta() {
   const [porcentagem, setPorcentagem] = useState('');
   const [contas, setContas] = useState([]);
   const [editandoId, setEditandoId] = useState(null);
+  const navigate = useNavigate();
 
 
   // Buscar contas existentes (GET)
@@ -76,19 +78,18 @@ const deletarConta = async (id) => {
   };
 
   return (
-    <div className="container">
-      <h1>CONTAS DE ACESSO</h1>
+    <div className="containerCadasContas">
+      <h1>CONTAS</h1>
       <form onSubmit={handleSubmit}>
-        <div className="colunas">
-          <div className="coluna-esquerda">
+        
             <label>NOME :</label>
-            <input type="text" value={nome} onChange={(event) => setNome(event.target.value)} />
+            <input className='inpuCaixaMaquina' type="text" value={nome} onChange={(event) => setNome(event.target.value)} />
            <label>SENHA:</label>
-            <input type="text" value={senha} onChange={(event) => setSenha(event.target.value)} />
+            <input className='inpuCaixaMaquina' type="text" value={senha} onChange={(event) => setSenha(event.target.value)} />
 
 
 <label>TIPO:</label>
-<select value={tipo} onChange={(event) => setTipo(event.target.value)}>
+<select className='inpuCaixaSelectMaquina' value={tipo} onChange={(event) => setTipo(event.target.value)}>
   <option value="">Selecione o Tipo</option>
   <option value="admin">Admin</option>
   <option value="operador">Operador</option>
@@ -96,14 +97,14 @@ const deletarConta = async (id) => {
 </select>
             <label>PORCENTAGEM:</label>
             <input type="text" value={porcentagem} onChange={(event) => setPorcentagem(event.target.value)} />
-          </div>
+          
             
           
-        </div>
-        <div className="botao-salvar">
-          <button type="submit">Salvar</button>
-          <Link className="BotaoVoltar" to="/app/cadastros">Voltar</Link>
-        </div>
+       
+        <div className='btn-abrirMaquina'>
+          <button className='btn-salvar'  type="submit">Salvar</button>
+          <button className='btn-voltar' onClick={() => navigate('/app/cadastros')}>Voltar</button>
+         </div>
       </form>
 
       <h2>Contas cadastradas</h2>

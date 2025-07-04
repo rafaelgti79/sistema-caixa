@@ -54,50 +54,73 @@ function AbrirCaixa() {
 
   // 📤 Envio de dados
   const handleSubmit = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    const caixa = {
-      fundoInicial,
-      data,
-      setor,
-      loja,
-      usuario: usuarioLogado.nome,
-      status: 'aberto'
-    };
+  const dataHoje = new Date().toISOString().split('T')[0];
 
-    try {
-      await api.post('/caixa', caixa);
-      navigate('/app/home-caixa');
-    } catch (err) {
-      console.error('Erro ao abrir caixa:', err);
-      alert('Erro ao abrir o caixa.');
-    }
+  const caixa = {
+    fundoInicial,
+    data: dataHoje,
+    setor,
+    loja,
+    usuario: usuarioLogado.nome,
+    status: 'aberto'
   };
+
+  try {
+    // 1. Cria o novo caixa
+    await api.post('/caixa', caixa);
+
+    // 2. Busca todas as máquinas da loja atual
+    const resMaquinas = await api.get('/maquinas');
+    const maquinasDaLoja = resMaquinas.data.filter(m => m.loja === loja);
+
+    // 3. Cria um novo registro de fechamento por máquina
+    for (const maquina of maquinasDaLoja) {
+      await api.post('/fecharmaquinas', {
+        maquinaId: maquina.id,
+        maquina: maquina.numeroMaquina || maquina.id,
+        entradaFinal: '', // será preenchido no fechamento
+        saidaFinal: '',
+        resultado: '',
+        usuario: usuarioLogado.nome,
+        usuarioId: usuarioLogado.id,
+        dataHora: new Date().toISOString(),
+        fechado: 0 // aberto
+      });
+    }
+
+    // 4. Navega para home
+    navigate('/app/home-caixa');
+  } catch (err) {
+    console.error('Erro ao abrir caixa ou criar fechamentos:', err);
+    alert('Erro ao abrir o caixa.');
+  }
+};
+
 
   return (
     <div className="containerCaixa">
-      <h1>COLOQUE O FUNDO INICIAL</h1>
+      <h1>FUNDO INICIAL</h1>
       <form onSubmit={handleSubmit}>
-       
-
           <div className="coluna-esquerda-caixa">
             <label>FUNDO INICIAL :</label>
-            <input type="text" value={fundoInicial} onChange={(event) => setFundoInicial(event.target.value)} />
+            <input className='inpuCaixa' value={fundoInicial} onChange={(event) => setFundoInicial(event.target.value)} />
 
             <label>DATA :</label>
-            <input type="date" value={data} onChange={(event) => setData(event.target.value)} />
-            
+            <input className='inpuCaixa' type="date" value={data} onChange={(event) => setData(event.target.value)} />
+       
    <label>SETOR:</label>
-     <select value={setor} onChange={(event) => setSetor(event.target.value)}>
+     <select className='inpuCaixaSelect' value={setor} onChange={(event) => setSetor(event.target.value)}>
        <option value="setor1">SETOR 1</option>
        <option value="setor2">SETOR 2</option>
        <option value="setor3">SETOR 3</option>
        <option value="setor4">SETOR 4</option>
+       <option value="totos">TODOS</option>
      </select>
-       
 
 <label>Loja:</label>
-<select
+<select className='inpuCaixaSelect'
   value={loja}
   onChange={(event) => {
     const nomeSelecionado = event.target.value;
@@ -117,6 +140,9 @@ function AbrirCaixa() {
   );
 }
 export default AbrirCaixa;
+            
+       
+
 
          
             

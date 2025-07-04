@@ -2,7 +2,7 @@
 
 .containerCaixa {
   text-align: center;
-  max-width: 800px;
+  max-width: 500px;
   margin: 40px auto;
   padding: 30px;
   border: 1px solid #ddd;
@@ -23,9 +23,7 @@ label {
   margin-bottom: 10px;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="date"] {
+.inpuCaixa{
   width: 100%;
   height: 20px;
   margin-bottom: 20px;
@@ -33,25 +31,27 @@ input[type="date"] {
   border: 1px solid #ccc;
 }
 
-select, option {
-  width: 105%;
-  height: 45px;
+.inpuCaixaSelect{
+  width: 60%;
+  height: 40px;
   margin-bottom: 20px;
   padding: 10px;
+  border-radius: 10px;
   border: 1px solid #ccc;
 }
 
 
+
 .btn-abrir {
   width: 130px;
-  height: 50px;
+  height: 40px;
   background-color: #4CAF50;
   color: #fff;
   padding: 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin: 10px; /* separa os elemento entre eles */
+  margin: 5px; /* separa os elemento entre eles */
   text-align: center;
   
 }

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+
 import api from '../../constants/api.js';
 import './FechamentoFinal.css';
 
@@ -46,47 +48,43 @@ function FechamentoFinal() {
   const [totalFalta, setTotalfalta] = useState(0);
   //const [dinheiroTotal, setDinheiroTotal] = useState(0);
 
-
   
-  
-
-
   // Carrega dados ao montar
-  useEffect(() => {
-    async function buscarDados() {
-      try {
-        const [
-          resFecharmaquinas,
-          resDespesas,
-          resSangria,
-          resCartao,
-          resDinheiro,
-          resCaixa,
-          resReforco,
-          resCaixasAbertos
-        ] = await Promise.all([
-          api.get('/fecharmaquinas'),
-          api.get('/despesas'),
-          api.get('/sangria'),
-          api.get('/cartao'),
-          api.get('/dinheiro'),
-          api.get('/caixa'),
-          api.get('/reforco'),
-          api.get(`/caixa?status=aberto&usuario=${usuarioLogado.nome}`),
-        ]);
+ useEffect(() => {
+  async function buscarDados() {
+    try {
+      const [
+        resFecharmaquinas,
+        resDespesas,
+        resSangria,
+        resCartao,
+        resDinheiro,
+        resCaixa,
+        resReforco,
+        resCaixasAbertos
+      ] = await Promise.all([
+        api.get('/fecharmaquinas'),
+        api.get('/despesas'),
+        api.get('/sangria'),
+        api.get('/cartao'),
+        api.get('/dinheiro'),
+        api.get('/caixa'),
+        api.get('/reforco'),
+        api.get(`/caixa?status=aberto&usuario=${usuarioLogado.nome}`),
+      ]);
 
-        setFecharmaquinas(resFecharmaquinas.data || []);
-        setDespesas(resDespesas.data || []);
-        setSangrias(resSangria.data || []);
-        setCartoes(resCartao.data || []);
-        setDinheiro(resDinheiro.data || []);
-        setCaixas(resCaixa.data || []);
-        setReforcos(resReforco.data || []);
-        setCaixasAbertos(resCaixasAbertos.data || []);
-      } catch (error) {
-        console.error("Erro ao buscar dados:", error);
-        alert("Erro ao buscar dados. Verifique sua conexão ou contate o suporte.");
-      } finally {
+      
+      setFecharmaquinas(resFecharmaquinas.data || []);
+      setDespesas(resDespesas.data || []);
+      setSangrias(resSangria.data || []);
+      setCartoes(resCartao.data || []);
+      setDinheiro(resDinheiro.data || []);
+      setCaixas(resCaixa.data || []);
+      setReforcos(resReforco.data || []);
+      setCaixasAbertos(resCaixasAbertos.data || []);
+    } catch (error) {
+      console.error("❌ Erro ao buscar dados:", error);
+    } finally {
       setCarregando(false);
     }
   }
@@ -94,86 +92,78 @@ function FechamentoFinal() {
   buscarDados();
 }, [usuarioLogado.nome]);
 
-  // Cálculos
-  useEffect(() => {
-    const dataHoje = new Date().toISOString().split('T')[0];
+
+  // Cálculos do fechamentofinal
+  
+useEffect(() => {
+  const dataHoje = new Date().toISOString().split('T')[0];
 
     const filtrarPorDataEUsuario = (arr, campoData = 'dataHora') =>
       arr.filter(item => 
         item.usuario === usuarioLogado.nome && 
         item[campoData]?.startsWith(dataHoje) &&
-        !item.fechado // 👈 NOVO: apenas não fechados
+        item.fechado === 0// 👈 NOVO: apenas não fechados
       );
-        
+      
+  const fecharFiltrado = filtrarPorDataEUsuario(fecharmaquinas);
+  const despesasFiltradas = filtrarPorDataEUsuario(despesas, 'data');
+  const sangriaFiltrada = filtrarPorDataEUsuario(sangrias, 'data');
+  const cartaoFiltrado = filtrarPorDataEUsuario(cartoes, 'data');
+  const reforcoFiltrado = filtrarPorDataEUsuario(reforcos, 'data');
+  const dinheiroFiltrado = filtrarPorDataEUsuario(dinheiro, 'data');
 
-    const fecharFiltrado = filtrarPorDataEUsuario(fecharmaquinas);
-    const despesasFiltradas = filtrarPorDataEUsuario(despesas, 'data');
-    const sangriaFiltrada = filtrarPorDataEUsuario(sangrias, 'data');
-    const cartaoFiltrado = filtrarPorDataEUsuario(cartoes, 'data');
-    const reforcoFiltrado = filtrarPorDataEUsuario(reforcos, 'data');
-    const dinheiroFiltrado = filtrarPorDataEUsuario(dinheiro, 'data');
-    
+  const totalCartaoCredito = cartaoFiltrado.filter(i => i.tipo === 'credito').reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
+  const totalCartaoDebito = cartaoFiltrado.filter(i => i.tipo === 'debito').reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
+  const totalCartaoPix = cartaoFiltrado.filter(i => i.tipo === 'pix').reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
 
+  const totalReforco = reforcoFiltrado.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
+  const totalEntrada = fecharFiltrado.reduce((acc, item) => acc + parseFloat((item.resultado || "0").toString().replace(',', '.')), 0);
 
-    const totalCartaoCredito = cartaoFiltrado.filter(i => i.tipo === 'credito').reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
-    const totalCartaoDebito = cartaoFiltrado.filter(i => i.tipo === 'debito').reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
-    const totalCartaoPix = cartaoFiltrado.filter(i => i.tipo === 'pix').reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
-
-    const totalReforco = reforcoFiltrado.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
-
-    const totalEntrada = fecharFiltrado.reduce((acc, item) => acc + parseFloat((item.resultado || "0").toString().replace(',', '.')), 0);
-
-    const totalSaida = fecharFiltrado
+  const totalSaida = fecharFiltrado
     .filter(item => parseFloat((item.resultado || "0").toString().replace(',', '.')) < 0)
     .reduce((acc, item) => acc + Math.abs(parseFloat((item.resultado || "0").toString().replace(',', '.'))), 0);
 
-    const totalDespesas = despesasFiltradas.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
-    const totalSangria = sangriaFiltrada.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
-    const dinheiroTotal = dinheiroFiltrado.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
+  const totalDespesas = despesasFiltradas.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
+  const totalSangria = sangriaFiltrada.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
+  const dinheiroTotal = dinheiroFiltrado.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
 
-   
+  const resultadoBruto = totalEntrada - totalSaida;
+  const resultadoLiquido = resultadoBruto - totalDespesas;
 
-    const resultadoBruto = totalEntrada - totalSaida;
-    const resultadoLiquido = resultadoBruto - totalDespesas;
+  const caixaAbertoAtual = caixasAbertos.length ? caixasAbertos[0] : null;
+  const fundoDoCaixaAtual = caixaAbertoAtual ? parseFloat(caixaAbertoAtual.fundoInicial || 0) : 0;
 
-    const caixaAbertoAtual = caixasAbertos.length ? caixasAbertos[0] : null;
-    const fundoDoCaixaAtual = caixaAbertoAtual ? parseFloat(caixaAbertoAtual.fundoInicial || 0) : 0;
+  const composicaoTotal = resultadoLiquido + fundoDoCaixaAtual + totalReforco;
 
-    const composicaoTotal = resultadoLiquido + fundoDoCaixaAtual + totalReforco;
-    
-    const totalDinheiroCalculado = dinheiroFiltrado.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
-    setTotalDinheiro(totalDinheiroCalculado);
+  const totalFalta = totalCartaoCredito - totalCartaoDebito - totalCartaoPix - totalSangria + dinheiroTotal;
 
-    const totalFalta = composicaoTotal + totalCartaoCredito + totalCartaoDebito + totalCartaoPix - totalSangria - totalDinheiroCalculado ;
+  const dinheiroLiquido = fundoDoCaixaAtual - dinheiroTotal;
+  const calculoFalta = composicaoTotal < resultadoLiquido ? resultadoLiquido - composicaoTotal : 0;
 
-    const dinheiroLiquido = fundoDoCaixaAtual - dinheiroTotal;
-    //const calculoSobra = composicaoTotal > resultadoLiquido ? composicaoTotal - resultadoLiquido : 0;
-    const calculoFalta = composicaoTotal < resultadoLiquido ? resultadoLiquido - composicaoTotal : 0;
+  setTotalDinheiro(dinheiroTotal);
+  setTotalfalta(totalFalta);
+  setEntrada(totalEntrada);
+  setSaida(totalSaida);
+  setBruto(resultadoBruto);
+  setLiquido(resultadoLiquido);
+  setComposicaoTotal(composicaoTotal);
+  setFalta(calculoFalta);
+  setDespesa(totalDespesas);
+  setFundoInicial(fundoDoCaixaAtual);
+  setValorReforco(totalReforco);
+  setCartaoCredito(totalCartaoCredito);
+  setCartaoDebito(totalCartaoDebito);
+  setCartaoPix(totalCartaoPix);
+  setTotalSangria(totalSangria);
+  setDinheiroLiquido(dinheiroLiquido);
 
-    setTotalDinheiro(totalDinheiroCalculado);
-    setTotalfalta(totalFalta);
-    setEntrada(totalEntrada);
-    setSaida(totalSaida);
-    setBruto(resultadoBruto);
-    setLiquido(resultadoLiquido);
-    setComposicaoTotal(composicaoTotal);
-    //setSobra(calculoSobra);
-    setFalta(calculoFalta);
-    setDespesa(totalDespesas);
-    setFundoInicial(fundoDoCaixaAtual);
-    setValorReforco(totalReforco);
-    setCartaoCredito(totalCartaoCredito);
-    setCartaoDebito(totalCartaoDebito);
-    setCartaoPix(totalCartaoPix);
-    setTotalDinheiro(totalDinheiroCalculado);
-    setTotalSangria(totalSangria);
-    setDinheiroLiquido(dinheiroLiquido);
-    
-  }, [fecharmaquinas, despesas, sangrias, cartoes, reforcos, caixasAbertos, dinheiro]);
+}, [fecharmaquinas, despesas, sangrias, cartoes, reforcos, caixasAbertos, dinheiro]);
 
-  // Função fechar caixa
-  const limparDados = async () => {
-  const dataHoje = new Date().toISOString().split('T')[0];
+
+
+// Função fechar caixa
+ const limparDados = async () => {
+const dataHoje = new Date().toISOString().split('T')[0];
 
   // 1. Salva o histórico do caixa
   await api.post('/historicocaixa', {
@@ -196,25 +186,33 @@ function FechamentoFinal() {
     dinheiroLiquido,
   });
 
+  
   // 2. Fecha os caixas abertos do usuário
   for (const caixa of caixasAbertos) {
+  if (caixa.usuario === usuarioLogado.nome) {
     await api.patch(`/caixa/${caixa.id}`, { status: 'fechado' });
   }
-
-  // 3. Lista de endpoints a marcar como fechados
+}
+  
+  // 3. Lista de endpoints a marcar como fechados no banco
   const endpoints = ['fecharmaquinas', 'despesas', 'sangria', 'cartao', 'dinheiro', 'reforco'];
-
   for (const endpoint of endpoints) {
-    const res = await api.get(`/${endpoint}`);
+  const res = await api.get(`/${endpoint}`);
 
-    for (const item of res.data) {
-      // Marca todos como fechado: true
-      await api.patch(`/${endpoint}/${item.id}`, { fechado: true });
-    }
+  for (const item of res.data) {
+    if (!item.fechado && item.usuario === usuarioLogado.nome) {
+      console.log(`Marcando ${endpoint} ID: ${item.id}`);
+      try {
+        await api.patch(`/${endpoint}/${item.id}`, { fechado: true });
+      } catch (error) {
+        console.error(`❌ Erro ao atualizar ${endpoint}/${item.id}`, error);
+      }
   }
-
-  navigate('/app/home');
+}
+}
+navigate('/app/home');
 };
+
 
 
 if (carregando) {
@@ -236,13 +234,14 @@ if (carregando) {
       <p><strong>Débito:</strong> {formatarMoeda(cartaoDebito)}</p>
       <p><strong>Pix:</strong> {formatarMoeda(cartaoPix)}</p>
       <p><strong>Sangria:</strong> {formatarMoeda(totalSangria)}</p>
-      <p><strong>Total:</strong> {}</p>
+      <p><strong>Total:</strong> {formatarMoeda(composicaoTotal)}</p>
       
       <p><strong>Sobra:</strong> {formatarMoeda(sobra)}</p>
       <p><strong>Falta:</strong> {formatarMoeda(totalFalta)}</p>
       <p><strong>Reposição:</strong> {formatarMoeda(dinheiroLiquido)}</p>
 
       <button onClick={limparDados}>Fechar Caixa</button>
+      <Link className="BotaoVoltar" to="/app/home-caixa">Voltar</Link>
     </div>
   );
 }

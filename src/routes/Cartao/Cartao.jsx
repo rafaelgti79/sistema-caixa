@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import api from '../../constants/api';
 import { Link } from 'react-router-dom';
+import './Cartao.css';
 
 const url = "http://localhost:3000/cartao";
 
@@ -46,10 +47,10 @@ function Cartao() {
 
 
   return (
-    <div className="containerDespesas">
+    <div className="containerCartao">
       <h1>CARTÕES</h1>
       <form onSubmit={handleSubmit}>
-        <div className="subcontainer">
+        
           <label>VALOR:</label>
           <input
             type="number"
@@ -65,7 +66,7 @@ function Cartao() {
   <option value="debito">Debito</option>
   <option value="pix">Pix</option>
 </select>
-        </div>
+        
 
         <div className="botao-salvar">
           <button type="submit">Salvar</button>

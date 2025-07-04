@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from "../../constants/api.js"; 
+import { useNavigate } from 'react-router-dom';
+import './maquinas.css';
+
+
 
 function Maquinas() {
   const [loja, setLoja] = useState('');
@@ -13,6 +17,9 @@ function Maquinas() {
   const [valorJogo, setValorJogo] = useState('');
   const [lojas, setLojas] = useState([]);
   const [jogos, setJogos] = useState([]);
+  const navigate = useNavigate();
+
+
 
   // 🔄 Buscar lojas e jogos da API (porta 3001)
   useEffect(() => {
@@ -65,15 +72,13 @@ function Maquinas() {
 
 
   return (
-    <div className="container">
+    <div className="containerMaquina">
       <h1>Cadastro de Máquinas</h1>
       <form onSubmit={handleSubmit}>
-        <div className="colunas">
-          <div className="coluna-esquerda">
-
+       <div className="colunaMaquina">
 
 <label>Loja:</label>
-<select
+<select className='inpuCaixaSelectMaquina'
   value={loja}
   onChange={(event) => {
     const nomeSelecionado = event.target.value;
@@ -84,7 +89,7 @@ function Maquinas() {
     }
   }}
 >
-  <option value="">Selecione uma Loja</option>
+  <option value=""></option>
   {lojas && lojas.map((j) => (
     <option key={j.id || j.loja} value={j.loja}>
       {j.loja}
@@ -92,11 +97,12 @@ function Maquinas() {
   ))}
 </select>
 
-    <label>Número da Máquina:</label>
-    <input type="text" value={numeroMaquina} onChange={(event) => setNumeroMaquina(event.target.value)} />
+  <label>Número da Máquina:</label>
+  <input className='inpuCaixaMaquina' type="text" value={numeroMaquina} onChange={(event) => setNumeroMaquina(event.target.value)} />
+
            
 <label>Jogo:</label>
-<select
+<select className='inpuCaixaSelectMaquina'
   value={jogo}
   onChange={(event) => {
     const nomeSelecionado = event.target.value;
@@ -107,7 +113,7 @@ function Maquinas() {
     }
   }}
 >
-  <option value="">Selecione um jogo</option>
+  <option value=""></option>
   {jogos && jogos.map((j) => (
     <option key={j.id || j.nomedojogo} value={j.nomedojogo}>
       {j.nomedojogo}
@@ -115,30 +121,30 @@ function Maquinas() {
   ))}
 </select>
             <label>Maquineiro:</label>
-            <input type="text" value={maquineiro} onChange={(event) => setMaquineiro(event.target.value)} />
-          </div>
+            <input className='inpuCaixaMaquina' type="text" value={maquineiro} onChange={(event) => setMaquineiro(event.target.value)} />
+          
 
-          <div className="coluna-direita">
             <label>Setor:</label>
-            <input type="text" value={setor} onChange={(event) => setSetor(event.target.value)} />
+            <input className='inpuCaixaMaquina' type="text" value={setor} onChange={(event) => setSetor(event.target.value)} />
             <label>Entrada:</label>
-            <input type="number" value={inicial} onChange={(event) => setInicial(event.target.value)} />
+            <input className='inpuCaixaMaquina' type="number" value={inicial} onChange={(event) => setInicial(event.target.value)} />
             <label>Saída:</label>
-            <input type="number" value={final} onChange={(event) => setFinal(event.target.value)} />
-          </div>
-        </div>
-        <div className="botao-salvar">
-          <button type="submit">Salvar</button>
-          
-          <Link className="BotaoVoltar" to="/app/cadastros">Voltar</Link>
-          
-        </div>
-
+            <input className='inpuCaixaMaquina' type="number" value={final} onChange={(event) => setFinal(event.target.value)} />
+         
+       
+        <div className='btn-abrirMaquina'>
+          <button className='btn-salvar'  type="submit">Salvar</button>
+         
+          <button className='btn-voltar' onClick={() => navigate('/app/cadastros')}>Voltar</button>
+         </div>
+  </div> 
         
       </form>
     </div>
   );
 }
 export default Maquinas;
+
+        
 
         

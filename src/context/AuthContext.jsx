@@ -1,52 +1,36 @@
-import { createContext, useContext, useState, useEffect } from "react";
+// src/context/AuthContext.jsx
+import { createContext, useContext, useState, useEffect } from 'react';
 
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Restaurar sessão ao carregar
-    const usuarioSalvo = localStorage.getItem("usuarioLogado");
+    const usuarioSalvo = localStorage.getItem('usuarioLogado');
     if (usuarioSalvo) {
       setUser(JSON.parse(usuarioSalvo));
     }
+    setLoading(false);
   }, []);
 
-  const login = (usuario) => setUser(usuario);
+  const login = (usuario) => {
+    localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
+    setUser(usuario);
+    // ❌ Removido o navigate daqui
+  };
+
   const logout = () => {
+    localStorage.removeItem('usuarioLogado');
     setUser(null);
-    localStorage.removeItem("usuarioLogado");
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
 export const useAuth = () => useContext(AuthContext);
-
-
-/*
-import { createContext, useContext, useState } from "react";
-
-const AuthContext = createContext();
-
-
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // Ex: { nome: 'João', tipo: 'admin' }
-
-  const login = (usuarios) => setUser(usuarios);
-  const logout = () => setUser(null);
-
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-export const useAuth = () => useContext(AuthContext);
-*/
