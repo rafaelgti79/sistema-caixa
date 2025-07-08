@@ -13,9 +13,49 @@ function Sangria() {
   const [nome, setNome] = useState([]);
   const [loja, setLoja] = useState('');
   const [lojas, setLojas] = useState([]);
+  const [sangriaUsuario, setSangriaUsuario] = useState([]);
+  const [totalSangriaAbertas, setTotalSangriaAbertas] = useState(0);
 
 
-
+//Sangria dos usuarios
+    useEffect(() => {
+    async function carregarSangriaUsuario() {
+      const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+      const hoje = new Date().toISOString().split('T')[0];
+  
+      try {
+        const res = await api.get('/sangria');
+        const sangriaFiltradas = res.data.filter(
+          (d) =>
+            d.usuario === usuarioLogado.nome &&
+            d.data?.startsWith(hoje) &&
+            d.fechado === 0
+        );
+        setSangriaUsuario(sangriaFiltradas);
+      } catch (err) {
+        console.error('Erro ao carregar Sangria do usuário:', err);
+      }
+    }
+  
+    carregarSangriaUsuario();
+  }, []);
+  
+  
+  //Deletar as Dinheiro
+  const deletarSangria = async (id) => {
+    try {
+      await api.delete(`/sangria/${id}`);
+      setSangriaUsuario(sangriaUsuario.filter((d) => d.id !== id));
+    } catch (err) {
+      console.error('Erro ao deletar Dinheiro:', err);
+    }
+  };
+  
+  //Total dos Dinheiro
+  useEffect(() => {
+    const total = sangriaUsuario.reduce((acc, d) => acc + parseFloat(d.valor || 0), 0);
+    setTotalSangriaAbertas(total);
+  }, [sangriaUsuario]);
 
   // 🔄 Buscar lojas e jogos da API (porta 3001)
     useEffect(() => {
@@ -106,10 +146,32 @@ function Sangria() {
 </select>
           </div>
         
-        <div className="botao-salvar">
-          <button type="submit">Salvar</button>
-          <Link className="BotaoVoltar" to="/app/home-caixa">Voltar</Link>
-        </div>
+        
+        <div className="lista-despesas">
+                        <h2>Sangria</h2>
+                        {sangriaUsuario.length === 0 ? (
+                          <p></p>
+                        ) : (
+                          <ul>
+                            {sangriaUsuario.map((sangria) => (
+                              <li key={sangria.id}>
+                                <strong>{sangria.id}</strong> - R$ {parseFloat(sangria.valor).toFixed(2)}
+                                <button
+                                  style={{ marginLeft: '10px', color: 'red' }}
+                                  onClick={() => deletarSangria(sangria.id)}
+                                >
+                                  Excluir
+                                </button>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                        <p><strong>Total:</strong> R$ {totalSangriaAbertas.toFixed(2)}</p>
+                        <div className="botao-salvar">
+                                <button type="submit">Salvar</button>
+                                <Link className="BotaoVoltar" to="/app/home-caixa">Voltar</Link>
+                              </div>
+                      </div>
       </form>
     </div>
   );

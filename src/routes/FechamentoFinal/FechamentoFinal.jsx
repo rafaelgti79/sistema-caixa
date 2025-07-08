@@ -210,6 +210,31 @@ const dataHoje = new Date().toISOString().split('T')[0];
   }
 }
 }
+
+try {
+      const resFechar = await api.get('/fecharmaquinas');
+      const resM = await api.get('/maquinas');
+      const fechamentos = resFechar.data.filter(f =>
+        f.usuario === usuarioLogado.nome &&
+        f.dataHora.startsWith(dataHoje)
+      );
+
+      for (const f of fechamentos) {
+        const m = resM.data.find(x => x.id === f.maquinaId);
+        if (!m) continue;
+        const novoIn = parseFloat(m.inicial || 0) + parseFloat(f.entradaFinal || 0);
+        const novoFi = parseFloat(m.final || 0) + parseFloat(f.saidaFinal || 0);
+        await api.put(`/maquinas/${m.id}`, {
+          ...m,
+          inicial: novoIn,
+          final: novoFi
+        });
+      }
+    } catch (err) {
+      console.error("❌ Erro ao atualizar máquinas:", err);
+    }
+
+
 navigate('/app/home');
 };
 
