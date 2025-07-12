@@ -83,12 +83,13 @@ function Home() {
   if (loading) return <p>Carregando...</p>;
   if (!user) return <p>Você não está autenticado.</p>;
 
-  const somaPorUsuarioEData = (arr, usuario, data) => {
-    return arr
-      .filter(d => d.usuario === usuario && d.data?.startsWith(data) && d.fechado === 0)
-      .reduce((total, d) => total + Number(d.valor || 0), 0)
-      .toFixed(2);
-  };
+  //Caluculo das despesas, sangria e etc...
+  const somaPorCaixaId = (arr, caixaId) => {
+  return arr
+    .filter(d => d.caixaId === caixaId && d.fechado === 0)
+    .reduce((total, d) => total + Number(d.valor || 0), 0)
+    .toFixed(2);
+};
 
 // ✅ Redirecionamento controlado
   if (loading || !verificado) return <p>Carregando...</p>;
@@ -136,11 +137,11 @@ if (redirecionarParaAbrirCaixa) return <Navigate to="/app/abrir-caixa" replace /
 
                   <p>INFORMAÇÕES DO CAIXA</p>
                   <div className="grid-row"><span className="label">Fechamento:</span> <span className="value">0</span></div>
-                  <div className="grid-row"><span className="label">Despesas:</span> <span className="value">R$ {somaPorUsuarioEData(despesas, item.usuario, item.data)}</span></div>
-                  <div className="grid-row"><span className="label">Dinheiro:</span> <span className="value">R$ {somaPorUsuarioEData(dinheiro, item.usuario, item.data)}</span></div>
-                  <div className="grid-row"><span className="label">Reforço:</span> <span className="value">R$ {somaPorUsuarioEData(reforco, item.usuario, item.data)}</span></div>
-                  <div className="grid-row"><span className="label">Cartões:</span> <span className="value">R$ {somaPorUsuarioEData(cartao, item.usuario, item.data)}</span></div>
-                  <div className="grid-row"><span className="label">Sangria:</span> <span className="value">R$ {somaPorUsuarioEData(sangria, item.usuario, item.data)}</span></div>
+                  <div className="grid-row"><span className="label">Despesas:</span> <span className="value">R$ {somaPorCaixaId(despesas, item.id)}</span></div>
+                  <div className="grid-row"><span className="label">Dinheiro:</span> <span className="value">R$ {somaPorCaixaId(dinheiro, item.usuario, item.data)}</span></div>
+                  <div className="grid-row"><span className="label">Reforço:</span> <span className="value">R$ {somaPorCaixaId(reforco, item.usuario, item.data)}</span></div>
+                  <div className="grid-row"><span className="label">Cartões:</span> <span className="value">R$ {somaPorCaixaId(cartao, item.usuario, item.data)}</span></div>
+                  <div className="grid-row"><span className="label">Sangria:</span> <span className="value">R$ {somaPorCaixaId(sangria, item.usuario, item.data)}</span></div>
 
                   <p>PARCIAL DO CAIXA</p>
                   <div className="grid-row"><span className="label">Arrecadações:</span> <span className="value">0</span></div>

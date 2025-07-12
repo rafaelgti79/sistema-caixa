@@ -13,7 +13,7 @@ function Relatorios() {
            <Link to="/app/historicofechamento">Borderô</Link>
            <Link to="/lojas">Borderô2</Link>
            <Link to="/cartoes">Maquinas</Link>
-            <Link to="/conta">Despesas</Link>
+            <Link to="/app/relatoriomaindespesas">Despesas</Link>
             <Link to="/lojas">Cheques</Link>
            <Link to="/cartoes">Vales</Link>
             <Link to="/conta">D.Extras</Link>

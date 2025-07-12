@@ -52,7 +52,6 @@ useEffect(() => {
     const registrosDoDia = res.data.filter(item =>
       item.usuario === usuarioLogado.nome &&
       item.maquinaId === maquinaAtual.id &&
-      item.dataHora.startsWith(dataHoje) &&
       item.fechado === 0 // só pega registros em aberto
     );
 
@@ -121,48 +120,57 @@ if (maquinas && currentIndex < maquinas.length) {
 }, [currentIndex, maquinas, navigate]);
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    if (!maquinas || maquinas.length === 0) return;
+  if (!maquinas || maquinas.length === 0) return;
 
-    const maquinaAtual = maquinas[currentIndex];
-    const valorResultado = parseFloat(resultado);
+  const maquinaAtual = maquinas[currentIndex];
+  const valorResultado = parseFloat(resultado);
 
-    const fecharmaquinas = {
-      maquinaId: maquinaAtual.id,
-      maquina: maquinaAtual.numeroMaquina || maquinaAtual.jogo || maquinaAtual.id || maquinaAtual.inicial || maquinaAtual.final,
-      saidaFinal: parseFloat(saidaFinal),            // E.F digitada
-      entradaFinal: parseFloat(entradaFinal),      // S.F digitada
-      //maquinaEntradaInicial: maquinaAtual.inicial, // 👈 valor original da máquina (E.I)
-      //maquinaSaidaInicial: maquinaAtual.final,      // 👈 valor original da máquina (S.I)
-      resultado: parseFloat(resultado),
-      usuario: usuarioLogado.nome,
-      usuarioId: usuarioLogado.id || null,
-      dataHora: new Date().toISOString(),
-      
-     
-    };
+  //buscar caixa atual aberto
+   let caixaAtual;
+  try {
+    const caixasRes = await api.get('/caixa', {
+      params: {
+        usuario: usuarioLogado.nome,
+        loja: maquinaAtual.loja,
+        status: 'aberto'
+      }
+    });
 
-  console.log({
-  maquinaId: maquinaAtual.id,
-  maquina: maquinaAtual.numeroMaquina || maquinaAtual.jogo || maquinaAtual.id || maquinaAtual.inicial || maquinaAtual.final,
-  saidaFinal,
-  entradaFinal,
-  resultado,
-  usuario: usuarioLogado.nome,
-  usuarioId: usuarioLogado.id || null,
-  dataHora: new Date().toISOString()
-});
+    caixaAtual = caixasRes.data[0]; // Pega o primeiro caixa encontrado
+  } catch (err) {
+    console.error("Erro ao buscar caixa aberto:", err);
+    alert("Erro ao buscar caixa. Tente novamente.");
+    return;
+  }
 
 
-    try {
+  if (!caixaAtual) {
+    alert('Nenhum caixa aberto encontrado para essa loja e usuário. Por favor, abra um caixa antes de fechar a máquina.');
+    return;
+  }
+
+  const fecharmaquinas = {
+    maquinaId: maquinaAtual.id,
+    maquina: maquinaAtual.numeroMaquina || maquinaAtual.jogo || maquinaAtual.id,
+    saidaFinal: parseFloat(saidaFinal),
+    entradaFinal: parseFloat(entradaFinal),
+    resultado: parseFloat(resultado),
+    usuario: usuarioLogado.nome,
+    usuarioId: usuarioLogado.id || null,
+    dataHora: new Date().toISOString(),
+    caixaId: caixaAtual.id,  // <-- adiciona o caixaId aqui
+  };
+
+  try {
     const dataHoje = new Date().toISOString().split('T')[0];
+    
     const resFechamentos = await api.get('/fecharmaquinas');
     const existente = resFechamentos.data.find(item =>
-    item.usuario === usuarioLogado.nome &&
-    item.maquinaId === maquinaAtual.id &&
-    item.dataHora.startsWith(dataHoje) 
-    
+      item.usuario === usuarioLogado.nome &&
+      item.maquinaId === maquinaAtual.id &&
+      item.dataHora.startsWith(dataHoje)
     );
 
     if (existente) {
@@ -171,42 +179,36 @@ if (maquinas && currentIndex < maquinas.length) {
       await api.post('/fecharmaquinas', fecharmaquinas);
     }
 
-      
-      const caixaAtual = caixas.find(caixa =>
-      caixa.usuario === usuarioLogado.nome &&
-      caixa.loja === maquinaAtual.loja &&
-      caixa.data === dataHoje
-      );
+    if (valorResultado && !isNaN(valorResultado)) {
+      const fechamentoAtual = parseFloat(caixaAtual.fechamento || 0);
+      const totalEntradaAtual = parseFloat(caixaAtual.totalEntrada || 0);
 
-      if (caixaAtual && valorResultado && !isNaN(valorResultado)) {
-        const fechamentoAtual = parseFloat(caixaAtual.fechamento || 0);
-        const totalEntradaAtual = parseFloat(caixaAtual.totalEntrada || 0);
+      const novoFechamento = fechamentoAtual + valorResultado;
+      const novaEntrada = totalEntradaAtual + valorResultado;
 
-        const novoFechamento = fechamentoAtual + valorResultado;
-        const novaEntrada = totalEntradaAtual + valorResultado;
+      await api.put(`/caixa/${caixaAtual.id}`, {
+        ...caixaAtual,
+        fechamento: novoFechamento,
+        totalEntrada: novaEntrada
+      });
+    }
 
-        await api.put(`/caixa/${caixaAtual.id}`, {
-          ...caixaAtual,
-          fechamento: novoFechamento,
-          totalEntrada: novaEntrada
-        });
-      }
-
-      // Limpa os campos e avança para a próxima máquina
-      setInicial('');
-      setFinal('');
-      setSaidaFinal('');
-      setEntradaFinal('');
-      setResultado('');
-      if (currentIndex + 1 >= maquinas.length) {
+    // Limpa os campos e avança para a próxima máquina
+    setInicial('');
+    setFinal('');
+    setSaidaFinal('');
+    setEntradaFinal('');
+    setResultado('');
+    if (currentIndex + 1 >= maquinas.length) {
       navigate('/app/fechamento/final');
     } else {
       setCurrentIndex(prev => prev + 1);
     }
-    } catch (error) {
-      console.error("Erro ao salvar fechamento:", error);
-    }
-  };
+  } catch (error) {
+    console.error("Erro ao salvar fechamento:", error);
+  }
+};
+
 
   if (!maquinas || maquinas.length === 0) {
     return <div className="containerDespesas"><h2>Carregando máquinas...</h2></div>;

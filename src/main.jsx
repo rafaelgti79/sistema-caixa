@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.jsx';
 import './index.css';
+
+import Login from './routes/Login/login.jsx';
+import { PrivateRoute } from './components/PrivateRoute.jsx';
+import { AuthProvider } from './context/AuthContext.jsx';
 
 import Home from './routes/Home/home.jsx';
 import Maquinas from './routes/Maquinas/maquinas.jsx';
@@ -35,17 +40,11 @@ import Dinheiro from './routes/Dinheiro/Dinheiro.jsx';
 import Cartao from './routes/Cartao/Cartao.jsx';
 import FechamentoMaquinas from './routes/FechamentoMaquinas/FechamentoMaquinas.jsx';
 import FechamentoIndividual from './routes/FechamentoMaquinas/FechamentoIndividual/FechamentoIndividual.jsx';
-
-
-
-import Login from './routes/Login/login.jsx';
-import { PrivateRoute } from './components/PrivateRoute.jsx';
-import { AuthProvider } from './context/AuthContext.jsx';
-
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import RelatorioMainDespesas from './routes/RelatorioDespesas/relatorioMainDespesa.jsx';
 import FecharCaixa from './routes/FecharCaixa/FecharCaixa.jsx';
 import Sangria from './routes/Sangria/Sangria.jsx';
 import FechamentoFinal from './routes/FechamentoFinal/FechamentoFinal.jsx';
+import RelatorioDespesas from './routes/RelatorioDespesas/RelatorioDespesas.jsx';
 
 
 
@@ -100,8 +99,8 @@ const router = createBrowserRouter([
       { path: "/app/fechamentomaquinas", element: <PrivateRoute allowed={["admin", "caixa" ]}><FechamentoMaquinas/></PrivateRoute> },
       { path: "/app/fechamento/final", element: <PrivateRoute allowed={["admin", "caixa" ]}><FechamentoFinal/></PrivateRoute> },
       { path: "/app/fechamentoindividual", element: <PrivateRoute allowed={["admin", "caixa" ]}><FechamentoIndividual/></PrivateRoute> },
-
-    
+      { path: "/app/relatoriomaindespesas", element: <PrivateRoute allowed={["admin" ]}><RelatorioMainDespesas/></PrivateRoute> },
+      { path: "/app/relatoriodespesas", element: <PrivateRoute allowed={["admin"]}><RelatorioDespesas/></PrivateRoute> },
 
       { path: "/app/nao-autorizado", element: <PrivateRoute><NaoAutorizado /></PrivateRoute> },
       

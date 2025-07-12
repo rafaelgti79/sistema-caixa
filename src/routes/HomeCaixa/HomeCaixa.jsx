@@ -45,12 +45,13 @@ function HomeCaixa() {
   if (loading) return <p>Carregando...</p>;
   if (!user) return null;
 
-  const somaPorUsuarioEData = (arr, usuario, data) => {
-    return arr
-      .filter(d => d.usuario === usuario && d.data?.startsWith(data) && d.fechado === 0)
-      .reduce((total, d) => total + Number(d.valor || 0), 0)
-      .toFixed(2);
-  };
+  //Caluculo das despesas, sangria e etc...
+  const somaPorCaixaId = (arr, caixaId) => {
+  return arr
+    .filter(d => d.caixaId === caixaId && d.fechado === 0)
+    .reduce((total, d) => total + Number(d.valor || 0), 0)
+    .toFixed(2);
+};
 
   return (
     <div className="containerhome">
@@ -62,7 +63,7 @@ function HomeCaixa() {
         <Link to="/app/cartao">Cartões</Link>
         <Link to="/app/dinheiro">Dinheiro</Link>
         <Link to="/app/sangria">Sangria</Link>
-        <Link to="/app/extras">Extras</Link>
+        <Link to="/app/fechamento/final">Fechamento Final</Link>
         <Link to="/">Sair</Link>
       </div>
 
@@ -81,11 +82,11 @@ function HomeCaixa() {
 
                 <p>INFORMAÇÕES DO CAIXA</p>
                 <div className="grid-row"><span className="label">Fechamento:</span> <span className="value">0</span></div>
-                <div className="grid-row"><span className="label">Despesas:</span> <span className="value">R$ {somaPorUsuarioEData(despesas, item.usuario, item.data)}</span></div>
-                <div className="grid-row"><span className="label">Dinheiro:</span> <span className="value">R$ {somaPorUsuarioEData(dinheiro, item.usuario, item.data)}</span></div>
-                <div className="grid-row"><span className="label">Reforço:</span> <span className="value">R$ {somaPorUsuarioEData(reforco, item.usuario, item.data)}</span></div>
-                <div className="grid-row"><span className="label">Cartões:</span> <span className="value">R$ {somaPorUsuarioEData(cartao, item.usuario, item.data)}</span></div>
-                <div className="grid-row"><span className="label">Sangria:</span> <span className="value">R$ {somaPorUsuarioEData(sangria, item.usuario, item.data)}</span></div>
+                <div className="grid-row"><span className="label">Despesas:</span> <span className="value">R$ {somaPorCaixaId(despesas, item.id)}</span></div>
+                <div className="grid-row"><span className="label">Dinheiro:</span> <span className="value">R$ {somaPorCaixaId(dinheiro, item.id)}</span></div>
+                <div className="grid-row"><span className="label">Reforço:</span> <span className="value">R$ {somaPorCaixaId(reforco, item.id)}</span></div>
+                <div className="grid-row"><span className="label">Cartões:</span> <span className="value">R$ {somaPorCaixaId(cartao, item.id)}</span></div>
+                <div className="grid-row"><span className="label">Sangria:</span> <span className="value">R$ {somaPorCaixaId(sangria, item.id)}</span></div>
 
                 <p>PARCIAL DO CAIXA</p>
                 <div className="grid-row"><span className="label">Arrecadações:</span> <span className="value">0</span></div>

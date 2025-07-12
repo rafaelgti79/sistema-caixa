@@ -10,29 +10,50 @@ function Cartao() {
   const [cartoes, setCartoes] = useState([]);
   const [cartaoUsuario, setCartaoUsuario] = useState([]);
   const [totalCartaoAbertas, setTotalcartaoAbertas] = useState(0);
+  const [caixaAberto, setCaixaAberto] = useState(null);
+  const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
 
-  //Cartao dos usuarios
-    useEffect(() => {
-    async function carregarCartaoUsuario() {
-      const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-      const hoje = new Date().toISOString().split('T')[0];
-  
-      try {
-        const res = await api.get('/cartao');
-        const cartaoFiltradas = res.data.filter(
-          (d) =>
-            d.usuario === usuarioLogado.nome &&
-            d.data?.startsWith(hoje) &&
-            d.fechado === 0
-        );
-        setCartaoUsuario(cartaoFiltradas);
-      } catch (err) {
-        console.error('Erro ao carregar despesas do usuário:', err);
-      }
+  // 🔹 Buscar o caixa aberto ao carregar
+useEffect(() => {
+  async function buscarCaixaAberto() {
+    try {
+      const res = await api.get('/caixa', {
+        params: {
+          status: 'aberto',
+          usuario: usuarioLogado.nome
+        }
+      });
+      const caixa = res.data[0];
+      if (caixa) setCaixaAberto(caixa);
+    } catch (error) {
+      console.error('Erro ao buscar caixa aberto:', error);
     }
-  
+  }
+
+  buscarCaixaAberto();
+}, [usuarioLogado.nome]);
+
+ // 🔹 Função reutilizável para carregar os cartões do usuário
+  const carregarCartaoUsuario = async () => {
+    if (!caixaAberto) return;
+
+    try {
+      const res = await api.get('/cartao', {
+        params: { caixaId: caixaAberto.id }
+      });
+
+      const cartaoFiltradas = res.data.filter(d => d.fechado === 0);
+      setCartaoUsuario(cartaoFiltradas);
+    } catch (err) {
+      console.error('Erro ao carregar cartões:', err);
+    }
+  };
+
+  // 🔹 Chamar o carregamento de cartões quando o caixa for definido
+  useEffect(() => {
     carregarCartaoUsuario();
-  }, []);
+  }, [caixaAberto]);
+
   
   
   //Deletar as Cartao
@@ -45,14 +66,14 @@ function Cartao() {
     }
   };
   
-  //Total dos Cartao
+   // 🔹 Calcular total dos cartões abertos
   useEffect(() => {
     const total = cartaoUsuario.reduce((acc, d) => acc + parseFloat(d.valor || 0), 0);
     setTotalcartaoAbertas(total);
   }, [cartaoUsuario]);
 
 
-
+// 🔹 Salvar novo cartão
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -67,42 +88,51 @@ function Cartao() {
       return;
     }
 
+    if (!caixaAberto) {
+  alert('Nenhum caixa aberto encontrado.');
+  return;
+}
+
     const dataHoje = new Date().toISOString().split('T')[0];
 
     const novoCartao = {
       valor: parseFloat(valor),
       tipo,
       usuario: usuarioLogado.nome,
-      data: dataHoje
+      data: dataHoje,
+      caixaId: caixaAberto.id 
     };
 
-    try {
-      const response = await api.post("/cartao", novoCartao);
-      setCartoes((prev) => [...prev, response.data]); // adiciona novo
+   try {
+      await api.post("/cartao", novoCartao);
       setValor('');
       setTipo('');
+
+      // ✅ Recarregar lista de cartões imediatamente após salvar
+      await carregarCartaoUsuario();
     } catch (error) {
       console.error("Erro ao salvar cartão:", error);
       alert("Erro ao salvar cartão.");
     }
   };
+  
 
-
+  
   return (
     <div className="containerCartao">
       <h1>CARTÕES</h1>
       <form onSubmit={handleSubmit}>
         
           <label>VALOR:</label>
-          <input
+          <input className='inpuCaixaCartao'
             type="number"
             step="0.01"
             value={valor}
             onChange={(event) => setValor(event.target.value)}
           />
 
-          <label>Tipo:</label>
-<select value={tipo} onChange={(event) => setTipo(event.target.value)}>
+   <label>Tipo:</label>
+<select className='inpuCaixaSelectCartao' value={tipo} onChange={(event) => setTipo(event.target.value)}>
   <option value="">Selecione o Tipo</option>
   <option value="credito">Credito</option>
   <option value="debito">Debito</option>
@@ -111,17 +141,17 @@ function Cartao() {
         
 
         
-        <div className="lista-despesas">
-                <h2>Cartão</h2>
+                
+        <div className="lista-Cartao">
                 {cartaoUsuario.length === 0 ? (
-                  <p>Nenhuma despesa aberta encontrada.</p>
+                  <p></p>
                 ) : (
                   <ul>
                     {cartaoUsuario.map((cartao) => (
                       <li key={cartao.id}>
                         <strong>{cartao.tipo}</strong> - R$ {parseFloat(cartao.valor).toFixed(2)}
                         <button
-                          style={{ marginLeft: '10px', color: 'red' }}
+                          style={{ marginLeft: '10px', color: 'white' }}
                           onClick={() => deletarCartao(cartao.id)}
                         >
                           Excluir
@@ -131,13 +161,15 @@ function Cartao() {
                   </ul>
                 )}
                 <p><strong>Total:</strong> R$ {totalCartaoAbertas.toFixed(2)}</p>
-                <div className="botao-salvar">
-                        <button type="submit">Salvar</button>
-                        <Link className="BotaoVoltar" to="/app/home-caixa">Voltar</Link>
-                      </div>
-              </div>
-      </form>
+
+      <div className="btn-abrirCartao">
+        <button className='btn-salvarCartao' type="submit">Salvar</button>
+        <Link className="btn-voltarCartao" to="/app/home-caixa">Voltar</Link>
+      </div>
     </div>
+      
+    </form>
+  </div>
   );
 }
 
@@ -145,70 +177,7 @@ export default Cartao;
 
 
 
-
-/*
-import React, { useState } from 'react';
-import { useFetch } from '../hooks/useFetch';
-
-const url = "http://localhost:3000/cartao";
-
-
-function Cartao() {
-  
-  const [valor, setValor] = useState('');
-  const [tipo, setTipo] = useState('');
-  
-
- const {data: items, httpConfig} = useFetch(url);
-  
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    
-    const cartao = {
-
-      valor: parseFloat(valor),
-      tipo,
-       usuario: usuarioLogado.nome
-    };
-    httpConfig(cartao, "POST");
-    
-    // Limpar os campos
-    setValor('');
-    setTipo('');
-  
-
-  };
-
-  return (
-    <div className="containerDespesas">
-      <h1>CARTÕES</h1>
-      <form onSubmit={handleSubmit}>
-          <div className="subcontainer">
-           
-           <label>VALOR:</label>
-            <input
-  type="number"
-  step="0.01"
-  value={valor}
-  onChange={(event) => setValor(event.target.value)}
-/>
-            <label>TIPO:</label>
-            <input type="text" value={tipo} onChange={(event) => setTipo(event.target.value)} />
-
-          </div>
-        
-        <div className="botao-salvar">
-          <button type="submit">Salvar</button>
-        </div>
-      </form>
-    </div>
-  );
-}
-export default Cartao;
-   */         
+         
           
        
 

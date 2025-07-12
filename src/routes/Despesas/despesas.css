@@ -1,6 +1,6 @@
 
 
-.containerCartao {
+.containerCastroDespesas {
   text-align: center;
   max-width: 400px;
   margin: 40px auto;
@@ -12,7 +12,7 @@
  
 }
 
-.inpuCaixaCartao{
+.inpuCaixaDespesa{
   
   height: 30px !important; /* força a altura */
   margin-bottom: 10px;
@@ -21,7 +21,7 @@
   border: 1px solid #ccc;
 }
 
-.inpuCaixaSelectCartao{
+.inpuCaixaSelectDespesa{
   width: 40%;
   height: 40px;
   margin-bottom: 20px;
@@ -32,7 +32,7 @@
 
 
 
-.btn-abrirCartao {
+.btn-abrirDespesa {
   display: flex;
   gap: 10px;
   justify-content: center;
@@ -40,16 +40,16 @@
   margin-top: 20px;
 }
 
-.btn-abrirCartao .btn-salvarCartao,
-.btn-abrirCartao .btn-voltarCartao {
+.btn-abrirDespesa .btn-salvarDespesa,
+.btn-abrirDespesa .btn-voltarDespesa {
   flex: 1;
   padding: 10px;
   height: 40px;
   max-width: 10px; /* opcional */
 }
 
-.btn-abrirCartao .btn-salvarCartao,
-.btn-abrirCartao .btn-voltarCartao {
+.btn-abrirDespesa .btn-salvarDespesa,
+.btn-abrirDespesa .btn-voltarDespesa {
   min-width: 120px;
   padding: 10px 20px;
   display: inline-flex;
@@ -66,16 +66,16 @@
   box-sizing: border-box;
 }
 
-.btn-abrirCartao .btn-salvarCartao {
+.btn-abrirDespesa .btn-salvarDespesa {
   background-color: #28a745;
 }
 
-.btn-abrirCartao .btn-voltarCartao {
+.btn-abrirDespesa .btn-voltarDespesa {
   background-color: #007bff;
    margin-top: -1px; /* sobe ligeiramente */
 }
 
-.lista-Cartao {
+.lista-despesas {
   margin-top: 20px;
   text-align: left;
   padding: 20px;
@@ -84,13 +84,13 @@
   border-radius: 10px;
 }
 
-.lista-Cartao ul {
+.lista-despesas ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.lista-Cartao li {
+.lista-despesas li {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -102,13 +102,13 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.lista-Cartao li strong {
+.lista-despesas li strong {
   text-transform: capitalize;
   font-weight: 600;
   color: #333;
 }
 
-.lista-Cartao li button {
+.lista-despesas li button {
   padding: 6px 12px;
   font-size: 14px;
   border: none;
@@ -119,11 +119,11 @@
   transition: background-color 0.2s;
 }
 
-.lista-Cartao li button:hover {
+.lista-despesas li button:hover {
   background-color: #c82333;
 }
 
-.lista-Cartao p {
+.lista-despesas p {
   font-weight: bold;
   text-align: right;
   margin-top: 15px;

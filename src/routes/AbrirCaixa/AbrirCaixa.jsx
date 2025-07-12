@@ -59,17 +59,22 @@ function AbrirCaixa() {
   const dataHoje = new Date().toISOString().split('T')[0];
 
   const caixa = {
-    fundoInicial,
+    fundoInicial: parseFloat(fundoInicial),
     data: dataHoje,
     setor,
     loja,
     usuario: usuarioLogado.nome,
     status: 'aberto'
   };
+  if (!fundoInicial || !loja) {
+  return alert("Preencha todos os campos obrigatórios.");
+}
+
 
   try {
-    // 1. Cria o novo caixa
-    await api.post('/caixa', caixa);
+    // 1. Cria o caixa e guarda a resposta
+    const resCaixa = await api.post('/caixa', caixa);
+    const novoCaixa = resCaixa.data; // agora temos o ID
 
     // 2. Busca todas as máquinas da loja atual
     const resMaquinas = await api.get('/maquinas');
@@ -78,11 +83,12 @@ function AbrirCaixa() {
     // 3. Cria um novo registro de fechamento por máquina
     for (const maquina of maquinasDaLoja) {
       await api.post('/fecharmaquinas', {
+        caixaId: novoCaixa.id, // <-- necessário para relacionamento
         maquinaId: maquina.id,
         maquina: maquina.numeroMaquina || maquina.id,
-        entradaFinal: '', // será preenchido no fechamento
-        saidaFinal: '',
-        resultado: '',
+        entradaFinal: 0, // será preenchido no fechamento
+        saidaFinal: 0,
+        resultado: 0,
         usuario: usuarioLogado.nome,
         usuarioId: usuarioLogado.id,
         dataHora: new Date().toISOString(),
