@@ -14,7 +14,7 @@ function Maquinas() {
   const [setor, setSetor] = useState('');
   const [inicial, setInicial] = useState('');
   const [final, setFinal] = useState('');
-  const [valorJogo, setValorJogo] = useState('');
+  const [valor, setValorJogo] = useState('');
   const [lojas, setLojas] = useState([]);
   const [jogos, setJogos] = useState([]);
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ function Maquinas() {
       loja,
       numeroMaquina,
       jogo,
-      valorJogo,
+      valor,
       maquineiro,
       setor,
       inicial,
@@ -85,7 +85,7 @@ function Maquinas() {
     setLoja(nomeSelecionado);
     const jogoSelecionado = lojas.find(j => j.loja === nomeSelecionado);
     if (jogoSelecionado) {
-      setValorJogo(jogoSelecionado.valorJogo);
+      setValorJogo(jogoSelecionado.valor);
     }
   }}
 >
@@ -109,14 +109,14 @@ function Maquinas() {
     setJogo(nomeSelecionado);
     const jogoSelecionado = jogos.find(j => j.nomedojogo === nomeSelecionado);
     if (jogoSelecionado) {
-      setValorJogo(jogoSelecionado.valorJogo);
+      setValorJogo(jogoSelecionado.valor);
     }
   }}
 >
   <option value=""></option>
   {jogos && jogos.map((j) => (
     <option key={j.id || j.nomedojogo} value={j.nomedojogo}>
-      {j.nomedojogo}
+      {j.nomedojogo} {j.valor}
     </option>
   ))}
 </select>
