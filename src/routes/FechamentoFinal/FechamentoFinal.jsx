@@ -78,7 +78,7 @@ function FechamentoFinal() {
   useEffect(() => {
     async function buscarDados() {
       if (!caixaAberto) {
-        setCarregando(false);
+       // setCarregando(false);
         return;
       }
       try {
@@ -109,9 +109,7 @@ function FechamentoFinal() {
         setReforcos(resReforco.data || []);
       } catch (error) {
         console.error("❌ Erro ao buscar dados:", error);
-      } finally {
-        setCarregando(false);
-      }
+      } 
     }
     buscarDados();
     console.log('caixaAberto:', caixaAberto);
