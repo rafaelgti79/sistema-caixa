@@ -14,7 +14,13 @@ function formatarMoeda(valor) {
 
 function FechamentoFinal() {
   const navigate = useNavigate();
-  const [usuarioLogado, setUsuarioLogado] = useState(null);
+
+  // ✅ Corrigido: carregar usuário diretamente no useState
+  const [usuarioLogado] = useState(() => {
+    const user = localStorage.getItem('usuarioLogado');
+    return user ? JSON.parse(user) : null;
+  });
+
   const [fecharmaquinas, setFecharmaquinas] = useState([]);
   const [despesas, setDespesas] = useState([]);
   const [sangrias, setSangrias] = useState([]);
@@ -43,48 +49,33 @@ function FechamentoFinal() {
   const [dinheiroLiquido, setDinheiroLiquido] = useState(0);
   const [totalFalta, setTotalfalta] = useState(0);
 
-  // Carregar usuário logado do localStorage
-  useEffect(() => {
-    try {
-      const user = localStorage.getItem('usuarioLogado');
-      if (user) {
-        const parsedUser = JSON.parse(user);
-        if (parsedUser?.nome) {
-          setUsuarioLogado(parsedUser);
-        } else {
-          navigate('/login');
-        }
-      } else {
-        navigate('/login');
-      }
-    } catch (error) {
-      console.error('Erro ao recuperar usuário:', error);
-      navigate('/login');
-    }
-  }, []);
-
+  // 🔄 Buscar caixa aberto após usuário estar definido
   useEffect(() => {
     if (!usuarioLogado) return;
+
     async function buscarCaixaAberto() {
       try {
         const res = await api.get('/caixa', {
-          params: { status: 'aberto', usuario: usuarioLogado.nome },
+          params: {
+            status: 'aberto',
+            usuario: usuarioLogado.nome,
+          },
         });
         setCaixaAberto(res.data[0] || null);
       } catch (error) {
         console.error("Erro ao buscar caixa aberto:", error);
       }
     }
+
     buscarCaixaAberto();
   }, [usuarioLogado]);
 
   useEffect(() => {
-    if (!caixaAberto) {
-      setCarregando(false);
-      return;
-    }
-
     async function buscarDados() {
+      if (!caixaAberto) {
+        setCarregando(false);
+        return;
+      }
       try {
         const [
           resFecharmaquinas,
@@ -112,7 +103,7 @@ function FechamentoFinal() {
         setCaixas(resCaixa.data || []);
         setReforcos(resReforco.data || []);
       } catch (error) {
-        console.error("Erro ao buscar dados:", error);
+        console.error("❌ Erro ao buscar dados:", error);
       } finally {
         setCarregando(false);
       }
@@ -123,7 +114,7 @@ function FechamentoFinal() {
   useEffect(() => {
     if (!caixaAberto || !usuarioLogado) return;
 
-    const filtrar = (arr) =>
+    const filtrarPorCaixaEUsuario = (arr) =>
       arr.filter(
         (item) =>
           item.usuario === usuarioLogado.nome &&
@@ -131,29 +122,55 @@ function FechamentoFinal() {
           item.fechado === 0
       );
 
-    const fecharFiltrado = filtrar(fecharmaquinas);
-    const despesasFiltradas = filtrar(despesas);
-    const sangriaFiltrada = filtrar(sangrias);
-    const cartaoFiltrado = filtrar(cartoes);
-    const reforcoFiltrado = filtrar(reforcos);
-    const dinheiroFiltrado = filtrar(dinheiro);
+    const fecharFiltrado = filtrarPorCaixaEUsuario(fecharmaquinas);
+    const despesasFiltradas = filtrarPorCaixaEUsuario(despesas);
+    const sangriaFiltrada = filtrarPorCaixaEUsuario(sangrias);
+    const cartaoFiltrado = filtrarPorCaixaEUsuario(cartoes);
+    const reforcoFiltrado = filtrarPorCaixaEUsuario(reforcos);
+    const dinheiroFiltrado = filtrarPorCaixaEUsuario(dinheiro);
 
-    const totalCartaoCredito = cartaoFiltrado.filter(i => i.tipo === 'credito').reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
-    const totalCartaoDebito = cartaoFiltrado.filter(i => i.tipo === 'debito').reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
-    const totalCartaoPix = cartaoFiltrado.filter(i => i.tipo === 'pix').reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
-    const totalReforco = reforcoFiltrado.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
+    const totalCartaoCredito = cartaoFiltrado
+      .filter((i) => i.tipo === 'credito')
+      .reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
+    const totalCartaoDebito = cartaoFiltrado
+      .filter((i) => i.tipo === 'debito')
+      .reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
+    const totalCartaoPix = cartaoFiltrado
+      .filter((i) => i.tipo === 'pix')
+      .reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
 
-    const totalEntrada = fecharFiltrado.reduce((acc, item) =>
-      acc + parseFloat((item.resultado || '0').toString().replace(',', '.')), 0);
+    const totalReforco = reforcoFiltrado.reduce(
+      (acc, i) => acc + parseFloat(i.valor || 0),
+      0
+    );
+    const totalEntrada = fecharFiltrado.reduce(
+      (acc, item) =>
+        acc +
+        parseFloat((item.resultado || '0').toString().replace(',', '.')),
+      0
+    );
 
     const totalSaida = fecharFiltrado
-      .filter(item => parseFloat((item.resultado || '0').toString().replace(',', '.')) < 0)
-      .reduce((acc, item) =>
-        acc + Math.abs(parseFloat((item.resultado || '0').toString().replace(',', '.'))), 0);
+      .filter((item) => parseFloat((item.resultado || '0').toString().replace(',', '.')) < 0)
+      .reduce(
+        (acc, item) =>
+          acc +
+          Math.abs(parseFloat((item.resultado || '0').toString().replace(',', '.'))),
+        0
+      );
 
-    const totalDespesasCalc = despesasFiltradas.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
-    const totalSangriaCalc = sangriaFiltrada.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
-    const dinheiroTotal = dinheiroFiltrado.reduce((acc, i) => acc + parseFloat(i.valor || 0), 0);
+    const totalDespesasCalc = despesasFiltradas.reduce(
+      (acc, i) => acc + parseFloat(i.valor || 0),
+      0
+    );
+    const totalSangriaCalc = sangriaFiltrada.reduce(
+      (acc, i) => acc + parseFloat(i.valor || 0),
+      0
+    );
+    const dinheiroTotal = dinheiroFiltrado.reduce(
+      (acc, i) => acc + parseFloat(i.valor || 0),
+      0
+    );
 
     const resultadoBruto = totalEntrada - totalSaida;
     const resultadoLiquido = resultadoBruto - totalDespesasCalc;
@@ -164,7 +181,7 @@ function FechamentoFinal() {
     const dinheiroLiquidoCalc = fundoDoCaixaAtual - dinheiroTotal;
     const calculoFalta = composicaoTotalCalc < resultadoLiquido ? resultadoLiquido - composicaoTotalCalc : 0;
 
-    // Set dos valores calculados
+    // Setar estados finais
     setTotalDinheiro(dinheiroTotal);
     setTotalfalta(totalFalta);
     setEntrada(totalEntrada);
@@ -177,6 +194,7 @@ function FechamentoFinal() {
     setFundoInicial(fundoDoCaixaAtual);
     setValorReforco(totalReforco);
     setCartaoCredito(totalCartaoCredito);
+
     setCartaoDebito(totalCartaoDebito);
     setCartaoPix(totalCartaoPix);
     setTotalSangria(totalSangriaCalc);
