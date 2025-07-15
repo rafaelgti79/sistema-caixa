@@ -135,7 +135,7 @@ function Maquinas() {
         <div className='btn-abrirMaquina'>
           <button className='btn-salvar'  type="submit">Salvar</button>
          
-          <button className='btn-voltar' onClick={() => navigate('/app/cadastros')}>Voltar</button>
+          <button className='btn-voltar' type="button" onClick={() => navigate('/app/cadastros')}>Voltar</button>
          </div>
   </div> 
         

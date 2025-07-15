@@ -164,7 +164,7 @@ useEffect(() => {
 
       <div className="btn-abrirCartao">
         <button className='btn-salvarCartao' type="submit">Salvar</button>
-        <Link className="btn-voltarCartao" to="/app/home-caixa">Voltar</Link>
+        <Link className="btn-voltarCartao" type="button" to="/app/home-caixa">Voltar</Link>
       </div>
     </div>
       

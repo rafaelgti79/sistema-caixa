@@ -45,6 +45,7 @@ import FecharCaixa from './routes/FecharCaixa/FecharCaixa.jsx';
 import Sangria from './routes/Sangria/Sangria.jsx';
 import FechamentoFinal from './routes/FechamentoFinal/FechamentoFinal.jsx';
 import RelatorioDespesas from './routes/RelatorioDespesas/RelatorioDespesas.jsx';
+import EditarMaquina from './routes/EditarMaquina/editarMaquina.jsx';
 
 
 
@@ -101,6 +102,7 @@ const router = createBrowserRouter([
       { path: "/app/fechamentoindividual", element: <PrivateRoute allowed={["admin", "caixa" ]}><FechamentoIndividual/></PrivateRoute> },
       { path: "/app/relatoriomaindespesas", element: <PrivateRoute allowed={["admin" ]}><RelatorioMainDespesas/></PrivateRoute> },
       { path: "/app/relatoriodespesas", element: <PrivateRoute allowed={["admin"]}><RelatorioDespesas/></PrivateRoute> },
+      { path: "/app/editarmaquina/:id", element: <PrivateRoute allowed={["admin"]}><EditarMaquina/></PrivateRoute> },
 
       { path: "/app/nao-autorizado", element: <PrivateRoute><NaoAutorizado /></PrivateRoute> },
       

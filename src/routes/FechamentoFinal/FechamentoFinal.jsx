@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import api from '../../constants/api.js';
 import './FechamentoFinal.css';
+
 
 function formatarMoeda(valor) {
   return valor.toLocaleString('pt-BR', {
@@ -192,11 +192,13 @@ function FechamentoFinal() {
 
     const composicaoTotalCalc = resultadoLiquido + fundoDoCaixaAtual + totalReforco;
 
-    const totalFalta = totalCartaoCredito - totalCartaoDebito - totalCartaoPix - totalSangria + dinheiroTotal;
+    const totalFalta = composicaoTotalCalc - totalCartaoCredito - totalCartaoDebito - totalCartaoPix - totalSangriaCalc - dinheiroTotal;
+    //const totalFalta = totalCartaoCredito - totalCartaoDebito - totalCartaoPix - totalSangria + dinheiroTotal;
 
-    
     const dinheiroLiquidoCalc = fundoDoCaixaAtual - dinheiroTotal;
+
     const calculoFalta = composicaoTotalCalc < resultadoLiquido ? resultadoLiquido - composicaoTotalCalc : 0;
+    
 
     setTotalDinheiro(dinheiroTotal);
     setTotalfalta(totalFalta);
@@ -324,7 +326,7 @@ for (const maquina of todasMaquinasDaLoja) {
   const fechamento = fecharMaquinasRes.data.find((f) => {
   const condMaquina = parseInt(f.maquinaId) === parseInt(maquina.id);
   const condUser = (f.usuario || '').trim().toLowerCase()
-                   === usuarioLogado.nome.trim().toLowerCase();
+   === usuarioLogado.nome.trim().toLowerCase();
   const condFechado = f.fechado === 1 || f.fechado === '1';
   console.log('Compare conds:', {
     f,
@@ -349,10 +351,11 @@ for (const maquina of todasMaquinasDaLoja) {
 
   const novoInicial = inicialAtual + entradaFinal;
   const novoFinal = finalAtual + saidaFinal;
+
     console.log(`✅ Atualizando máquina ${maquina.id} com: inicial = ${novoInicial}, final = ${novoFinal}`);
 
 
-  console.log({
+    console.log({
     id: maquina.id,
     inicialAtual,
     entradaFinal,
@@ -367,20 +370,18 @@ for (const maquina of todasMaquinasDaLoja) {
   final: novoFinal,
 });
 console.log(`✅ Máquina ${maquina.id} atualizada:`, res.data);
-
 }
 
+alert('Caixa fechado com sucesso!');
+navigate('/app/home');
+} catch (error) {
+console.error('Erro ao fechar caixa:', error);
+alert('Erro ao fechar caixa, veja o console.');
+}
+};
 
-      alert('Caixa fechado com sucesso!');
-      navigate('/app/home');
-    } catch (error) {
-      console.error('Erro ao fechar caixa:', error);
-      alert('Erro ao fechar caixa, veja o console.');
-    }
-  };
 
   if (carregando) return <div>Carregando...</div>;
-
   if (!caixaAberto) {
     return (
       <div className="fechamento-final-container">
@@ -389,6 +390,7 @@ console.log(`✅ Máquina ${maquina.id} atualizada:`, res.data);
       </div>
     );
   }
+
 
   return (
     <div className="containerDespesas">
