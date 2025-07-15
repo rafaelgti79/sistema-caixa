@@ -53,6 +53,8 @@ function FechamentoFinal() {
   useEffect(() => {
     if (!usuarioLogado) return;
 
+    setCarregando(true); // Coloque aqui para mostrar carregando enquanto busca caixa aberto
+
     async function buscarCaixaAberto() {
       try {
         const res = await api.get('/caixa', {
@@ -64,10 +66,13 @@ function FechamentoFinal() {
         setCaixaAberto(res.data[0] || null);
       } catch (error) {
         console.error("Erro ao buscar caixa aberto:", error);
-      }
+      } finally {
+      setCarregando(false); // Só desliga carregando após buscar o caixa
     }
+  }
 
     buscarCaixaAberto();
+    console.log('usuarioLogado:', usuarioLogado);
   }, [usuarioLogado]);
 
   useEffect(() => {
@@ -109,6 +114,7 @@ function FechamentoFinal() {
       }
     }
     buscarDados();
+    console.log('caixaAberto:', caixaAberto);
   }, [caixaAberto]);
 
   useEffect(() => {
