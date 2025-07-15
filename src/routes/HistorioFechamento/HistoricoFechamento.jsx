@@ -66,9 +66,8 @@ function HistoricoCaixa() {
               <div className="grid-row"><span className="label">Reforço:</span><span className="value">R$ {Number(item.reforco || 0).toFixed(2)}</span></div>
 
               <div className="grid-row"><span className="label">Composição Total:</span><span className="value">R$ {Number(item.composicaoTotal || item.composicao).toFixed(2)}</span></div>
-              <div className="grid-row"><span className="label">Crédito:</span><span className="value">R$ {Number(item.cartaoCredito || 0).toFixed(2)}</span></div>
-              <div className="grid-row"><span className="label">Débito:</span><span className="value">R$ {Number(item.cartaoDebito || 0).toFixed(2)}</span></div>
-              <div className="grid-row"><span className="label">Pix:</span><span className="value">R$ {Number(item.cartaoPix || 0).toFixed(2)}</span></div>
+              <div className="grid-row"><span className="label">Cartão:</span><span className="value">R$ {Number(item.cartao || 0).toFixed(2)}</span></div>
+              
               <div className="grid-row"><span className="label">Dinheiro:</span><span className="value">R$ {Number(item.dinheiroLiquido || item.dinheiro).toFixed(2)}</span></div>
               <div className="grid-row"><span className="label">Sangria:</span><span className="value">R$ {Number(item.sangria || 0).toFixed(2)}</span></div>
 
