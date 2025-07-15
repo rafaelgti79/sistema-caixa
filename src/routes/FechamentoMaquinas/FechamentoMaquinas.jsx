@@ -84,7 +84,7 @@ useEffect(() => {
 if (maquinas && currentIndex < maquinas.length) {
  const maquinaAtual = maquinas[currentIndex];
  
- const valorJogo = parseFloat(maquinaAtual.valorJogo);
+ const valorJogo = parseFloat(maquinaAtual.valor);
 
  const entradaIni = parseFloat(maquinaAtual.inicial);  // E.I
  const entradaFin = parseFloat(entradaFinal);            // E.F
