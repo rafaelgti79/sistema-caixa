@@ -274,13 +274,19 @@ function FechamentoFinal() {
         if (!fechamento) continue;
 
         const entradaFinal = parseFloat(fechamento.entradaFinal || 0);
-        const saidaFinal = parseFloat(fechamento.saidaFinal || 0);
+  const saidaFinal = parseFloat(fechamento.saidaFinal || 0);
 
-        await api.put(`/maquinas/${maquina.id}`, {
-          inicial: parseFloat(maquina.inicial || 0) + entradaFinal,
-          final: parseFloat(maquina.final || 0) + saidaFinal,
-        });
-      }
+  const entradaAtual = parseFloat(maquina.inicial || 0);
+  const saidaAtual = parseFloat(maquina.final || 0);
+
+  const diferencaEntrada = entradaFinal - entradaAtual;
+  const diferencaSaida = saidaFinal - saidaAtual;
+
+  await api.put(`/maquinas/${maquina.id}`, {
+    inicial: entradaAtual + diferencaEntrada,
+    final: saidaAtual + diferencaSaida,
+  });
+}
 
       alert('Caixa fechado com sucesso!');
       navigate('/app/home');

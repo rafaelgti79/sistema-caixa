@@ -261,6 +261,43 @@ return (
           <button type="submit">Salvar</button>
           <Link className="BotaoVoltar" to="/app/home-caixa">Voltar</Link>
         </div>
+        <div className="navegacao-maquinas">
+  <button
+    type="button"
+    onClick={() => setCurrentIndex((prev) => Math.max(prev - 1, 0))}
+    disabled={currentIndex === 0}
+  >
+    ⬅ 
+  </button>
+
+  <span>{currentIndex + 1} de {maquinas.length}</span>
+
+  <button
+    type="button"
+    onClick={() => setCurrentIndex((prev) => Math.min(prev + 1, maquinas.length - 1))}
+    disabled={currentIndex >= maquinas.length - 1}
+  >
+     ➡
+  </button>
+</div>
+
+<div className="ir-para-maquina">
+  <label>Ir para máquina nº:</label>
+  <input
+    type="number"
+    onChange={(e) => {
+      const numero = parseInt(e.target.value);
+      const indexEncontrado = maquinas.findIndex(
+        (m) => parseInt(m.numeroMaquina) === numero
+      );
+      if (indexEncontrado !== -1) {
+        setCurrentIndex(indexEncontrado);
+      }
+    }}
+    placeholder="Digite o número"
+  />
+</div>
+
       </form>
     </div>
   );

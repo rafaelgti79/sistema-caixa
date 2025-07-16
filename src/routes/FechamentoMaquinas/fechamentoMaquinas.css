@@ -137,3 +137,23 @@ button[type="submit"]:hover {
   height: 36px;
   margin-bottom: 4px;
 }
+
+.navegacao-maquinas {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.ir-para-maquina {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ir-para-maquina input {
+  width: 80px;
+  padding: 4px;
+}
