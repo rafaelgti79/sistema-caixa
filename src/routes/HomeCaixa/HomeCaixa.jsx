@@ -56,8 +56,7 @@ function HomeCaixa() {
   return (
     <div className="containerhome">
       <div className="colunatabel">
-        <Link to="/app/fechamentoindividual">Fechar I</Link>
-        <Link to="/app/fechamentomaquinas">Fechar 2</Link>
+        <Link to="/app/fechamentomaquinas">Fechar Maquinas</Link>
         <Link to="/app/despesas">Despesas</Link>
         <Link to="/app/reforco">Reforço</Link>
         <Link to="/app/cartao">Cartões</Link>
