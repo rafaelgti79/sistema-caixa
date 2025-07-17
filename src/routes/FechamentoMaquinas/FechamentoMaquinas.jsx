@@ -154,14 +154,24 @@ if (maquinas && currentIndex < maquinas.length) {
   const fecharmaquinas = {
     maquinaId: maquinaAtual.id,
     maquina: maquinaAtual.numeroMaquina || maquinaAtual.jogo || maquinaAtual.id,
-    saidaFinal: parseFloat(saidaFinal),
-    entradaFinal: parseFloat(entradaFinal),
+   // saidaFinal: parseFloat(saidaFinal),
+    //entradaFinal: parseFloat(entradaFinal),
     resultado: parseFloat(resultado),
     usuario: usuarioLogado.nome,
     usuarioId: usuarioLogado.id || null,
     dataHora: new Date().toISOString(),
     caixaId: caixaAtual.id,  // <-- adiciona o caixaId aqui
   };
+
+  // Só adiciona entradaFinal se for número válido
+if (!isNaN(parseFloat(entradaFinal)) && entradaFinal !== '') {
+  fecharmaquinas.entradaFinal = parseFloat(entradaFinal);
+}
+
+// Só adiciona saidaFinal se for número válido
+if (!isNaN(parseFloat(saidaFinal)) && saidaFinal !== '') {
+  fecharmaquinas.saidaFinal = parseFloat(saidaFinal);
+}
 
   try {
     const dataHoje = new Date().toISOString().split('T')[0];

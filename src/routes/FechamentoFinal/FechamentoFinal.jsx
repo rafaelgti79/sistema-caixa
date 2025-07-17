@@ -265,27 +265,47 @@ function FechamentoFinal() {
       });
 
       for (const maquina of maquinasDaLoja) {
-        const fechamento = fecharMaquinasRes.data.find((f) =>
-          parseInt(f.maquinaId) === parseInt(maquina.id) &&
-          f.usuario.trim().toLowerCase() === usuarioLogado.nome.trim().toLowerCase() &&
-          (f.fechado === 1 || f.fechado === '1')
-        );
+  const fechamento = fecharMaquinasRes.data.find((f) =>
+    parseInt(f.maquinaId) === parseInt(maquina.id) &&
+    f.usuario.trim().toLowerCase() === usuarioLogado.nome.trim().toLowerCase() &&
+    (f.fechado === 1 || f.fechado === '1')
+  );
 
-        if (!fechamento) continue;
+  if (!fechamento) continue;
 
-        const entradaFinal = parseFloat(fechamento.entradaFinal || 0);
-        const saidaFinal = parseFloat(fechamento.saidaFinal || 0);
+  const entradaFinalValida = fechamento.entradaFinal !== '' 
+  && fechamento.entradaFinal !== null 
+  && !isNaN(parseFloat(fechamento.entradaFinal)) 
+  && parseFloat(fechamento.entradaFinal) !== 0;
 
-        const entradaAtual = parseFloat(maquina.inicial || 0);
-        const saidaAtual = parseFloat(maquina.final || 0);
+const saidaFinalValida = fechamento.saidaFinal !== '' 
+  && fechamento.saidaFinal !== null 
+  && !isNaN(parseFloat(fechamento.saidaFinal)) 
+  && parseFloat(fechamento.saidaFinal) !== 0;
 
-        const diferencaEntrada = entradaFinal - entradaAtual;
-        const diferencaSaida = saidaFinal - saidaAtual;
+const entradaAtual = parseFloat(maquina.inicial || 0);
+const saidaAtual = parseFloat(maquina.final || 0);
 
-    await api.put(`/maquinas/${maquina.id}`, {
-    inicial: entradaAtual + diferencaEntrada,
-    final: saidaAtual + diferencaSaida,
-  });
+const entradaFinal = entradaFinalValida ? parseFloat(fechamento.entradaFinal) : entradaAtual;
+const saidaFinal = saidaFinalValida ? parseFloat(fechamento.saidaFinal) : saidaAtual;
+
+const camposParaAtualizar = {};
+
+if (entradaFinalValida && entradaFinal !== entradaAtual) {
+  camposParaAtualizar.inicial = entradaFinal;
+}
+if (saidaFinalValida && saidaFinal !== saidaAtual) {
+  camposParaAtualizar.final = saidaFinal;
+}
+
+console.log('Atualizando máquina', maquina.id);
+console.log('entradaAtual:', entradaAtual, 'entradaFinal:', entradaFinal);
+console.log('saidaAtual:', saidaAtual, 'saidaFinal:', saidaFinal);
+console.log('camposParaAtualizar:', camposParaAtualizar);
+
+if (Object.keys(camposParaAtualizar).length > 0) {
+  await api.put(`/maquinas/${maquina.id}`, camposParaAtualizar);
+  }
 }
 
       alert('Caixa fechado com sucesso!');

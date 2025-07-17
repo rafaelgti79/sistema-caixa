@@ -68,7 +68,7 @@ function EditarMaquina() {
     try {
       await api.put(`/maquinas/editar/${id}`, maquina); // Usando PUT para atualizar a máquina
       alert("Máquina atualizada com sucesso!");
-      navigate('/app/home');  // Redirecionar para a página de listagem
+      navigate('/app/lista-maquinas');  // Redirecionar para a página de listagem
     } catch (error) {
       console.error("Erro ao atualizar máquina:", error);
       alert("Erro ao atualizar máquina");
@@ -165,7 +165,7 @@ function EditarMaquina() {
 
           <div className='btn-abrirMaquina'>
             <button className='btn-salvar' type="submit">Salvar</button>
-            <button className='btn-voltar' type="button" onClick={() => navigate('/app/home')}>Voltar</button>
+            <button className='btn-voltar' type="button" onClick={() => navigate('/app/lista-maquinas')}>Voltar</button>
           </div>
         </div>
       </form>
