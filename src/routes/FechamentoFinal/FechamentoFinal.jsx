@@ -274,15 +274,15 @@ function FechamentoFinal() {
         if (!fechamento) continue;
 
         const entradaFinal = parseFloat(fechamento.entradaFinal || 0);
-  const saidaFinal = parseFloat(fechamento.saidaFinal || 0);
+        const saidaFinal = parseFloat(fechamento.saidaFinal || 0);
 
-  const entradaAtual = parseFloat(maquina.inicial || 0);
-  const saidaAtual = parseFloat(maquina.final || 0);
+        const entradaAtual = parseFloat(maquina.inicial || 0);
+        const saidaAtual = parseFloat(maquina.final || 0);
 
-  const diferencaEntrada = entradaFinal - entradaAtual;
-  const diferencaSaida = saidaFinal - saidaAtual;
+        const diferencaEntrada = entradaFinal - entradaAtual;
+        const diferencaSaida = saidaFinal - saidaAtual;
 
-  await api.put(`/maquinas/${maquina.id}`, {
+    await api.put(`/maquinas/${maquina.id}`, {
     inicial: entradaAtual + diferencaEntrada,
     final: saidaAtual + diferencaSaida,
   });
@@ -328,7 +328,14 @@ function FechamentoFinal() {
       <p><strong>Falta:</strong> {formatarMoeda(totalFalta)}</p>
       <p><strong>Reposição:</strong> {formatarMoeda(dinheiroLiquido)}</p>
 
-      <button onClick={limparDados}>Fechar Caixa</button>
+      <button onClick={() => {
+  const confirmar = window.confirm("Deseja realmente fechar o caixa?");
+  if (confirmar) {
+    limparDados();
+  }
+}}>
+  Fechar Caixa
+</button>
       <Link className="BotaoVoltar" to="/app/home-caixa">Voltar</Link>
     </div>
   );
