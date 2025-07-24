@@ -48,6 +48,7 @@ function FechamentoFinal() {
   const [totalSangria, setTotalSangria] = useState(0);
   const [dinheiroLiquido, setDinheiroLiquido] = useState(0);
   const [totalFalta, setTotalfalta] = useState(0);
+  const [totalFaltaAjustado, settotalFaltaAjustado] = useState(0);
 
   // 🔄 Buscar caixa aberto após usuário estar definido
   useEffect(() => {
@@ -181,11 +182,24 @@ function FechamentoFinal() {
     const fundoDoCaixaAtual = parseFloat(caixaAberto.fundoInicial || 0);
     const composicaoTotalCalc = resultadoLiquido + fundoDoCaixaAtual + totalReforco;
 
-    const totalFalta = composicaoTotalCalc - totalCartaoCredito - totalCartaoDebito - totalCartaoPix - totalSangriaCalc - dinheiroTotal;
+   // const totalFalta = composicaoTotalCalc - totalCartaoCredito - totalCartaoDebito - totalCartaoPix - totalSangriaCalc - dinheiroTotal;
     const dinheiroLiquidoCalc = fundoDoCaixaAtual - dinheiroTotal;
     const calculoFalta = composicaoTotalCalc < resultadoLiquido ? resultadoLiquido - composicaoTotalCalc : 0;
 
+    // Calculando totalFalta
+    const totalFalta = composicaoTotalCalc - totalCartaoCredito - totalCartaoDebito - totalCartaoPix - totalSangriaCalc - dinheiroTotal;
+    const totalFaltaAjustado = totalFalta < 0 ? 0 : totalFalta;  // Ajusta para 0 se for negativo
+
+    // Cálculo da sobra
+    const sobraCalculada = composicaoTotalCalc - totalCartaoCredito - totalCartaoDebito - totalCartaoPix - totalSangriaCalc - dinheiroTotal;
+    const sobra = Math.abs(sobraCalculada);  // Converte a sobra para valor absoluto (sempre positivo)
+
+    
+    
+    
     // Setar estados finais
+    setTotalfalta(totalFaltaAjustado); // Atualiza o estado com o valor ajustado
+    setSobra(sobra);
     setTotalDinheiro(dinheiroTotal);
     setTotalfalta(totalFalta);
     setEntrada(totalEntrada);
@@ -198,7 +212,6 @@ function FechamentoFinal() {
     setFundoInicial(fundoDoCaixaAtual);
     setValorReforco(totalReforco);
     setCartaoCredito(totalCartaoCredito);
-
     setCartaoDebito(totalCartaoDebito);
     setCartaoPix(totalCartaoPix);
     setTotalSangria(totalSangriaCalc);
@@ -345,8 +358,8 @@ if (Object.keys(camposParaAtualizar).length > 0) {
       <p><strong>Sangria:</strong> {formatarMoeda(totalSangria)}</p>
       <p><strong>Total:</strong> {formatarMoeda(composicaoTotal)}</p>
       <p><strong>Sobra:</strong> {formatarMoeda(sobra)}</p>
-      <p><strong>Falta:</strong> {formatarMoeda(totalFalta)}</p>
-      <p><strong>Reposição:</strong> {formatarMoeda(dinheiroLiquido)}</p>
+      <p><strong>Falta:</strong> {totalFalta > 0 ? formatarMoeda(totalFalta) : 'R$ 0,00'}</p>
+      
 
       <button onClick={() => {
   const confirmar = window.confirm("Deseja realmente fechar o caixa?");

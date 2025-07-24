@@ -137,11 +137,11 @@ if (redirecionarParaAbrirCaixa) return <Navigate to="/app/abrir-caixa" replace /
 
                   <p>INFORMAÇÕES DO CAIXA</p>
                   <div className="grid-row"><span className="label">Fechamento:</span> <span className="value">0</span></div>
-                  <div className="grid-row"><span className="label">Despesas:</span> <span className="value">R$ {somaPorCaixaId(despesas, item.id)}</span></div>
-                  <div className="grid-row"><span className="label">Dinheiro:</span> <span className="value">R$ {somaPorCaixaId(dinheiro, item.usuario, item.data)}</span></div>
-                  <div className="grid-row"><span className="label">Reforço:</span> <span className="value">R$ {somaPorCaixaId(reforco, item.usuario, item.data)}</span></div>
-                  <div className="grid-row"><span className="label">Cartões:</span> <span className="value">R$ {somaPorCaixaId(cartao, item.usuario, item.data)}</span></div>
-                  <div className="grid-row"><span className="label">Sangria:</span> <span className="value">R$ {somaPorCaixaId(sangria, item.usuario, item.data)}</span></div>
+                  <div className="grid-row"><span className="label">Despesas:</span> <span className="value">R$ {somaPorCaixaId(despesas, item.id, nomeUsuario)}</span></div>
+                  <div className="grid-row"><span className="label">Dinheiro:</span> <span className="value">R$ {somaPorCaixaId(dinheiro, item.id, nomeUsuario)}</span></div>
+                  <div className="grid-row"><span className="label">Reforço:</span> <span className="value">R$ {somaPorCaixaId(reforco, item.id, nomeUsuario)}</span></div>
+                  <div className="grid-row"><span className="label">Cartões:</span> <span className="value">R$ {somaPorCaixaId(cartao, item.id, nomeUsuario)}</span></div>
+                  <div className="grid-row"><span className="label">Sangria:</span> <span className="value">R$ {somaPorCaixaId(sangria, item.id, nomeUsuario)}</span></div>
 
                   <p>PARCIAL DO CAIXA</p>
                   <div className="grid-row"><span className="label">Arrecadações:</span> <span className="value">0</span></div>

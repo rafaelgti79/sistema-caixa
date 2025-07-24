@@ -33,6 +33,16 @@ function FechamentoMaquinas() {
     }
     fetchData();
   }, []);
+
+  useEffect(() => {
+  if (maquinas && currentIndex < maquinas.length) {
+    const maquinaAtual = maquinas[currentIndex];
+    const valorInicial = maquinaAtual.inicial;
+    
+    // Se o valor inicial não for um número, defina-o como 0
+    setInicial(isNaN(parseFloat(valorInicial)) ? 0 : valorInicial);
+  }
+}, [currentIndex, maquinas]);
         
 
   
@@ -151,9 +161,13 @@ if (maquinas && currentIndex < maquinas.length) {
     return;
   }
 
+  
+
   const fecharmaquinas = {
     maquinaId: maquinaAtual.id,
     maquina: maquinaAtual.numeroMaquina || maquinaAtual.jogo || maquinaAtual.id,
+    entradaInicial: parseFloat(maquinaAtual.inicial) || 0,
+    saidaInicial: parseFloat(maquinaAtual.final) || 0,
    // saidaFinal: parseFloat(saidaFinal),
     //entradaFinal: parseFloat(entradaFinal),
     resultado: parseFloat(resultado),
@@ -173,6 +187,8 @@ if (!isNaN(parseFloat(saidaFinal)) && saidaFinal !== '') {
   fecharmaquinas.saidaFinal = parseFloat(saidaFinal);
 }
 
+console.log('📦 Payload enviado para a API:', fecharmaquinas); // ← aqui!
+
   try {
     const dataHoje = new Date().toISOString().split('T')[0];
     
@@ -188,6 +204,8 @@ if (!isNaN(parseFloat(saidaFinal)) && saidaFinal !== '') {
     } else {
       await api.post('/fecharmaquinas', fecharmaquinas);
     }
+
+    console.log('✅ Fechamento salvo com sucesso');
 
     if (valorResultado && !isNaN(valorResultado)) {
       const fechamentoAtual = parseFloat(caixaAtual.fechamento || 0);

@@ -12,7 +12,7 @@ function Relatorios() {
            <Link to="/maquinas">Resumo</Link>
            <Link to="/app/historicofechamento">Borderô</Link>
            <Link to="/lojas">Borderô2</Link>
-           <Link to="/cartoes">Maquinas</Link>
+           <Link to="/app/relatoriomaquinas">Maquinas</Link>
             <Link to="/app/relatoriomaindespesas">Despesas</Link>
             <Link to="/conta">D.Extras</Link>
             <Link to="/conta">Historico</Link>

@@ -46,6 +46,7 @@ import Sangria from './routes/Sangria/Sangria.jsx';
 import FechamentoFinal from './routes/FechamentoFinal/FechamentoFinal.jsx';
 import RelatorioDespesas from './routes/RelatorioDespesas/RelatorioDespesas.jsx';
 import EditarMaquina from './routes/EditarMaquina/editarMaquina.jsx';
+import RelatorioMaquinas from './routes/RelatorioMaquinas/RelatorioMaquinas.jsx';
 
 
 
@@ -103,6 +104,7 @@ const router = createBrowserRouter([
       { path: "/app/relatoriomaindespesas", element: <PrivateRoute allowed={["admin" ]}><RelatorioMainDespesas/></PrivateRoute> },
       { path: "/app/relatoriodespesas", element: <PrivateRoute allowed={["admin"]}><RelatorioDespesas/></PrivateRoute> },
       { path: "/app/editarmaquina/:id", element: <PrivateRoute allowed={["admin"]}><EditarMaquina/></PrivateRoute> },
+      { path: "/app/relatoriomaquinas", element: <PrivateRoute allowed={["admin"]}><RelatorioMaquinas/></PrivateRoute> },
 
       { path: "/app/nao-autorizado", element: <PrivateRoute><NaoAutorizado /></PrivateRoute> },
       
