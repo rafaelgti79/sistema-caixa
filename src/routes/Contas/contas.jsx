@@ -113,7 +113,7 @@ const deletarConta = async (id) => {
     <tr>
       <th>Nome</th>
       <th>Tipo</th>
-      <th>Porcentagem</th>
+      
       <th>Ações</th>
     </tr>
   </thead>
@@ -122,10 +122,10 @@ const deletarConta = async (id) => {
       <tr key={c.id}>
         <td>{c.nome}</td>
         <td>{c.tipo}</td>
-        <td>{c.porcentagem}</td>
+        
         <td>
           <button onClick={() => preencherParaEditar(c)}>Editar</button>
-          <button onClick={() => deletarConta(c.id)}>Excluir</button>
+          <button onClick={() => deletarConta(c.id)}>X</button>
         </td>
       </tr>
     ))}

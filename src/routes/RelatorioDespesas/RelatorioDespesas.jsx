@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import api from '../../constants/api.js';
-
+import './resultadofechamento.css'; // <-- certifique-se que esse CSS exista
 
 function RelatorioDespesas() {
- const [searchParams] = useSearchParams();
-  const data = searchParams.get('data');
+  const [searchParams] = useSearchParams();
+  const dataInicial = searchParams.get('dataInicial');
+  const dataFinal = searchParams.get('dataFinal');
   const loja = searchParams.get('loja');
+
   const [despesas, setDespesas] = useState([]);
   const [total, setTotal] = useState(0);
 
@@ -15,11 +17,14 @@ function RelatorioDespesas() {
     async function buscarDespesas() {
       try {
         const res = await api.get('/despesas');
-        const filtradas = res.data.filter(
-          (d) =>
-            d.data?.startsWith(data) &&
+        const filtradas = res.data.filter((d) => {
+          const dataDespesa = new Date(d.data);
+          return (
+            dataDespesa >= new Date(dataInicial) &&
+            dataDespesa <= new Date(dataFinal) &&
             d.loja?.toLowerCase() === loja?.toLowerCase()
-        );
+          );
+        });
         setDespesas(filtradas);
         const soma = filtradas.reduce((acc, d) => acc + parseFloat(d.valor || 0), 0);
         setTotal(soma);
@@ -28,12 +33,12 @@ function RelatorioDespesas() {
       }
     }
 
-    if (data && loja) buscarDespesas();
-  }, [data, loja]);
+    if (dataInicial && dataFinal && loja) buscarDespesas();
+  }, [dataInicial, dataFinal, loja]);
 
   return (
     <div className="containerDespesas">
-      <h2>Despesas em {loja} no dia {data}</h2>
+      <h2>Despesas em {loja} de {dataInicial} até {dataFinal}</h2>
 
       {despesas.length === 0 ? (
         <p>Nenhuma despesa encontrada.</p>
@@ -49,7 +54,7 @@ function RelatorioDespesas() {
 
       <p><strong>Total:</strong> R$ {total.toFixed(2)}</p>
       <Link className="BotaoVoltar" to="/app/relatoriomaindespesas">Voltar</Link>
-      </div>
+    </div>
   );
 }
 

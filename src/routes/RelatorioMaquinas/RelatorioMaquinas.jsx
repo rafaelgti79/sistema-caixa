@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import api from '../../constants/api';
 import './RelatorioMaquinas.css';
 
@@ -18,8 +19,17 @@ function formatarData(dataISO) {
   return `${dia}/${mes}/${ano}`;
 }
 
+function truncarDuasCasas(valor) {
+  return Math.trunc(valor * 100) / 100;
+}
 
-function RelatorioMaquinas() {
+export default function RelatorioMaquinas() {
+  const [searchParams] = useSearchParams();
+  const lojaFiltro = searchParams.get('loja');
+  const dataInicial = searchParams.get('dataInicial');
+  const dataFinal = searchParams.get('dataFinal');
+  const numeroFiltro = searchParams.get('numero');
+
   const [relatorio, setRelatorio] = useState([]);
   const [carregando, setCarregando] = useState(true);
 
@@ -31,86 +41,94 @@ function RelatorioMaquinas() {
           api.get('/maquinas'),
         ]);
 
-        const dados = resFechar.data.map((fechamento) => {
-          const maquinaInfo = resMaquinas.data.find(
-            (m) =>
-              m.numeroMaquina === fechamento.maquina ||
-              m.id === fechamento.maquinaId
-          );
+        const dadosMesclados = resFechar.data.map((f) => {
+          const mInfo = resMaquinas.data.find(
+            (m) => m.id === f.maquinaId || m.numeroMaquina === f.maquina
+          ) || {};
 
           return {
-            ...fechamento,
-            numero: maquinaInfo?.numeroMaquina || 'N/A',
-            jogo: maquinaInfo?.jogo || 'Desconhecido',
-            valorJogo: maquinaInfo?.valor || 0,
-            setor: maquinaInfo?.setor || '',
-            loja: maquinaInfo?.loja || '',
-            inicial: maquinaInfo?.inicial || 0,  // puxando o 'inicial' da máquina aqui
-            final: maquinaInfo?.final || 0,  // puxando o 'inicial' da máquina aqui
+            ...f,
+            numero: mInfo.numeroMaquina || 'N/A',
+            loja: mInfo.loja || '',
+            jogo: mInfo.jogo || 'Desconhecido',
+            valorJogo: parseFloat(mInfo.valor || 0),
+            setor: mInfo.setor || '',
+            usuario: f.usuario || '',
           };
         });
 
-        setRelatorio(dados);
+        console.log('🔎 Dados mesclados:', dadosMesclados);
+
+        const dadosFiltrados = dadosMesclados.filter((m) => {
+  const dtHora = new Date(m.dataHora);
+  const dtInicio = dataInicial ? new Date(`${dataInicial}T00:00:00.000Z`) : null;
+  const dtFim = dataFinal ? new Date(`${dataFinal}T23:59:59.999Z`) : null;
+
+  const okData = (!dtInicio || dtHora >= dtInicio) && (!dtFim || dtHora <= dtFim);
+  const okLoja = !lojaFiltro || m.loja?.toLowerCase() === lojaFiltro.toLowerCase();
+  const okNumero = !numeroFiltro || String(m.numero) === String(numeroFiltro);
+
+  console.log(`[FILTRO]`, {
+    dataHora: m.dataHora,
+    dtHora,
+    dtInicio,
+    dtFim,
+    loja: m.loja,
+    numero: m.numero,
+    okData,
+    okLoja,
+    okNumero,
+  });
+
+  return okData && okLoja && okNumero;
+});
+
+         
+
+        console.log('✅ Dados filtrados:', dadosFiltrados);
+
+        setRelatorio(dadosFiltrados);
       } catch (error) {
-        console.error('Erro ao buscar relatório:', error);
+        console.error('❌ Erro ao buscar relatório:', error);
       } finally {
         setCarregando(false);
       }
     }
 
     buscarDados();
-  }, []);
-
-  function truncarDuasCasas(valor) {
-  return Math.trunc(valor * 100) / 100;
-}
+  }, [lojaFiltro, dataInicial, dataFinal, numeroFiltro]);
 
   if (carregando) return <p>Carregando relatório...</p>;
-  if (!relatorio.length) return <p>Nenhuma máquina fechada encontrada.</p>;
+  if (!relatorio.length) return <p>Nenhuma máquina encontrada com os filtros aplicados.</p>;
 
   const dadosFormatados = relatorio.map((m) => {
-    const entradaInicial = parseInt(m.entradaInicial || 0);      // usa 'inicial' da máquina
+    const entradaInicial = parseInt(m.entradaInicial || 0);
     const entradaFinal = parseInt(m.entradaFinal || 0);
-    const saidaInicial = parseInt(m.saidaInicial || 0); // ✔️
-
+    const saidaInicial = parseInt(m.saidaInicial || 0);
     const saidaFinal = parseInt(m.saidaFinal || 0);
     const valorJogo = parseFloat(m.valorJogo || 0);
 
-    
-
-    const difEntrada = (entradaFinal - entradaInicial) * valorJogo ;
-    const difSaida = (saidaFinal - saidaInicial)  * valorJogo;
-
-    const valorSaida = parseFloat(m.valorSaida || 0);
-    //const resultado = valorEntrada - valorSaida;
-    const resultado = parseFloat(m.resultado || 0);
-    const difTotal = Math.abs(resultado);
-    
+    const difEntrada = (entradaFinal - entradaInicial) * valorJogo;
+    const difSaida = (saidaFinal - saidaInicial) * valorJogo;
     const valorEntrada = difEntrada;
-
+    const valorSaida = parseFloat(m.valorSaida || 0);
+    const resultado = parseFloat(m.resultado || 0);
     const rentabilidade =
-  valorEntrada !== 0
-    ? truncarDuasCasas((resultado / valorEntrada) * 100).toFixed(2)
-    : '0.00';
+      valorEntrada !== 0
+        ? truncarDuasCasas((resultado / valorEntrada) * 100).toFixed(2)
+        : '0.00';
 
     return {
-      numero: m.numero,
-      jogo: m.jogo,
-      valorJogo: m.valorJogo,
-      setor: m.setor,
-      loja: m.loja,
-      dataHora: m.dataHora,
-      usuario: m.usuario,
+      ...m,
       entradaInicial,
       entradaFinal,
-      difEntrada,
-      valorEntrada,
       saidaInicial,
       saidaFinal,
+      difEntrada,
       difSaida,
+      valorEntrada,
       valorSaida,
       resultado,
-      difTotal,
       rentabilidade,
     };
   });
@@ -175,4 +193,4 @@ function RelatorioMaquinas() {
   );
 }
 
-export default RelatorioMaquinas;
+
