@@ -1,0 +1,132 @@
+/* Manda em todo css, tirando o cadastro Geral */
+
+.containerCadasContas {
+  text-align: center;
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ 
+}
+
+
+.inpuCaixaMaquina{
+  
+  height: 40px !important; /* força a altura */
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.inpuCaixaSelectMaquina{
+  width: 40%;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+
+
+.btn-abrirMaquina {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn-abrirMaquina .btn-salvar,
+.btn-abrirMaquina .btn-voltar {
+  flex: 1;
+  padding: 10px;
+  height: 40px;
+  max-width: 10px; /* opcional */
+}
+
+.btn-abrirMaquina .btn-salvar,
+.btn-abrirMaquina .btn-voltar {
+  min-width: 120px;
+  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.btn-abrirMaquina .btn-salvar {
+  background-color: #28a745;
+}
+
+.btn-abrirMaquina .btn-voltar {
+  background-color: #007bff;
+   margin-top: -1px; /* sobe ligeiramente */
+}
+
+/* Estilização da tabela de contas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background-color: #007bff;
+  color: #222121;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Botões de ação na tabela */
+table button {
+  padding: 6px 10px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+table button:hover {
+  opacity: 0.9;
+}
+
+table button:first-child {
+  background-color: #ffc107;
+  color: #000;
+}
+
+table button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+
+
+
+

@@ -1,0 +1,141 @@
+
+
+.containerCastroSangria {
+  text-align: center;
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+ 
+}
+
+.containerCastroSangria form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* espaçamento entre os campos */
+  align-items: center;
+}
+
+.inpuCaixaSangria{
+  width: 100%;
+  height: 30px !important; /* força a altura */
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.inpuCaixaSelectSangria{
+  width: 70%;
+  height: 37px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+
+
+.btn-abrirSangria {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn-abrirSangria .btn-salvarSangria,
+.btn-abrirSangria .btn-voltarSangria {
+  flex: 1;
+  padding: 10px;
+  height: 40px;
+  max-width: 10px; /* opcional */
+}
+
+.btn-abrirSangria .btn-salvarSangria,
+.btn-abrirSangria .btn-voltarSangria {
+  min-width: 120px;
+  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.btn-abrirSangria .btn-salvarSangria {
+  background-color: #28a745;
+}
+
+.btn-abrirSangria .btn-voltarSangria {
+  background-color: #007bff;
+   margin-top: -1px; /* sobe ligeiramente */
+}
+
+.lista-Sangria {
+  margin-top: 20px;
+  text-align: left;
+  padding: 20px;
+  border-top: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.lista-Sangria ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lista-Sangria li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 5px 5px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.lista-Sangria li strong {
+  text-transform: capitalize;
+  font-weight: 600;
+  color: #333;
+}
+
+.lista-Sangria li button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #dc3545;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.lista-Sangria li button:hover {
+  background-color: #c82333;
+}
+
+.lista-Sangria p {
+  font-weight: bold;
+  text-align: right;
+  margin-top: 15px;
+}
+
+
+

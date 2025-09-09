@@ -1,0 +1,248 @@
+{
+  "maquinas": [
+    {
+      "id": "c198",
+      "loja": "BARSOLIDO",
+      "numeroMaquina": "1",
+      "jogo": "BIMBASH",
+      "valorJogo": "0.25",
+      "maquineiro": "",
+      "setor": "1",
+      "inicial": "989006",
+      "final": "877098"
+    },
+    {
+      "id": "c6ab",
+      "loja": "BARSOLIDO",
+      "numeroMaquina": "2",
+      "jogo": "AVALAN",
+      "valorJogo": "0.05",
+      "maquineiro": "",
+      "setor": "1",
+      "inicial": "986574",
+      "final": "875903"
+    }
+  ],
+  "fecharmaquinas": [],
+  "caixa": [
+    {
+      "id": "6c0d",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "1000",
+      "data": "2025-06-25",
+      "setor": "",
+      "usuario": "rafael",
+      "status": "fechado"
+    },
+    {
+      "id": "8d29",
+      "loja": "",
+      "fundoInicial": "",
+      "data": "",
+      "setor": "",
+      "usuario": "rafael",
+      "status": "fechado"
+    },
+    {
+      "id": "f1bb",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "1000",
+      "data": "2025-06-25",
+      "setor": "",
+      "usuario": "rafael",
+      "status": "fechado"
+    },
+    {
+      "id": "ff4b",
+      "loja": "BARSOLIDO",
+      "fundoInicial": "1000",
+      "data": "2025-06-25",
+      "setor": "setor 1",
+      "usuario": "rafael",
+      "status": "fechado"
+    }
+  ],
+  "historicocaixa": [
+    {
+      "id": "7c1a",
+      "usuario": "rafael",
+      "data": "2025-06-25",
+      "entrada": 150,
+      "saida": 50,
+      "bruto": 100,
+      "liquido": 50,
+      "composicaoTotal": 2050,
+      "sobra": 2000,
+      "falta": 0,
+      "cartao": 300,
+      "dinheiro": 0,
+      "fecharmaquinas": [
+        {
+          "id": "2870",
+          "maquinaId": "c198",
+          "maquina": "1",
+          "saidaInicial": "",
+          "saidaFinal": "2000",
+          "resultado": "200.00",
+          "usuario": "rafael",
+          "usuarioId": null,
+          "dataHora": "2025-06-25T17:11:45.305Z"
+        },
+        {
+          "id": "ac64",
+          "maquinaId": "c6ab",
+          "maquina": "2",
+          "saidaInicial": "",
+          "saidaFinal": "200",
+          "resultado": "-50.00",
+          "usuario": "rafael",
+          "usuarioId": null,
+          "dataHora": "2025-06-25T17:11:54.072Z"
+        },
+        {
+          "id": "c20a",
+          "maquinaId": "c198",
+          "maquina": "1",
+          "saidaInicial": "",
+          "saidaFinal": "",
+          "resultado": "",
+          "usuario": "rafael",
+          "usuarioId": null,
+          "dataHora": "2025-06-25T17:14:58.865Z"
+        },
+        {
+          "id": "b05d",
+          "maquinaId": "c6ab",
+          "maquina": "2",
+          "saidaInicial": "",
+          "saidaFinal": "",
+          "resultado": "",
+          "usuario": "rafael",
+          "usuarioId": null,
+          "dataHora": "2025-06-25T17:14:59.248Z"
+        }
+      ],
+      "despesas": 50,
+      "sangria": 500,
+      "fundoInicial": 1000,
+      "reforco": 1000,
+      "dinheiroLiquido": -250
+    }
+  ],
+  "jogos": [
+    {
+      "id": "dfa7",
+      "nomedojogo": "BIMBASH",
+      "valorJogo": "0.25"
+    },
+    {
+      "id": "cd00",
+      "nomedojogo": "AVALAN",
+      "valorJogo": "0.05"
+    },
+    {
+      "id": "5342",
+      "nomedojogo": "bucteA",
+      "valorJogo": "0.25"
+    },
+    {
+      "id": "8000",
+      "nomedojogo": "bucteA",
+      "valorJogo": "0.25"
+    }
+  ],
+  "lojas": [
+    {
+      "id": "d676",
+      "loja": "BARSOLIDO"
+    }
+  ],
+  "cartao": [],
+  "totalentrada": [],
+  "totalsaida": [],
+  "resultadobruto": [],
+  "registrocaixa": [],
+  "resultadoliquido": [],
+  "fundoinicial": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "reforco": [],
+  "extras": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "composicaototal": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "dinheiro": [],
+  "vales": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "sangria": [],
+  "total": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "sobra": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "falta": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "reposicao": [
+    {
+      "id": "",
+      "valor": ""
+    }
+  ],
+  "despesas": [],
+  "conta": [
+    {
+      "id": "4c4d",
+      "nome": "Debora",
+      "senha": "234322",
+      "tipo": "atendente",
+      "porcentagem": "0"
+    },
+    {
+      "id": "e26c",
+      "nome": "rafael",
+      "senha": "capoeira",
+      "tipo": "caixa",
+      "porcentagem": ""
+    },
+    {
+      "id": "882e",
+      "nome": "eduardo",
+      "senha": "1234",
+      "tipo": "caixa",
+      "porcentagem": ""
+    },
+    {
+      "id": "ff89",
+      "nome": "teste",
+      "senha": "1234",
+      "tipo": "caixa",
+      "porcentagem": ""
+    }
+  ]
+}

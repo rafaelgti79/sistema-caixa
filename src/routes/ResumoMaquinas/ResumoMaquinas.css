@@ -1,0 +1,94 @@
+/* Contêiner que permite rolagem horizontal em telas pequenas */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 20px 0; /* Espaçamento para separar a tabela da borda da tela */
+}
+
+/* Tabela responsiva */
+.excel-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* Largura mínima para manter estrutura legível */
+  font-family: Arial, sans-serif;
+}
+
+.excel-table th,
+.excel-table td {
+  border: 1px solid #ccc;
+  padding: 3px 12px;
+  text-align: left;
+  color: black;
+  white-space: nowrap; /* Impede quebra de linha */
+  text-align: center;
+}
+
+.excel-table th {
+  background-color: #eaeaea;
+  font-weight: bold;
+}
+
+.excel-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.excel-table tr:hover {
+  background-color: #d3f0ff;
+}
+
+/* Ajustes para os botões de ação */
+button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.btn-edit {
+  background-color: #4CAF50; /* Cor verde para editar */
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #45a049;
+}
+
+.btn-delete {
+  background-color: #f44336; /* Cor vermelha para excluir */
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #e53935;
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 768px) {
+  .excel-table th,
+  .excel-table td {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+
+  /* Ajuste no tamanho do texto e espaçamento dos botões em telas pequenas */
+  button {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 480px) {
+  .excel-table th,
+  .excel-table td {
+    font-size: 12px;
+  }
+
+  /* Tamanho de botão em telas menores */
+  button {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+}

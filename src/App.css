@@ -1,0 +1,31 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Zerar estilos padrão de link */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Remover borda e fundo padrão do botão */
+button, input, select {
+  font-family: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+/* Normalizar botão */
+button {
+  cursor: pointer;
+  background-color: transparent;
+}
+
+/* Permite que botão e link se comportem como blocos iguais */
+button, a {
+  display: inline-block;
+}

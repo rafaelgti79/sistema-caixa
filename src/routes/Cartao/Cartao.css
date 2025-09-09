@@ -1,0 +1,133 @@
+
+
+.containerCartao {
+  text-align: center;
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+ 
+}
+
+.inpuCaixaCartao{
+  
+  height: 30px !important; /* força a altura */
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.inpuCaixaSelectCartao{
+  width: 40%;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+
+
+.btn-abrirCartao {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn-abrirCartao .btn-salvarCartao,
+.btn-abrirCartao .btn-voltarCartao {
+  flex: 1;
+  padding: 10px;
+  height: 40px;
+  max-width: 10px; /* opcional */
+}
+
+.btn-abrirCartao .btn-salvarCartao,
+.btn-abrirCartao .btn-voltarCartao {
+  min-width: 120px;
+  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.btn-abrirCartao .btn-salvarCartao {
+  background-color: #28a745;
+}
+
+.btn-abrirCartao .btn-voltarCartao {
+  background-color: #007bff;
+   margin-top: -1px; /* sobe ligeiramente */
+}
+
+.lista-Cartao {
+  margin-top: 20px;
+  text-align: left;
+  padding: 20px;
+  border-top: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.lista-Cartao ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lista-Cartao li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 5px 5px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.lista-Cartao li strong {
+  text-transform: capitalize;
+  font-weight: 600;
+  color: #333;
+}
+
+.lista-Cartao li button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #dc3545;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.lista-Cartao li button:hover {
+  background-color: #c82333;
+}
+
+.lista-Cartao p {
+  font-weight: bold;
+  text-align: right;
+  margin-top: 15px;
+}
+
+
+

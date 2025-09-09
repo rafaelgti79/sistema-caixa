@@ -1,0 +1,157 @@
+.containerhome {
+ 
+  margin: 40px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: rgb(218, 214, 214);
+  align-items: center;
+ }
+
+.colunatabel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  padding: 10px;
+  
+  background-color: rgb(221, 221, 228);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.colunatabel a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #6373a8;
+  color: rgb(3, 19, 3);
+  text-decoration: none;
+  border: 2px solid rgb(16, 17, 16);
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 30px;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
+  
+ /*  backup css
+ .colunatabel {
+  display: grid;
+  grid-template-columns: repeat(3, 110px); /* 3 colunas 
+  grid-template-rows: repeat(3, 110px);  /* 3 linhas com altura fixa 
+  gap: 30px;
+  padding: 40px;
+  background-color: rgb(5, 20, 224);
+  border-radius: 12px;
+  
+   
+}
+/*
+.colunatabel a {
+  display: flex;
+  padding: 30px;
+  justify-content: center;
+  align-items: center;
+  background-color: #6373a8;
+  color: rgb(3, 19, 3);
+  text-decoration: none;
+  border: 2px solid rgb(16, 17, 16);
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.colunatabel a:hover {
+  background-color: rgb(185, 241, 185);
+  color: #000;
+  transform: scale(1.05);
+}
+
+*/
+
+.grid-list {
+  display: flex;
+  flex-wrap: wrap;          /* Permite quebra de linha se houver múltiplos .grid-item */
+  justify-content: center;  /* Centraliza horizontalmente */
+  gap: 20px;                /* Espaço entre os blocos */
+  padding: 10px;
+  margin: 0 auto;
+  max-width: 800px;         /* Mesmo valor de `.colunatabel` */
+}
+
+
+.grid-item {
+  width: 100%;
+  max-width: 300px;
+  padding: 12px;
+  border: 1px solid #ccc;      /* Borda cinza clara ao redor de cada item (como célula) */
+  margin-bottom: 20px;         /* Espaço entre cada 'linha da tabela' */
+  border-radius: 6px;          /* Cantos arredondados */
+  overflow: hidden;            /* Esconde qualquer conteúdo que ultrapasse o limite */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra leve para dar profundidade */
+
+}
+
+.grid-row {
+  display: flex;               /* Alinha os dois elementos (rótulo e valor) em linha */
+  border-bottom: 1px solid #eee; /* Linha separadora entre os pares */
+  text-align: left;   /* alinha o texto a esquerda*/
+}
+
+.grid-row:last-child {
+  border-bottom: none;         /* Remove a borda inferior da última linha do item */
+}
+
+.label {
+  flex: 1;                     /* Ocupa 1 parte da linha (rótulo) */
+  padding: 4px 6px;               /* Espaçamento interno */
+  background: #f9f9f9;         /* Fundo mais claro para diferenciar o rótulo */
+  font-weight: bold;           /* Texto em negrito */
+  border-right: 1px solid #ddd;/* Linha vertical entre rótulo e valor */
+}
+
+.value {
+  flex: 2;                     /* Ocupa 2 partes da linha (valor) */
+  padding: 4px 6px;              /* Espaçamento interno */
+  background: #fff;            /* Fundo branco para o valor */
+   max-width: 100px;          /* Largura máxima da grade*/
+   
+}
+
+
+
+/*
+.grid-list {
+  display: grid;              /* Ativa o layout em grade 
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  /* Cria colunas que se ajustam automaticamente com largura mínima de 250px 
+  gap: 20px;                  /* Espaço entre os itens da grade 
+  padding: 0;                 /* Remove padding padrão 
+  list-style: none;          /* Remove marcadores da lista 
+  margin: 0 auto;             /* Centraliza horizontalmente se houver largura definida 
+  max-width: 1200px;          /* Largura máxima da grade 
+}
+
+.grid-item {
+  background-color: #f0f0f0;  /* Fundo do item 
+  padding: 16px;              /* Espaçamento interno 
+  border-radius: 8px;         /* Cantos arredondados 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra leve 
+  font-family: Arial, sans-serif;
+}
+
+.grid-item p {
+  margin: 4px 0;              /* Espaço entre as linhas de texto 
+}
+
+.grid-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas de tamanhos iguais 
+  gap: 8px 16px;                 /* Espaço entre linhas e colunas 
+}

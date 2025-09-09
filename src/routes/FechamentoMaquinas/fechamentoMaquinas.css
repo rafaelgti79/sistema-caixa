@@ -1,0 +1,160 @@
+
+.containerFechamento3 {
+ display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 300px;
+  margin: 20px auto;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+}
+
+
+.subcontainer3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px; /* Descer um poruco o subconteiner*/
+  gap: 10px;
+}
+
+/* Cada linha de formulário com label + input */
+.form-row1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-row1 .labelnumero {
+  min-width: 30px; /* ou ajuste conforme o tamanho das palavras */
+  margin-right: 4px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #444;
+}
+
+.form-row1 .inputNumero {
+  max-width: 60px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  
+}
+
+/* Label com largura fixa */
+.form-row1 .labe4 {
+  min-width: 30px; /* ou ajuste conforme o tamanho das palavras */
+  margin-right: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #444;
+}
+/* Input ocupa o restante */
+.form-row1 .input4 {
+  max-width: 160px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+
+
+.jogo-nome {
+  margin-left: 10px;
+  font-weight: bold;
+  color: #222;
+  font-size: 20px;
+  white-space: nowrap;
+  margin-top: -20px; /* sobe um pouco */
+}
+
+.subcontainer1 .label1 {
+  font-weight: bold;
+  font-size: 14px;
+  color: #444;
+}
+
+.subcontainer1 .input1 {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.botao-salvar {
+  display: flex;
+  text-align: center;
+  margin-top: 20px;
+  
+}
+
+button[type="submit"] {
+  background-color: #5b8dfc;
+  color: white;
+  font-size: 16px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+button[type="submit"]:hover {
+  background-color: #3a6fd9;
+}
+
+
+/* Estilo dos botões com ícones */
+.icones-rodape {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.icones-rodape button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icones-rodape img {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 4px;
+}
+
+.navegacao-maquinas {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.ir-para-maquina {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ir-para-maquina input {
+  width: 80px;
+  padding: 4px;
+}

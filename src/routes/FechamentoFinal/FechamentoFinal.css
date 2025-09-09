@@ -1,0 +1,127 @@
+.containerDespesas {
+  width: 400px;
+  font-family: Arial, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: 0 0 10px #ccc;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.containerDespesas h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.containerDespesas p {
+  margin: 6px 0;
+  padding: 6px 10px;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  border-left: 5px solid transparent;
+  border-radius: 4px;
+}
+
+/* Estilos por tipo de linha */
+.containerDespesas p:nth-child(2) {
+  background-color: #d4f9d4;
+  border-left-color: #28a745; /* verde */
+}
+
+.containerDespesas p:nth-child(3) {
+  background-color: #ffe6e6;
+  border-left-color: #dc3545; /* vermelho */
+}
+
+.containerDespesas p:nth-child(4) {
+  background-color: #fff9db;
+  border-left-color: #ffc107; /* amarelo */
+}
+
+.containerDespesas p:nth-child(5) {
+  background-color: #f8d7da;
+  border-left-color: #ff4d4f;
+}
+
+.containerDespesas p:nth-child(6) {
+  background-color: #fff9db;
+  border-left-color: #ffc107; /* amarelo */
+}
+
+.containerDespesas p:nth-child(7),
+.containerDespesas p:nth-child(8) {
+  background-color: #f2f2f2;
+  border-left-color: #6c757d;
+}
+
+.containerDespesas p:nth-child(9) {
+   background-color: #0c0c0c;
+  border-left-color: #090a0a; /* cinza escuro */
+  color: #eee;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.containerDespesas p:nth-child(10) {
+   background-color: #f2f2f2;
+  border-left-color: #6c757d;
+}
+
+.containerDespesas p:nth-child(11) {
+   background-color: #f2f2f2;
+  border-left-color: #6c757d;
+}
+
+.containerDespesas p:nth-child(12) {
+  background-color: #f2f2f2;
+  border-left-color: #6c757d;
+}
+
+.containerDespesas p:nth-child(13) {
+  background-color: #f2f2f2;
+  border-left-color: #6c757d;
+}
+
+.containerDespesas p:nth-child(14) {
+ background-color: #f2f2f2;
+  border-left-color: #6c757d;
+}
+.containerDespesas p:nth-child(15) {
+   background-color: #0c0c0c;
+  border-left-color: #090a0a; /* cinza escuro */
+  color: #eee;
+  font-weight: bold;
+  font-size: 17px;
+}
+.containerDespesas p:nth-child(16) {
+  background-color: #d4f9d4;
+  border-left-color: #28a745; /* verde */
+  color: #0a0707;
+  font-weight: bold;
+  font-size: 17px;
+}
+.containerDespesas p:nth-child(17) {
+  background-color: #f8d7da;
+  border-left-color: #ff4d4f;
+}
+
+.containerDespesas p:nth-child(18) {
+  background-color: #f2f2f2;
+  border-left-color: #6c757d;
+}
+.containerDespesas p:nth-child(18) {
+  background-color: #0c0c0c;
+  border-left-color: #090a0a; /* cinza escuro */
+  color: #eee;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+
