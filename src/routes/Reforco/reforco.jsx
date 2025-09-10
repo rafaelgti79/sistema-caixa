@@ -83,9 +83,10 @@ useEffect(() => {
 
   const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
   const dataHoje = new Date().toISOString().split('T')[0];
+  const valorNumerico = parseFloat(valor.replace(',', '.'));
 
   const reforco = {
-    valor,
+    valor: valorNumerico,
     usuario: usuarioLogado.nome,
     data: dataHoje,
     caixaId: caixaAberto.id // ✅ agora com vínculo ao caixa

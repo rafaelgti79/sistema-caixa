@@ -103,11 +103,12 @@ function Despesas() {
       return;
     }
 
-      const dataHoje = new Date().toISOString().split('T')[0]; // ou use caixaAberto.data se estiver disponível
+    const dataHoje = new Date().toISOString().split('T')[0]; // ou use caixaAberto.data se estiver disponível
+    const valorNumerico = parseFloat(valor.replace(',', '.'));
 
     const novaDespesa = {
       descricao,
-      valor,
+      valor: valorNumerico,
       categoria,
       loja: lojaSelecionada,
       usuario: usuarioLogado.nome,
@@ -120,7 +121,7 @@ function Despesas() {
       setDescricao('');
       setValor('');
       setCategoria('');
-      setLojaSelecionada('');
+      
 
       // Recarregar lista de despesas
       const res = await api.get('/despesas', {

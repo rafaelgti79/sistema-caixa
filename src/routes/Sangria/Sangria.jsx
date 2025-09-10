@@ -113,10 +113,11 @@ const carregarSangriaUsuario = async () => {
     }
 
     const dataHoje = new Date().toISOString().split('T')[0];
-
+    const valorNumerico = parseFloat(valor.replace(',', '.'));
+    
     const sangria = {
       descricao,
-      valor: parseFloat(valor),
+      valor: valorNumerico,
       nome: conta,
       loja,
       usuario: usuarioLogado.nome,
