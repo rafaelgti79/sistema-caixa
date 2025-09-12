@@ -1,8 +1,7 @@
 .containerDespesas {
-  width: 400px;
+  width: 600px;
   font-family: Arial, sans-serif;
   border-collapse: collapse;
-  
   
   
   border-radius: 5px;
@@ -32,7 +31,7 @@
 
 /* Estilos por tipo de linha */
 .linha-bruto {
-  background-color: #0ec70e;
+  
   color: rgb(12, 3, 3);
   border-radius: 4px;
 }
@@ -51,4 +50,71 @@
   margin-bottom: 15px;
   margin-left: 65px;
 }
+
+/* //////////////////////Grade de itens //////////////////////q */
+
+.grid-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+}
+
+.grid-item {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  max-width: 700px; /* 🔧 Cards largos, mas limitados em telas grandes */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Layout interno dos itens */
+.grid-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+  flex-wrap: wrap;
+  gap: 20px; /* Espaço entre label e valor */
+}
+
+.label {
+  font-weight: bold;
+  color: #333;
+  margin-right: 3px;
+  min-width: 120px; /* ou o tamanho que quiser */
+}
+
+.value {
+  color: #555;
+  text-align: center;
+  flex-grow: 1;
+  font-size: 15px;
+  min-width: 140px;
+  word-break: break-word;
+}
+
+/* Responsivo para telas menores */
+@media (max-width: 768px) {
+  .grid-row {
+    flex-direction: row; /* ✅ mantém nome + valor na mesma linha */
+    align-items: center;
+  }
+
+  .value {
+    text-align: right;
+    width: auto;
+    flex-grow: 1;
+    white-space: nowrap; /* ✅ evita quebra */
+  }
+
+  .label {
+    white-space: nowrap;
+  }
+}
+
 

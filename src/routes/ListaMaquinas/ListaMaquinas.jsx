@@ -49,7 +49,7 @@ function ListaMaquinas() {
 <thead>
   <tr>
     <th>N</th><th>EI</th><th>SI</th><th>JOGO</th>
-    <th>$</th><th>ST</th><th>MAQNRO</th><th>%</th><th>Ações</th>
+    <th>$</th><th>ST</th><th>%</th><th>Ações</th>
   </tr>
 </thead>
         <tbody>
@@ -61,7 +61,7 @@ function ListaMaquinas() {
               <td>{item.jogo}</td>
               <td>{item.valor}</td>
               <td>{item.setor}</td>
-              <td>{item.MAQNRO}</td>
+             
               <td>{item.percentual}0%</td>
               <td>
                 {/* Botões de editar e excluir */}

@@ -99,7 +99,7 @@
   
 }
 
-button[type="submit"] {
+.setaVoltar {
   background-color: #5b8dfc;
   color: white;
   font-size: 16px;
@@ -110,7 +110,7 @@ button[type="submit"] {
   width: 100%;
 }
 
-button[type="submit"]:hover {
+.setaVoltar:hover {
   background-color: #3a6fd9;
 }
 

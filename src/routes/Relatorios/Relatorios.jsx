@@ -9,7 +9,7 @@ function Relatorios() {
   return (
     <div className="containercd">
           <div className="colunatabel">
-           <Link to="/maquinas">Resumo</Link>
+           <Link to="/app/resumototal">Resumo</Link>
            <Link to="/app/historicofechamento">Borderô</Link>
            
            <Link to="/app/filtrorelatoriomaquina">Maquinas</Link>

@@ -37,6 +37,12 @@ function RelatorioDespesas() {
     if (dataInicial && dataFinal && loja) buscarDespesas();
   }, [dataInicial, dataFinal, loja]);
 
+  const formatBRL = (valor) =>
+  Number(valor || 0).toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
+
   return (
     <div className=".relatorio-containerDespesas">
       <h2>Despesas em {loja} de {dataInicial} até {dataFinal}</h2>
@@ -83,7 +89,7 @@ function RelatorioDespesas() {
         </ul>
       )} */}
       
-      <p><strong>Total:</strong> R$ {total.toFixed(2)}</p>
+      <p><strong>Total:</strong> R$ {formatBRL(total)} </p>
       <Link className="BotaoVoltar" to="/app/relatoriomaindespesas">Voltar</Link>
     </div>
   );

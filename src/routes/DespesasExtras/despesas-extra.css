@@ -18,7 +18,8 @@
     
 }
 
-button[type="submit"], .BotaoVoltar {
+.containerDespesas button[type="submit"],
+.containerDespesas .BotaoVoltar {
   width: 70px;
   height: 40px;
   background-color: #4CAF50;
@@ -27,12 +28,7 @@ button[type="submit"], .BotaoVoltar {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin: 10px; /* separa os elemento entre eles */
-  
-}
-
-button[type="submit"]:hover {
-  background-color: #3e8e41;
+  margin: 10px;
 }
 
 

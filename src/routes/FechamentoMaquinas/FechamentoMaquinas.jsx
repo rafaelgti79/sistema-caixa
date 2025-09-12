@@ -159,71 +159,6 @@ useEffect(() => {
   }
 }, [saidaFinal, entradaFinal, maquinas, currentIndex]);
 
-/* useEffect(() => {
-  if (maquinas && currentIndex < maquinas.length) {
-    const maquinaAtual = maquinas[currentIndex];
-    
-    const valorJogo = parseFloat(maquinaAtual.valor);
-    const entradaIni = parseFloat(maquinaAtual.inicial);       // E.I
-    const entradaFin = parseFloat(entradaFinal);               // E.F
-    const saidaIni = parseFloat(maquinaAtual.final);           // S.I
-    const saidaFin = parseFloat(saidaFinal);                   // S.F
-
-    if (
-      !isNaN(valorJogo) &&
-      !isNaN(entradaIni) && !isNaN(entradaFin) &&
-      !isNaN(saidaIni) && !isNaN(saidaFin)
-    ) {
-      // 🔹 Resultado da máquina atual
-      const entradaTotal = (entradaFin - entradaIni) * valorJogo;
-      const saidaTotal = (saidaFin - saidaIni) * valorJogo;
-      const resultadoFinal = entradaTotal - saidaTotal;
-      setResultado(resultadoFinal.toFixed(2));
-
-      // 🔹 Soma de todas entradas
-      let somaEntradaIni = 0;
-      let somaEntradaFin = 0;
-
-      for (let i = 0; i < maquinas.length; i++) {
-        const ei = parseFloat(maquinas[i].inicial);
-        const ef = i === currentIndex
-          ? parseFloat(entradaFinal)
-          : parseFloat(maquinas[i].entradaFinal); // ✅ campo correto aqui
-
-        console.log(`Máquina ${i + 1}: EI = ${ei}, EF = ${ef}`);
-
-        if (!isNaN(ei)) somaEntradaIni += ei;
-        if (!isNaN(ef)) somaEntradaFin += ef;
-      }
-
-      // 🔹 Soma de todas saídas
-      let somaSaidaIni = 0;
-      let somaSaidaFin = 0;
-
-      for (let i = 0; i < maquinas.length; i++) {
-        const si = parseFloat(maquinas[i].final); // S.I
-        const sf = i === currentIndex
-          ? parseFloat(saidaFinal)
-          : parseFloat(maquinas[i].saidaFinal); // ✅ campo correto aqui também
-
-        if (!isNaN(si)) somaSaidaIni += si;
-        if (!isNaN(sf)) somaSaidaFin += sf;
-      }
-
-      // 🔹 Cálculo total
-      const somaTotalEntradas = (somaEntradaFin - somaEntradaIni) * valorJogo;
-      const somaTotalSaidas = (somaSaidaFin - somaSaidaIni) * valorJogo;
-
-      setSomaEntradas(somaTotalEntradas.toFixed(2));
-      setSomaSaidas(somaTotalSaidas.toFixed(2));
-    } else {
-      setResultado('');
-      setSomaEntradas('');
-      setSomaSaidas('');
-    }
-  }
-}, [saidaFinal, entradaFinal, maquinas, currentIndex]); */
-
  
 
   useEffect(() => {
@@ -395,7 +330,7 @@ return (
         </div>
         <div className="navegacao-maquinas">
   <button
-    type="button"
+    type="button" className='setaVoltar'
     onClick={() => setCurrentIndex((prev) => Math.max(prev - 1, 0))}
     disabled={currentIndex === 0}
   >
@@ -405,7 +340,7 @@ return (
   <span>{currentIndex + 1} de {maquinas.length}</span>
 
   <button
-    type="button"
+    type="button" className='setaVoltar'
     onClick={() => setCurrentIndex((prev) => Math.min(prev + 1, maquinas.length - 1))}
     disabled={currentIndex >= maquinas.length - 1}
   >

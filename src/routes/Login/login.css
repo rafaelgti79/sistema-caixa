@@ -1,19 +1,142 @@
-.containerLogi  {
+/* 🔵 Layout geral */
+.login-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 70vh;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
- text-align: center;
- 
-  
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  box-sizing: border-box;
 }
 
-.containerLogi .input-box{
-    position: relative;
-    height: 20px;
-    margin: 10px auto;
-    border-radius: 5px;
+/* 🟢 Caixa do login */
+.containerLogi {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+/* 🟡 Logo centralizada */
+.logo-container {
+  margin-bottom: 24px;
+}
+
+.logo-image {
+  width: 120px;
+  max-width: 100%;
+  height: auto;
+}
+
+.containerLogi h2 {
+  margin-bottom: 24px; /* ou o valor que quiser (ex: 30px) */
+}
+
+
+/* 🟠 Inputs */
+.input-box {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Icone dentro do input */
+.icon {
+  position: absolute;
+  margin-left: -30px;
+  margin-top: 12px;
+  color: #888;
+}
+
+/* 🔴 Botão */
+button.botaoLogin[type="submit"] {
+  width: 40% !important;
+  display: block !important;
+  padding: 12px 24px !important;
+  background-color: #51a5fa !important;
+  color: white !important;
+  font-size: 16px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+  margin-top: 16px !important;
+}
+
+
+.botaoLogin:hover {
+  background-color: #1a252f;
+}
+
+@media (max-width: 480px) {
+  .botaoLogin {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+}
+
+
+/* Checkbox */
+label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 16px;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+/* Responsividade extra 📱 */
+@media (max-width: 480px) {
+  .containerLogi {
+    padding: 30px 20px;
+    border-radius: 8px;
+  }
+
+  .input-box {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  
+  .logo-image {
+    width: 90px;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.login-wrapper .containerLogi .login-button {
+  all: unset;
+  display: block;
+  width: 100%;
+  padding: 12px 24px;
+  background-color: #54a3f1;
+  color: white;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  box-sizing: border-box;
+  margin-top: 16px;
+  margin-left: 100px;
+}
+
+@media (max-width: 480px) {
+  .login-wrapper .containerLogi .login-button {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
 }

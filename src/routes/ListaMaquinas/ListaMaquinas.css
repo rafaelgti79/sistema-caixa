@@ -17,78 +17,67 @@
 .excel-table td {
   border: 1px solid #ccc;
   padding: 3px 12px;
-  text-align: left;
   color: black;
   white-space: nowrap; /* Impede quebra de linha */
   text-align: center;
 }
 
+/* Cabeçalho */
 .excel-table th {
   background-color: #eaeaea;
   font-weight: bold;
 }
 
+/* Linhas alternadas */
 .excel-table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
+/* Hover na linha */
 .excel-table tr:hover {
   background-color: #d3f0ff;
 }
 
-/* Ajustes para os botões de ação */
+/* Coluna de Ações */
+.excel-table td:last-child,
+.excel-table th:last-child {
+  width: 160px;
+  max-width: 160px;
+  min-width: 130px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.excel-table td:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px; /* Espaço entre os botões */
+  flex-wrap: nowrap;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Estilos base para os botões */
 button {
   padding: 5px 10px;
-  margin: 0 5px;
+  margin: 0;
   border: none;
   cursor: pointer;
   border-radius: 5px;
   font-size: 14px;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
+/* Botões de ação */
 .btn-edit {
-  background-color: #4CAF50; /* Cor verde para editar */
+  background-color: #4CAF50; /* Verde */
   color: white;
 }
 
 .btn-edit:hover {
   background-color: #45a049;
-}
-
-.btn-delete {
-  background-color: #f44336; /* Cor vermelha para excluir */
-  color: white;
-}
-
-.btn-delete:hover {
-  background-color: #e53935;
-}
-
-/* Ajustes para telas pequenas */
-@media (max-width: 768px) {
-  .excel-table th,
-  .excel-table td {
-    padding: 6px 8px;
-    font-size: 14px;
-  }
-
-  /* Ajuste no tamanho do texto e espaçamento dos botões em telas pequenas */
-  button {
-    padding: 4px 8px;
-    font-size: 12px;
-  }
-}
-
-/* Ajustes para telas muito pequenas */
-@media (max-width: 480px) {
-  .excel-table th,
-  .excel-table td {
-    font-size: 12px;
-  }
-
-  /* Tamanho de botão em telas menores */
-  button {
-    padding: 3px 6px;
-    font-size: 10px;
-  }
 }

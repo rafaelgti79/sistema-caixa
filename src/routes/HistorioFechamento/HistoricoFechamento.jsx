@@ -9,6 +9,20 @@ function HistoricoCaixa() {
   const [filtroUsuario, setFiltroUsuario] = useState('');
   const [historicoFiltrado, setHistoricoFiltrado] = useState([]);
   const [resumo, setResumo] = useState(null);
+  const [cartoes, setCartoes] = useState([]);
+
+
+  useEffect(() => {
+  async function fetchCartoes() {
+    try {
+      const res = await api.get('/cartao');
+      setCartoes(res.data);
+    } catch (err) {
+      console.error('Erro ao buscar dados de cartão:', err);
+    }
+  }
+  fetchCartoes();
+}, []);
 
   useEffect(() => {
     async function fetchHistorico() {
@@ -56,6 +70,8 @@ function HistoricoCaixa() {
         acc.sangria += Number(item.sangria || 0);
         acc.sobra += Number(item.sobra || 0);
         acc.falta += Number(item.falta || 0);
+
+        
         return acc;
       },
       {
@@ -77,6 +93,12 @@ function HistoricoCaixa() {
 
     setResumo(total);
   }, [historico, dataInicial, dataFinal, filtroUsuario]);
+
+  const formatBRL = (valor) =>
+  Number(valor || 0).toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
 
   return (
     <div className="containerDespesas">
@@ -100,52 +122,79 @@ function HistoricoCaixa() {
       {resumo && (
         <div className="resumo-total">
           <h3>Resumo do Período</h3>
-          <p><strong>Entradas:</strong> R$ {resumo.totalEntradas.toFixed(2)}</p>
-          <p><strong>Saídas:</strong> R$ {resumo.totalSaidas.toFixed(2)}</p>
-          <p><strong>Bruto:</strong> R$ {resumo.bruto.toFixed(2)}</p>
-          <p><strong>Despesas:</strong> R$ {resumo.despesas.toFixed(2)}</p>
-          <p><strong>Liquido:</strong> R$ {resumo.liquido.toFixed(2)}</p>
-          <p><strong>Fundo Inicial:</strong> R$ {resumo.fundoInicial.toFixed(2)}</p>
-          <p><strong>Reforço:</strong> R$ {resumo.reforco.toFixed(2)}</p>
-          <p><strong>Composição Total:</strong> R$ {resumo.composicao.toFixed(2)}</p>
-          <p><strong>Cartão:</strong> R$ {resumo.cartao.toFixed(2)}</p>
-          <p><strong>Dinheiro:</strong> R$ {resumo.dinheiro.toFixed(2)}</p>
-          <p><strong>Sangria:</strong> R$ {resumo.sangria.toFixed(2)}</p>
-          <p><strong>Sobra:</strong> R$ {resumo.sobra.toFixed(2)}</p>
-          <p><strong>Falta:</strong> R$ {resumo.falta.toFixed(2)}</p>
+          <p><strong>Entradas:</strong> {formatBRL(resumo.totalEntradas)}</p>
+
+          <p><strong>Saídas:</strong> R$ {formatBRL(resumo.totalSaidas)}</p>
+          <p><strong>Bruto:</strong> R$ {formatBRL(resumo.bruto)}</p>
+          <p><strong>Despesas:</strong> R$ {formatBRL(resumo.despesas)}</p>
+          <p><strong>Liquido:</strong> R$ {formatBRL(resumo.liquido)}</p>
+          {/* <p><strong>Fundo Inicial:</strong> R$ {formatBRL(resumo.fundoInicial)}</p> */}
+          <p><strong>Reforço:</strong> R$ {formatBRL(resumo.reforco)}</p>
+          <p><strong>Composição Total:</strong> R$ {formatBRL(resumo.composicao)}</p>
+          <p><strong>Cartão:</strong> R$ {formatBRL(resumo.cartao)}</p>
+          <p><strong>Dinheiro:</strong> R$ {formatBRL(resumo.dinheiro)}</p>
+          <p><strong>Sangria:</strong> R$ {formatBRL(resumo.sangria)}</p>
+          <p><strong>Sobra:</strong> R$ {formatBRL(resumo.sobra)}</p>
+          <p><strong>Falta:</strong> R$ {formatBRL(resumo.falta)}</p>
         </div>
       )}
 
       <ul className="grid-list">
-        {historicoFiltrado.length > 0 ? (
-          historicoFiltrado.map((item, idx) => (
-            <li key={idx} className="grid-item">
-              <div className="grid-row"><span className="label">Data:</span><span className="value">{item.data}</span></div>
-              <div className="grid-row"><span className="label">Usuário:</span><span className="value">{item.usuario}</span></div>
-              <div className="grid-row"><span className="label">Total Entrada :</span><span className="value">R$ {Number(item.totalSomaEntradas).toFixed(2)}</span></div>
-              <div className="grid-row"><span className="label">Total de Saida:</span><span className="value">R$ {Number(item.totalSomaSaidas).toFixed(2)}</span></div>
-              <div className="grid-row linha-bruto"><span className="label">Resultado Bruto:</span><span className="value">R$ {Number(item.bruto).toFixed(2)}</span></div>
+  {historicoFiltrado.map((item, idx) => {
+         const dataItem = item.data.slice(0, 10);
+  const usuarioItem = item.usuario?.trim().toLowerCase();
 
-              <div className="grid-row"><span className="label">Despesas:</span><span className="value">R$ {Number(item.despesas).toFixed(2)}</span></div>
+  const cartoesFiltrados = cartoes.filter(c =>
+    c.data?.slice(0, 10) === dataItem &&
+    c.usuario?.trim().toLowerCase() === usuarioItem
+  );
+  console.log('--- Comparando ---');
+console.log('Data:', dataItem);
+console.log('Usuário:', usuarioItem);
+console.log('Cartões encontrados:', cartoesFiltrados);
 
-              <div className="grid-row"><span className="label">Resultado Liquido:</span><span className="value">R$ {Number(item.liquido).toFixed(2)}</span></div>
-              <div className="grid-row"><span className="label">Fundo Inicial:</span><span className="value">R$ {Number(item.fundoInicial).toFixed(2)}</span></div>
-              <div className="grid-row"><span className="label">Reforço:</span><span className="value">R$ {Number(item.reforco || 0).toFixed(2)}</span></div>
+  const totaisPorTipo = { credito: 0, debito: 0, pix: 0 };
 
-              <div className="grid-row"><span className="label">Composição Total:</span><span className="value">R$ {Number(item.composicaoTotal || item.composicao).toFixed(2)}</span></div>
-              <div className="grid-row"><span className="label">Cartão:</span><span className="value">R$ {Number(item.cartao || 0).toFixed(2)}</span></div>
-              
-              <div className="grid-row"><span className="label">Dinheiro:</span><span className="value">R$ {Number(item.dinheiro).toFixed(2)}</span></div>
-              <div className="grid-row"><span className="label">Sangria:</span><span className="value">R$ {Number(item.sangria || 0).toFixed(2)}</span></div>
+  cartoesFiltrados.forEach(c => {
+    const tipo = c.tipo?.toLowerCase();
+    const valor = Number(c.valor || 0); // << aqui corrigido
 
-              <div className="grid-row"><span className="label">Sobra:</span><span className="value">R$ {Number(item.sobra || 0).toFixed(2)}</span></div>
-              <div className="grid-row"><span className="label">Falta:</span><span className="value">R$ {Number(item.falta || 0).toFixed(2)}</span></div>
-            </li>
-          ))
-        ) : (
-          <p>Nenhum fechamento encontrado.</p>
-        )}
-      </ul>
+    if (tipo === 'credito') totaisPorTipo.credito += valor;
+    if (tipo === 'debito') totaisPorTipo.debito += valor;
+    if (tipo === 'pix') totaisPorTipo.pix += valor;
+  });
+
+
+    return (
+      <li key={idx} className="grid-item">
+        <div className="grid-row"><span className="label">Data:</span><span className="value">{item.data}</span></div>
+        <div className="grid-row"><span className="label">Usuário:</span><span className="value">{item.usuario}</span></div>
+        <div className="grid-row"><span className="label">Total Entrada:</span><span className="value">R$ {formatBRL(item.totalSomaEntradas)}</span></div>
+        <div className="grid-row"><span className="label">Total de Saída:</span><span className="value">R$ {formatBRL(item.totalSomaSaidas)}</span></div>
+        <div className="grid-row linha-bruto"><span className="label">Resultado Bruto:</span><span className="value">R$ {formatBRL(item.bruto)}</span></div>
+        <div className="grid-row"><span className="label">Despesas:</span><span className="value">R$ {formatBRL(item.despesas)}</span></div>
+        <div className="grid-row"><span className="label">Resultado Líquido:</span><span className="value">R$ {formatBRL(item.liquido)}</span></div>
+        <div className="grid-row"><span className="label">Fundo Inicial:</span><span className="value">R$ {formatBRL(item.fundoInicial)}</span></div>
+        <div className="grid-row"><span className="label">Reforço:</span><span className="value">R$ {formatBRL(item.reforca)}</span></div>
+        <div className="grid-row"><span className="label">Composição Total:</span><span className="value">R$ {formatBRL(item.composicaoTotal)}</span></div>
+
+        {/* 🔄 Cartão total geral (se ainda quiser manter) */}
+        {/* <div className="grid-row"><span className="label">Cartão:</span><span className="value">R$ {formatBRL(item.cartao)}</span></div> */}
+
+        {/* ✅ Novos campos filtrados da rota /cartao */}
+        <div className="grid-row"><span className="label">Cartão Crédito:</span><span className="value">R$ {formatBRL(item.cartaoCredito)}</span></div>
+        <div className="grid-row"><span className="label">Cartão Débito:</span><span className="value">R$ {formatBRL(item.cartaoDebito)}</span></div>
+        <div className="grid-row"><span className="label">Pix:</span><span className="value">R$ {formatBRL(item.cartaoPix)}</span></div>
+
+        <div className="grid-row"><span className="label">Dinheiro:</span><span className="value">R$ {formatBRL(item.dinheiro)}</span></div>
+        <div className="grid-row"><span className="label">Sangria:</span><span className="value">R$ {formatBRL(item.sangria)}</span></div>
+        <div className="grid-row"><span className="label">Sobra:</span><span className="value">R$ {formatBRL(item.sobra)}</span></div>
+        <div className="grid-row"><span className="label">Falta:</span><span className="value">R$ {formatBRL(item.falta)}</span></div>
+      </li>
+    );
+  })}
+</ul>
+
     </div>
   );
 }

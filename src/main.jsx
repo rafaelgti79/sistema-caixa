@@ -49,6 +49,7 @@ import EditarMaquina from './routes/EditarMaquina/editarMaquina.jsx';
 import RelatorioMaquinas from './routes/RelatorioMaquinas/RelatorioMaquinas.jsx';
 import FiltroRelatorioMaquinas from './routes/RelatorioMaquinas/FiltroRelatorioMaquinas/FiltroRelatorioMaquinas.jsx';
 import ResumoMaquinas from './routes/ResumoMaquinas/ResumoMaquinas.jsx';
+import ResumoTotal from './routes/ResumoTotal/ResumoTotal.jsx';
 
 
 
@@ -109,6 +110,7 @@ const router = createBrowserRouter([
       { path: "/app/relatoriomaquinas", element: <PrivateRoute allowed={["admin"]}><RelatorioMaquinas/></PrivateRoute> },
       { path: "/app/filtrorelatoriomaquina", element: <PrivateRoute allowed={["admin"]}><FiltroRelatorioMaquinas/></PrivateRoute> },
       { path: "/app/resumomaquinas", element: <PrivateRoute allowed={["admin"]}><ResumoMaquinas/></PrivateRoute> },
+      { path: "/app/resumototal", element: <PrivateRoute allowed={["admin"]}><ResumoTotal/></PrivateRoute> },
       { path: "/app/nao-autorizado", element: <PrivateRoute><NaoAutorizado /></PrivateRoute> },
 
       
